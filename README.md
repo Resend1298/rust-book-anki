@@ -24,8 +24,10 @@ After importing, search for `tag:rust-book-deleted` in the browser and delete th
 
 ## How the cards are made
 
-1. An agent reads a section of the book and writes its cards.
-2. A human reviews the cards.
+1. An agent reads a chapter of the book and writes its cards.
+2. Another agent, running a different model, reviews the cards.
+3. The first agent revises the cards based on the review.
+4. A human reviews the cards.
 
 Cards live in `cards/`, one TOML file per section of the book.
 

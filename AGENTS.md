@@ -1,7 +1,7 @@
 # AGENTS.md
 
 This repository builds Anki decks for [The Rust Programming Language](https://doc.rust-lang.org/book/).
-Cards are written by an agent, then reviewed by a human.
+Cards are written by an agent, reviewed by another agent running a different model, revised by the first agent, then reviewed by a human.
 
 ## Layout
 
@@ -87,7 +87,9 @@ For each section in that chapter:
 1. Read `book/src/<section>.md`.
 2. Write `cards/<section>.toml`.
 
-After all sections are done, stop and ask the human to review the cards.
+After all sections are done, stop.
+Another agent, running a different model, then reviews the cards.
+When the review comes back, revise the cards based on it, then stop and ask the human to review them.
 
 ## Building
 
