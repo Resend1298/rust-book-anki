@@ -93,7 +93,7 @@ After all sections are done, stop and ask the human to review the cards.
 
 `uv run main.py` writes `dist/rust-book-upto-<chXX>.apkg` containing every card from that chapter and all earlier chapters.
 
-- Note types: `Rust Book Basic` with fields `Front` and `Back`, and `Rust Book Cloze` with fields `Text` and `Extra`.
+- Note types: `Rust Book Basic` with fields `id`, `front` and `back`, and `Rust Book Cloze` with fields `id`, `text` and `extra`.
 - Decks: one subdeck per chapter, named like `Rust Book::04 Understanding Ownership`.
 - Note type IDs and deck IDs are fixed constants.
 - Markdown is rendered with markdown-it-py, and fenced code is highlighted with Pygments into static HTML.
