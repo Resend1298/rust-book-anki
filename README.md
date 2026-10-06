@@ -1,5 +1,10 @@
 # rust-book-anki
 
+[![wakatime](https://wakatime.com/badge/github/Resend1298/rust-book-anki.svg)](https://wakatime.com/badge/github/Resend1298/rust-book-anki)
+[![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2FResend1298%2Frust-book-anki%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml)](pyproject.toml)
+[![build](https://github.com/Resend1298/rust-book-anki/actions/workflows/build.yaml/badge.svg)](https://github.com/Resend1298/rust-book-anki/actions/workflows/build.yaml)
+[![GitHub License](https://img.shields.io/github/license/Resend1298/rust-book-anki)](LICENSE)
+
 Anki decks for [The Rust Programming Language](https://doc.rust-lang.org/book/).
 
 ## Using the decks
