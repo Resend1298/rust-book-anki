@@ -55,7 +55,7 @@ front = '''
 运行 `cargo build`，生成的可执行文件在哪？
 '''
 back = '''
-`target/debug/xxx`
+`target/debug/`
 '''
 
 [[cards]]
@@ -65,7 +65,8 @@ front = '''
 `Cargo.lock` 是什么？
 '''
 back = '''
-项目依赖的确切版本。由 Cargo 自动维护，不需要手动修改。
+项目依赖的确切版本。
+由 Cargo 自动维护，不需要手动修改。
 '''
 
 [[cards]]
@@ -95,5 +96,6 @@ front = '''
 `cargo build --release` 和 `cargo build` 有什么区别？
 '''
 back = '''
-开启优化，输出到 `target/release`。程序运行更快，但编译更慢。
+开启优化，程序运行更快，但编译更慢。
+输出到 `target/release/`。
 '''
