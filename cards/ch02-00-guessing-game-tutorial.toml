@@ -1,0 +1,165 @@
+[[cards]]
+id = "318c1229-4b1d-42f6-8fa6-990791f4802a"
+type = "basic"
+front = '''
+Rust 自动引入每个程序作用域的那组标准库条目叫什么？
+'''
+back = '''
+prelude
+'''
+
+[[cards]]
+id = "1cde2ff0-37fe-461c-bd5d-fe46abb184a0"
+type = "basic"
+front = '''
+`String::new()` 中的 `::` 表示什么？
+'''
+back = '''
+`new` 是 `String` 类型的 associated function。
+'''
+
+[[cards]]
+id = "490a7956-a3b9-4d66-8675-1249b173a1d6"
+type = "basic"
+front = '''
+如何从标准输入读取一行，存入 `String` 变量 `s`？
+'''
+back = '''
+`std::io::stdin().read_line(&mut s)`
+'''
+
+[[cards]]
+id = "71e7a70e-f630-40d8-8c2f-5f37b006ff48"
+type = "basic"
+front = '''
+传给 `read_line` 的 `String` 中已有内容时，新读入的一行如何处理？
+'''
+back = '''
+追加到末尾，不覆盖原有内容。
+'''
+
+[[cards]]
+id = "8a7202ec-d986-440e-b745-2570f14bb517"
+type = "basic"
+front = '''
+调用返回 `Result` 的函数，却不处理返回值，会怎样？
+'''
+back = '''
+能编译，但有 warning。
+'''
+
+[[cards]]
+id = "85310ac8-3e4d-440a-ae1a-13319c86e712"
+type = "basic"
+front = '''
+`println!` 的 `{}` 里能直接写表达式吗？
+'''
+back = '''
+不能。`{}` 里可以写变量名，但不能写表达式。表达式要留空 `{}`，作为后续参数传入。
+'''
+
+[[cards]]
+id = "38201dab-0811-4fa3-8b96-09214d1f8ffd"
+type = "basic"
+front = '''
+`Cargo.toml` 中依赖的版本写成 `"1.0.0"`，允许使用哪些版本？
+'''
+back = '''
+`^1.0.0`，即 ≥ 1.0.0 且 < 1.1.0。
+'''
+
+[[cards]]
+id = "f65c96cf-bc8b-40f9-a944-c501cdecf906"
+type = "basic"
+front = '''
+`cargo update` 做什么？
+'''
+back = '''
+忽略 `Cargo.lock`，按 `Cargo.toml` 的版本要求找出各依赖的最新版本，写入 `Cargo.lock`。
+'''
+
+[[cards]]
+id = "cac92a5a-6ba9-49a8-bda9-df67c7e65e5e"
+type = "basic"
+front = '''
+依赖的版本写的是 `"1.0.0"`，如何升级到 1.1.x？
+'''
+back = '''
+修改 `Cargo.toml` 中的版本要求。`cargo update` 只会在 1.0.x 范围内升级。
+'''
+
+[[cards]]
+id = "b08d8d32-59f0-4ffa-9412-8229f3c84fc9"
+type = "basic"
+front = '''
+范围 `start..=end` 包含 `end` 吗？
+'''
+back = '''
+包含，两端都包含。
+'''
+
+[[cards]]
+id = "6c7f6582-8436-48be-bad8-786dcdccc5a0"
+type = "basic"
+front = '''
+`std::cmp::Ordering` 有哪几个 variant？
+'''
+back = '''
+`Less`、`Greater`、`Equal`
+'''
+
+[[cards]]
+id = "10bb85af-58fe-44e6-b5f8-81f65ed69bbf"
+type = "basic"
+front = '''
+如何比较两个值 `a` 和 `b`，得到一个 `Ordering`？
+'''
+back = '''
+`a.cmp(&b)`
+'''
+
+[[cards]]
+id = "96b394be-c1e1-4451-a322-0a2dfb37aeae"
+type = "basic"
+front = '''
+`a` 是什么类型？
+
+```rust
+let a;
+let b: i32;
+b.cmp(&a);
+```
+'''
+back = '''
+`i32`，由与 `b` 的比较推断而来。
+'''
+
+[[cards]]
+id = "4fcdb17a-629c-4b3c-8982-1c612e1d816f"
+type = "basic"
+front = '''
+使用 `read_line` 的时候，为什么要先 `trim()` 再 `parse()`？
+'''
+back = '''
+`read_line` 会保留末尾的 `\n`，不去掉的话 `parse` 会失败。
+'''
+
+[[cards]]
+id = "e147e0c4-343d-466d-9d45-c39b994f43cd"
+type = "basic"
+front = '''
+`parse` 怎么知道要把字符串转换成什么类型？
+'''
+back = '''
+从上下文推断，通常靠类型注解。推断不出来就编译报错。
+'''
+
+[[cards]]
+id = "a91e9466-aac4-4f1a-8e84-156fc8c5d605"
+type = "basic"
+front = '''
+`parse` 为什么返回 `Result`？
+'''
+back = '''
+字符串不一定能转换成目标类型，转换可能失败。
+'''
