@@ -39,6 +39,8 @@ cd rust-book-anki
 uv run main.py
 ```
 
+A `build` run configuration for PyCharm is also included in `.idea/runConfigurations/`.
+
 The packages are written to `dist/`.
 
 ## License
