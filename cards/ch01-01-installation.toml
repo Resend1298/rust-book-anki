@@ -1,0 +1,9 @@
+[[cards]]
+id = "7a773534-1558-45d0-a80f-c09a34864c77"
+type = "basic"
+front = '''
+通过 `rustup` 安装的 Rust，如何升级？
+'''
+back = '''
+`rustup update`
+'''

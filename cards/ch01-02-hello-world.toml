@@ -1,0 +1,42 @@
+[[cards]]
+id = "12bb9457-edbb-4b32-84a5-8f2f63a84cf1"
+type = "basic"
+front = '''
+Rust 源文件名由多个单词组成时，按惯例怎么写？
+'''
+back = '''
+用下划线分隔。
+'''
+
+[[cards]]
+id = "d732f5d3-fccd-48c3-aac1-15dce345af18"
+type = "basic"
+front = '''
+Rust 自带的代码格式化工具叫什么？
+'''
+back = '''
+`rustfmt`
+'''
+
+[[cards]]
+id = "50e63bf1-4b0a-46c8-9670-b63775fd01b2"
+type = "basic"
+front = '''
+`println!` 末尾的 `!` 表示什么？
+'''
+back = '''
+调用的是 macro，而不是普通函数。
+'''
+
+[[cards]]
+id = "21b0a917-2eb7-45c3-8d77-f63d3159629f"
+type = "basic"
+front = '''
+不借助 Cargo，如何编译并运行 `main.rs`？
+'''
+back = '''
+```console
+$ rustc main.rs
+$ ./main
+```
+'''

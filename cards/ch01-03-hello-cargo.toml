@@ -1,0 +1,99 @@
+[[cards]]
+id = "d725851f-32f4-4db4-98cf-26200bb31346"
+type = "basic"
+front = '''
+Cargo 是什么？
+'''
+back = '''
+Rust 的构建系统和包管理器。
+'''
+
+[[cards]]
+id = "b61a2087-f5ae-4acb-81d6-0af013809fa3"
+type = "basic"
+front = '''
+在 Rust 中，代码包被称为什么？
+'''
+back = '''
+crate
+'''
+
+[[cards]]
+id = "d0fd3137-f544-44b1-bd40-7b1f42276d38"
+type = "basic"
+front = '''
+用 Cargo 新建项目，用什么命令？
+'''
+back = '''
+`cargo new`
+'''
+
+[[cards]]
+id = "9d2aedda-a88e-4a1f-95f2-101336f91fa5"
+type = "basic"
+front = '''
+用 Cargo 新建的项目里，配置文件和源代码文件分别是什么？
+'''
+back = '''
+`Cargo.toml` 和 `src/main.rs`
+'''
+
+[[cards]]
+id = "467bca99-2dad-468f-8516-9cd1eda3da6c"
+type = "basic"
+front = '''
+Cargo 期望源代码放在哪里？
+'''
+back = '''
+`src/`
+'''
+
+[[cards]]
+id = "6e978baa-ec7e-46c6-99a7-9fea0c5d7cc8"
+type = "basic"
+front = '''
+运行 `cargo build`，生成的可执行文件在哪？
+'''
+back = '''
+`target/debug/xxx`
+'''
+
+[[cards]]
+id = "ef469c20-9d34-4680-bc36-c2fae9bc642e"
+type = "basic"
+front = '''
+`Cargo.lock` 是什么？
+'''
+back = '''
+项目依赖的确切版本。由 Cargo 自动维护，不需要手动修改。
+'''
+
+[[cards]]
+id = "7ec28892-fe37-4b1a-8949-f27d4312da5a"
+type = "basic"
+front = '''
+哪个命令可以一步完成 Cargo 项目的编译和运行？
+'''
+back = '''
+`cargo run`
+'''
+
+[[cards]]
+id = "b936419e-8cdb-4192-afdb-b6a0544af031"
+type = "basic"
+front = '''
+`cargo check` 和 `cargo build` 有什么区别？
+'''
+back = '''
+`cargo check` 只检查代码能否编译，不生成可执行文件，因此通常快得多。
+'''
+
+[[cards]]
+id = "8273d939-18c1-48ff-901c-f91a010bf97d"
+type = "basic"
+front = '''
+`cargo build --release` 和 `cargo build` 有什么区别？
+'''
+back = '''
+开启优化，输出到 `target/release`。程序运行更快，但编译更慢。
+'''
