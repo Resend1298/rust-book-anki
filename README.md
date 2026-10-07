@@ -7,6 +7,13 @@
 
 Anki decks for [The Rust Programming Language](https://doc.rust-lang.org/book/).
 
+## Language
+
+The cards are written in Chinese, with technical terms kept in English.
+
+If you prefer another language, you can ask your agent to translate the files in `cards/` and then [build the decks](#building) yourself.
+It should be a very straightforward task for an LLM.
+
 ## Using the decks
 
 Download a package from releases.
