@@ -1,0 +1,119 @@
+[[cards]]
+id = "93211896-5f6f-43ca-aeab-7b5aff5845e8"
+type = "basic"
+front = '''
+Rust 中的 slice 是什么？
+'''
+back = '''
+对集合中一段连续元素的 reference。它没有 ownership。
+'''
+
+[[cards]]
+id = "0b91cab2-ff7b-464b-9d04-a68db5711d1d"
+type = "basic"
+front = '''
+用 `usize` 索引记录 `String` 中某个单词的位置，有什么隐患？
+'''
+back = '''
+索引和 `String` 的内容没有关联。`String` 被修改后，索引可能已经失效，编译器却发现不了。
+改用 slice，编译器就能检查。
+'''
+
+[[cards]]
+id = "02b13b3d-2c5a-4c31-a558-7264ce339287"
+type = "basic"
+front = '''
+string slice 内部存储了哪两项数据？
+'''
+back = '''
+指向起始 byte 的指针，和以 byte 计的长度。
+'''
+
+[[cards]]
+id = "59ed55cb-c978-449a-8ef7-5f9545cfd52d"
+type = "cloze"
+text = '''
+对 `String` 变量 `s`：
+
+- `&s[0..2]` 可以简写为 {{c1::`&s[..2]`}}。
+- `&s[3..s.len()]` 可以简写为 {{c2::`&s[3..]`}}。
+- `&s[0..s.len()]` 可以简写为 {{c3::`&s[..]`}}。
+'''
+
+[[cards]]
+id = "86168b59-3abe-4a2c-827f-cf924ca6fd1b"
+type = "basic"
+front = '''
+string slice 的范围边界落在多字节 UTF-8 字符的中间，会怎样？
+'''
+back = '''
+运行时 panic。
+'''
+
+[[cards]]
+id = "29d54336-0443-4aea-9541-b73cfdab5928"
+type = "basic"
+front = '''
+string slice 的类型怎么写？
+'''
+back = '''
+`&str`
+'''
+
+[[cards]]
+id = "474e8be1-4f91-415d-a484-39ab960c7bab"
+type = "basic"
+front = '''
+`first_word` 的签名是 `fn first_word(s: &String) -> &str`。以下代码能编译吗？
+
+```rust
+let mut s = String::from("hello world");
+let word = first_word(&s);
+s.clear();
+println!("{word}");
+```
+'''
+back = '''
+不能。`word` 是对 `s` 的 immutable borrow，之后还要使用；而 `clear` 需要 mutable borrow。
+'''
+
+[[cards]]
+id = "f9f47d0c-52f8-4807-8f67-299fb66f0475"
+type = "basic"
+front = '''
+字符串字面量是什么类型？
+'''
+back = '''
+`&str`，即指向可执行文件中那段文本的 slice。
+`&str` 是 immutable reference，所以字符串字面量不可变。
+'''
+
+[[cards]]
+id = "e9eb213d-5c5a-4feb-b981-abf8e8b67f78"
+type = "basic"
+front = '''
+函数的字符串参数写成 `&str`，比写成 `&String` 好在哪？
+'''
+back = '''
+更通用：既能接受 `&str`（包括字符串字面量），也能接受 `&String`。
+'''
+
+[[cards]]
+id = "14f916ad-c32e-47b3-9ada-0cd881b26ddb"
+type = "basic"
+front = '''
+`[i32; 5]` 类型的 array，它的 slice 是什么类型？
+'''
+back = '''
+`&[i32]`
+'''
+
+[[cards]]
+id = "ac88d7da-9409-4617-ab61-2e7995e21df4"
+type = "basic"
+front = '''
+按 Rust 的惯例，函数什么时候才取得参数的 ownership？
+'''
+back = '''
+只在确实需要时。否则参数用 reference。
+'''

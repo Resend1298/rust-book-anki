@@ -1,0 +1,187 @@
+[[cards]]
+id = "f850dbe4-3c57-4e6f-9dc7-2a2aafa10982"
+type = "basic"
+front = '''
+Rust 的 reference 和指针相比，多了什么保证？
+'''
+back = '''
+在 reference 存在期间，它一定指向某个类型的有效值。
+'''
+
+[[cards]]
+id = "6ab9288b-e1a9-49bb-9bb3-5289fd635366"
+type = "basic"
+front = '''
+如何让函数使用一个 `String`，但不取得它的 ownership？
+'''
+back = '''
+参数类型写成 `&String`，调用时传入 `&s`。
+'''
+
+[[cards]]
+id = "278c8163-a10b-4ea5-8b8e-83965f31310e"
+type = "basic"
+front = '''
+一个 reference 不再被使用后，它指向的值会被 drop 吗？
+'''
+back = '''
+不会。reference 不拥有这个值。
+'''
+
+[[cards]]
+id = "13f9cd90-4495-4a8d-8d27-b335c93694ed"
+type = "basic"
+front = '''
+在 Rust 中，创建 reference 这一行为叫什么？
+'''
+back = '''
+borrowing
+'''
+
+[[cards]]
+id = "9d7143fe-21d2-4884-a0a5-d9500fe54562"
+type = "basic"
+front = '''
+以下函数能编译吗？
+
+```rust
+fn change(s: &String) {
+	s.push_str(", world");
+}
+```
+'''
+back = '''
+不能。和变量一样，reference 默认不可变，不能通过它修改值。
+'''
+
+[[cards]]
+id = "b471b615-50e1-4092-a38b-6df89a5d5eb6"
+type = "basic"
+front = '''
+如何让函数修改借来的 `String`？
+'''
+back = '''
+参数类型写成 `&mut String`，调用时传入 `&mut s`。
+'''
+
+[[cards]]
+id = "85323fcc-2891-436b-8fd6-5954692110fc"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let mut s = String::from("hello");
+let r1 = &mut s;
+let r2 = &mut s;
+println!("{r1}, {r2}");
+```
+'''
+back = '''
+不能。同一时刻只能有一个 mutable reference，而 `r2` 创建之后 `r1` 还要使用。
+'''
+
+[[cards]]
+id = "a69b9817-5499-4b8b-80c5-6c61c52f9547"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let mut s = String::from("hello");
+let r1 = &s;
+let r2 = &mut s;
+println!("{r1}");
+```
+'''
+back = '''
+不能。`r1` 之后还要使用，在它有效期间，不能再创建 mutable reference。
+'''
+
+[[cards]]
+id = "44b46504-b586-4889-ab22-d14d4a3abb70"
+type = "cloze"
+text = '''
+Reference 的规则：
+
+- 任意时刻，对同一个值，要么只能有{{c1::一个 mutable reference}}，要么只能有{{c2::任意数量的 immutable reference}}。
+- reference 必须{{c3::始终有效}}。
+'''
+
+[[cards]]
+id = "04fe2be0-b7f2-4a10-8998-f946d22202aa"
+type = "basic"
+front = '''
+禁止对同一数据同时存在多个 mutable reference，让 Rust 能在编译时防止什么问题？
+'''
+back = '''
+data race
+'''
+
+[[cards]]
+id = "f1afc4e3-fe51-47e0-aa89-a3b8f7b42d85"
+type = "cloze"
+text = '''
+以下三个条件同时满足时，会发生 data race：
+
+- {{c1::两个或更多指针同时访问同一数据}}。
+- {{c2::至少有一个指针在写入数据}}。
+- {{c3::没有同步访问数据的机制}}。
+'''
+
+[[cards]]
+id = "67873067-b80d-4c12-8368-a361d2cc4b7b"
+type = "basic"
+front = '''
+一个 reference 的 borrow 在什么时候结束？
+'''
+back = '''
+在最后一次使用这个 reference 之后，而不是所在 block 的末尾。
+'''
+
+[[cards]]
+id = "5f8212ac-cd71-49a3-9023-e8e9976aed51"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let mut s = String::from("hello");
+let r1 = &s;
+let r2 = &s;
+println!("{r1} and {r2}");
+let r3 = &mut s;
+println!("{r3}");
+```
+'''
+back = '''
+能。`r1` 和 `r2` 的 borrow 在最后一次使用后就结束了，与 `r3` 的 mutable borrow 不重叠。
+'''
+
+[[cards]]
+id = "5e6fa4ee-e37b-43a8-9f62-dd6a27c4e053"
+type = "basic"
+front = '''
+Rust 编译器如何保证 reference 不会成为 dangling reference？
+'''
+back = '''
+确保数据不会在它的 reference 之前离开 scope。
+'''
+
+[[cards]]
+id = "306dc8e1-9d9d-4212-9f7d-e9c735502913"
+type = "basic"
+front = '''
+以下函数能编译吗？
+
+```rust
+fn dangle() -> &String {
+	let s = String::from("hello");
+	&s
+}
+```
+'''
+back = '''
+不能。`s` 在函数结束时被 drop，返回的 reference 会指向已释放的内存。
+应直接返回 `String`，把 ownership move 出去。
+'''

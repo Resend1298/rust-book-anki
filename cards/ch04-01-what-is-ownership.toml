@@ -1,0 +1,260 @@
+[[cards]]
+id = "893e827c-fc63-43d1-9674-c9c2dac5db0c"
+type = "basic"
+front = '''
+Rust 既没有 garbage collector，也不要求手动释放内存，它靠什么管理内存？
+'''
+back = '''
+ownership：一组由编译器检查的规则，违反规则的程序无法编译。
+这些检查不会拖慢运行时。
+'''
+
+[[cards]]
+id = "cb21d775-55a4-486d-950e-105ff57ef1b9"
+type = "basic"
+front = '''
+什么样的数据必须存放在 heap 上，而不能放在 stack 上？
+'''
+back = '''
+编译时大小未知，或者大小可能变化的数据。
+'''
+
+[[cards]]
+id = "3a6da883-64ce-4bd9-9926-59acdc97501b"
+type = "basic"
+front = '''
+Rust 的 ownership 主要是为了管理哪里的数据？
+'''
+back = '''
+heap 上的数据。
+'''
+
+[[cards]]
+id = "171be630-b53e-4fb8-8569-9fbc5ffb97a7"
+type = "cloze"
+text = '''
+Ownership 的三条规则：
+
+- {{c1::每个值都有一个 owner}}。
+- {{c2::同一时刻只能有一个 owner}}。
+- {{c3::owner 离开 scope 时，值会被 drop}}。
+'''
+
+[[cards]]
+id = "acb69ffb-dd27-41a3-8ada-53a2214673d5"
+type = "basic"
+front = '''
+什么情况下要用 `String`，而不是字符串字面量？
+'''
+back = '''
+文本需要修改。
+'''
+
+[[cards]]
+id = "9ae64e3b-f561-417e-ab7e-e9ba37b869a9"
+type = "basic"
+front = '''
+如何在 `String` 变量 `s` 的末尾追加一段字符串？
+'''
+back = '''
+`s.push_str("...")`
+'''
+
+[[cards]]
+id = "3c032fc7-d3f9-4be4-ad79-07c38e4eeb80"
+type = "basic"
+front = '''
+变量离开 scope 时，Rust 会自动调用哪个函数？
+'''
+back = '''
+`drop`
+'''
+
+[[cards]]
+id = "3443e8c2-36a8-4002-980f-d313b3cff40e"
+type = "basic"
+front = '''
+`String` 存放在 stack 上的部分由哪三项组成？
+'''
+back = '''
+指向 heap 上内容的指针、length、capacity。
+'''
+
+[[cards]]
+id = "1a5b9191-6746-40f7-95c0-2522e95aa1f3"
+type = "basic"
+front = '''
+`String` 的 length 和 capacity 有什么区别？
+'''
+back = '''
+length 是内容当前占用的 byte 数；
+capacity 是从 allocator 获得的总 byte 数。
+'''
+
+[[cards]]
+id = "bee206a0-1828-4abb-877b-c227889dc057"
+type = "basic"
+front = '''
+如果执行 `let s2 = s1;` 之后，`String` 变量 `s1` 仍然有效，会出什么问题？
+'''
+back = '''
+离开 scope 时，`s1` 和 `s2` 都会释放同一块 heap 内存，造成 double free。
+'''
+
+[[cards]]
+id = "d750f431-5d53-49ae-8680-13ccd1d22b46"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let s1 = String::from("hello");
+let s2 = s1;
+println!("{s1}");
+```
+'''
+back = '''
+不能。`s1` 已经 move 到 `s2`，不再有效。
+'''
+
+[[cards]]
+id = "9199ee31-f62d-46df-9ea9-248a17611c11"
+type = "basic"
+front = '''
+对 `String` 执行 `let s2 = s1;`，为什么叫 move，而不叫 shallow copy？
+'''
+back = '''
+它只复制 stack 上的指针、length 和 capacity，不复制 heap 上的内容，这一点像 shallow copy；
+但它同时让 `s1` 失效。
+'''
+
+[[cards]]
+id = "ba954886-9a54-4f73-8a19-b02cfffcd07e"
+type = "basic"
+front = '''
+Rust 会自动对数据做 deep copy 吗？
+'''
+back = '''
+永远不会。
+'''
+
+[[cards]]
+id = "2b1ba884-cabf-44cc-b52e-7b4cae53bc75"
+type = "basic"
+front = '''
+给已有的 `String` 变量赋一个新值，原来的值什么时候被 drop？
+'''
+back = '''
+赋值时立即 drop，不等到 scope 结束。
+'''
+
+[[cards]]
+id = "2db18b7e-d5ee-413a-8fe4-3e58a6125a79"
+type = "basic"
+front = '''
+复制 `String` 时，如何连同 heap 上的数据一起复制？
+'''
+back = '''
+调用 `clone`，如 `let s2 = s1.clone();`。之后 `s1` 和 `s2` 都有效。
+'''
+
+[[cards]]
+id = "86439742-6dae-459d-96af-c3e5f7406d26"
+type = "basic"
+front = '''
+代码中出现 `clone` 调用时，通常意味着什么？
+'''
+back = '''
+这里会执行额外的代码，开销可能较大。
+'''
+
+[[cards]]
+id = "84f08836-d63b-4ac9-89d0-b88dd9020b85"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let x = 5;
+let y = x;
+println!("{x}");
+```
+'''
+back = '''
+能。`i32` 实现了 `Copy` trait，赋值时复制值，而不是 move，`x` 仍然有效。
+'''
+
+[[cards]]
+id = "02a407c1-fee2-4ad2-968f-0232b354506d"
+type = "basic"
+front = '''
+一个类型实现了 `Drop` trait，还能实现 `Copy` trait 吗？
+'''
+back = '''
+不能。只要类型本身或它的任何部分实现了 `Drop`，实现 `Copy` 就会编译报错。
+'''
+
+[[cards]]
+id = "8b45f3ad-7e04-47c1-b60a-bc5590238e09"
+type = "basic"
+front = '''
+判断一个类型能否实现 `Copy` 的一般规则是什么？
+'''
+back = '''
+由简单标量值组成的类型可以；
+需要分配内存，或代表某种资源的类型不行。
+'''
+
+[[cards]]
+id = "5fb86e57-fa01-4e9c-9be1-c8bcd894d6cf"
+type = "basic"
+front = '''
+以下哪些类型实现了 `Copy`？
+
+`u32`、`f64`、`bool`、`char`、`String`
+'''
+back = '''
+除了 `String` 都实现了。
+'''
+
+[[cards]]
+id = "0536937e-e216-4eb1-8b85-8eba15073e6a"
+type = "basic"
+front = '''
+tuple 什么时候实现 `Copy`？
+'''
+back = '''
+所有元素都实现 `Copy` 时。例如 `(i32, i32)` 实现了，`(i32, String)` 没有。
+'''
+
+[[cards]]
+id = "d4ba6532-cdfb-4c34-8d82-65269e108952"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+fn takes_ownership(s: String) {
+	println!("{s}");
+}
+
+fn main() {
+	let s = String::from("hello");
+	takes_ownership(s);
+	println!("{s}");
+}
+```
+'''
+back = '''
+不能。传参和赋值一样，`s` 已经 move 进函数，调用之后不再有效。
+'''
+
+[[cards]]
+id = "aec56555-ba36-44a0-bea4-9e845291f877"
+type = "basic"
+front = '''
+函数返回一个 `String` 时，它的 ownership 去了哪里？
+'''
+back = '''
+move 给调用者，例如接收返回值的变量。
+'''
