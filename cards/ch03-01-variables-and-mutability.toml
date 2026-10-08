@@ -1,0 +1,108 @@
+[[cards]]
+id = "6085e8fc-0fe0-4255-a160-8403b149e439"
+type = "basic"
+front = '''
+Rust 的变量默认可变吗？
+'''
+back = '''
+不可变。
+要让变量可变，使用 `let mut`。
+'''
+
+[[cards]]
+id = "f932e1a2-869c-40f8-b4db-df94fd8e109b"
+type = "basic"
+front = '''
+声明 `const` 常量时，什么是必须写的，而 `let` 可以省略？
+'''
+back = '''
+类型注解。
+'''
+
+[[cards]]
+id = "b5af3bd1-a48d-4818-8da6-7d115a656236"
+type = "basic"
+front = '''
+`const` 和 `let` 在能声明的位置上有什么不同？
+'''
+back = '''
+`const` 可以在任何 scope 中声明，包括全局 scope；
+`let` 不能用在全局 scope。
+'''
+
+[[cards]]
+id = "87f96615-db22-4e70-ba4f-3b18838f3c44"
+type = "basic"
+front = '''
+`const` 常量的值可以是运行时才能算出的结果吗？
+'''
+back = '''
+不可以，只能是编译时能求值的。
+'''
+
+[[cards]]
+id = "7086635c-9f74-4a55-b305-9fe165a7e68b"
+type = "basic"
+front = '''
+Rust 中常量的命名惯例是什么？
+'''
+back = '''
+全大写，下划线分隔。
+'''
+
+[[cards]]
+id = "77f8f1a5-781e-430e-8798-44fb21becd51"
+type = "basic"
+front = '''
+Rust 中的 shadowing 是什么？
+'''
+back = '''
+用 `let` 声明一个与已有变量同名的新变量。
+此后这个名字指向新变量，直到它再被 shadow 或 scope 结束。
+'''
+
+[[cards]]
+id = "4e93af2f-e349-41d2-b8fa-e2df8455426c"
+type = "basic"
+front = '''
+以下代码依次输出什么？
+
+```rust
+let x = 1;
+{
+	let x = 2;
+	println!("{x}");
+}
+println!("{x}");
+```
+'''
+back = '''
+`2`，然后 `1`。
+内层 scope 结束时，其中的 shadowing 也随之结束。
+'''
+
+[[cards]]
+id = "66282715-ba60-4743-b399-8934d5169e78"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let mut x = "abc";
+x = x.len();
+```
+'''
+back = '''
+不能。`mut` 变量不能改变类型。
+改用 shadowing：`let x = x.len();`。
+'''
+
+[[cards]]
+id = "6f67f63a-ca19-4d7f-8a28-0f7e0df9e85b"
+type = "basic"
+front = '''
+比起 `mut`，用不带 `mut` 的 `let` 分几步 shadow 一个值，能保证什么？
+'''
+back = '''
+转换完成后，变量仍是不可变的，之后误赋值会编译报错。
+'''

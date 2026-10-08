@@ -1,0 +1,117 @@
+[[cards]]
+id = "834808c9-ed7c-4f3a-9488-abc0d5c714c5"
+type = "basic"
+front = '''
+Rust 中函数名和变量名的命名惯例是什么？
+'''
+back = '''
+snake case：全小写，下划线分隔。
+'''
+
+[[cards]]
+id = "7af03bd7-df4a-4a0c-bec8-ba2c2b170895"
+type = "basic"
+front = '''
+Rust 中函数必须定义在调用它的代码之前吗？
+'''
+back = '''
+不必。只要定义在调用者能看到的 scope 中即可。
+'''
+
+[[cards]]
+id = "c9854384-1074-42dc-922d-a1462c33af9e"
+type = "basic"
+front = '''
+函数签名中的参数类型可以省略吗？
+'''
+back = '''
+不可以，每个参数都必须声明类型。
+'''
+
+[[cards]]
+id = "f82f1eb8-c2d7-401b-8b1e-d0c9e145024f"
+type = "basic"
+front = '''
+statement 和 expression 的区别是什么？
+'''
+back = '''
+statement 执行某个操作，不返回值；
+expression 会求值，得到一个值。
+'''
+
+[[cards]]
+id = "27c9acd2-3ad7-40d5-8e61-f6501bceb0ea"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let x = (let y = 6);
+```
+'''
+back = '''
+不能。`let` 是 statement，没有值，不能放在需要值的位置。
+'''
+
+[[cards]]
+id = "74e69ec8-e4ed-4f2b-884d-c19e57c9b9a1"
+type = "basic"
+front = '''
+`y` 的值是多少？
+
+```rust
+let y = {
+	let x = 2;
+	x * 3
+};
+```
+'''
+back = '''
+`6`。用 `{}` 创建的 block 是 expression，它的值是末尾那个不带分号的 expression 的值。
+'''
+
+[[cards]]
+id = "52a5de85-2d54-4299-bba7-06d8b265a5a3"
+type = "basic"
+front = '''
+在 expression 末尾加上分号，会发生什么？
+'''
+back = '''
+它变成 statement，不再有值。
+'''
+
+[[cards]]
+id = "c62e645a-ad0b-4e1d-9a9c-df6c7d41b590"
+type = "basic"
+front = '''
+如何声明函数的返回类型？
+'''
+back = '''
+在参数列表后加 `->` 和类型，如 `fn five() -> i32`。
+'''
+
+[[cards]]
+id = "373d28a5-b4a8-4041-8fb1-d30d628f75df"
+type = "basic"
+front = '''
+不使用 `return` 时，函数返回什么？
+'''
+back = '''
+函数体末尾那个不带分号的 expression 的值。没有这样的 expression 时，返回 `()`。
+'''
+
+[[cards]]
+id = "5d5e05fc-437d-4d43-b3f3-000af671f5b6"
+type = "basic"
+front = '''
+以下代码为什么不能编译？
+
+```rust
+fn plus_one(x: i32) -> i32 {
+	x + 1;
+}
+```
+'''
+back = '''
+分号使 `x + 1;` 成为 statement，函数体于是没有值，即 `()`，与返回类型 `i32` 不匹配。
+'''

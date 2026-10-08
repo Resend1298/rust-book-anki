@@ -1,0 +1,92 @@
+[[cards]]
+id = "b93bce56-d524-46a3-aa8f-124b0582e327"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+if number {
+	println!("");
+}
+```
+'''
+back = '''
+不能。`if` 的条件必须是 `bool`，Rust 不会把其他类型自动转换为 `bool`。
+'''
+
+[[cards]]
+id = "d9da4416-d0e8-46b8-b3e3-9fe7975fae0a"
+type = "basic"
+front = '''
+Rust 中如何根据条件给变量赋不同的值？
+'''
+back = '''
+`if` 是 expression，可以直接放在 `let` 右边：
+
+```rust
+let x = if condition { 5 } else { 6 };
+```
+'''
+
+[[cards]]
+id = "005be962-0818-4038-a73e-da9be1660321"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let x = if condition { 5 } else { "six" };
+```
+'''
+back = '''
+不能。`if` 各分支的值必须是同一类型，因为变量的类型必须在编译时确定。
+'''
+
+[[cards]]
+id = "d94d2f99-5843-45bc-9fe2-004186399300"
+type = "basic"
+front = '''
+如何从 `loop` 中返回一个值？
+'''
+back = '''
+把值写在 `break` 后面，如 `break 42;`，整个 `loop` 表达式的值就是它。
+'''
+
+[[cards]]
+id = "b2d231a3-b1c8-4ff6-8527-d337efc365cb"
+type = "basic"
+front = '''
+嵌套循环中，如何从内层循环直接 `break` 出外层循环？
+'''
+back = '''
+给外层循环加一个以单引号开头的 loop label，然后 `break` 这个 label：
+
+```rust
+'outer: loop {
+	loop {
+		break 'outer;
+	}
+}
+```
+'''
+
+[[cards]]
+id = "83856522-5e32-4682-8f74-7681c4591313"
+type = "basic"
+front = '''
+遍历 array 时，用 `for` 比用 `while` 加索引好在哪？
+'''
+back = '''
+不会越界或漏掉元素。
+不需要每次都检查是否越界，更快。
+'''
+
+[[cards]]
+id = "d17cd5e7-e94f-4b9b-94ef-059e35bb7b31"
+type = "basic"
+front = '''
+`for n in (1..4).rev()` 中，`n` 依次是什么？
+'''
+back = '''
+`3`、`2`、`1`。`1..4` 不包含 `4`，`rev()` 将其反转。
+'''
