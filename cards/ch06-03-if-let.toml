@@ -1,0 +1,73 @@
+[[cards]]
+id = "523e7cfd-bd67-400a-adcb-67256b362414"
+type = "basic"
+front = '''
+只想在值匹配某一个 pattern 时执行代码、忽略其余情况，有什么比 `match` 更简洁的写法？
+'''
+back = '''
+`if let`：
+
+```rust
+if let Some(x) = opt {
+	println!("{x}");
+}
+```
+'''
+
+[[cards]]
+id = "d8d58758-d1ec-47c8-897b-d71624b21c52"
+type = "basic"
+front = '''
+用 `if let` 代替 `match`，失去了什么？
+'''
+back = '''
+编译器不再检查是否处理了所有情况。
+'''
+
+[[cards]]
+id = "a9830342-379e-42ab-8c47-00f33ebd2ed6"
+type = "basic"
+front = '''
+`if let ... else` 中的 `else` 块，相当于 `match` 中的什么？
+'''
+back = '''
+`_` arm
+'''
+
+[[cards]]
+id = "72b359c6-bd57-437f-a61e-8ee4659557e9"
+type = "basic"
+front = '''
+值匹配 pattern 时让绑定的变量在后续代码中继续可用，不匹配就提前返回，用什么语法？
+'''
+back = '''
+`let...else`：
+
+```rust
+let Some(x) = opt else {
+	return None;
+};
+// 之后可以使用 x
+```
+'''
+
+[[cards]]
+id = "8122839b-a4e3-4f7c-b0d8-c0397cafc5f0"
+type = "basic"
+front = '''
+`let...else` 的 `else` 块有什么要求？
+'''
+back = '''
+不能执行完后继续往下走，比如 `return`、`break` 或 `panic!`。
+'''
+
+[[cards]]
+id = "850b3850-0e45-4590-8aa8-6c109d6e28e1"
+type = "basic"
+front = '''
+`if let` 和 `let...else` 绑定的变量分别在哪里可用？
+'''
+back = '''
+`if let`：只在它的 block 内。
+`let...else`：在这条语句之后，所在 scope 的剩余部分。
+'''

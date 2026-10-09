@@ -1,0 +1,106 @@
+[[cards]]
+id = "de9088b0-b183-4632-9807-8376db75af61"
+type = "basic"
+front = '''
+`match` 的 arm 由什么组成？
+'''
+back = '''
+pattern 和要执行的代码，用 `=>` 分隔，如 `None => 0`。
+'''
+
+[[cards]]
+id = "914b947a-839a-41ae-9dd1-3e361344eb0d"
+type = "basic"
+front = '''
+`match` 中有多个 arm 的 pattern 都能匹配时，执行哪一个？
+'''
+back = '''
+按顺序比较，执行第一个匹配的。
+'''
+
+[[cards]]
+id = "79ae9f60-c8c1-4e21-bac3-dde8c1edfa10"
+type = "basic"
+front = '''
+`match` 表达式的值是什么？
+'''
+back = '''
+匹配到的 arm 中代码的值。
+'''
+
+[[cards]]
+id = "4b828ca0-5882-4ca6-b26f-2d8ccaa6c793"
+type = "basic"
+front = '''
+`match` arm 的代码有多行时怎么写？
+'''
+back = '''
+用 `{}` 包起来。这时 arm 后的逗号可以省略。
+'''
+
+[[cards]]
+id = "46784989-024e-431d-bdfc-68df6e3f361e"
+type = "basic"
+front = '''
+在 `match` 中如何取出 enum variant 携带的数据？
+'''
+back = '''
+在 pattern 中对应位置写变量名，匹配时变量就绑定到其中的值：
+
+```rust
+match opt {
+	Some(x) => x,
+	None => 0,
+}
+```
+'''
+
+[[cards]]
+id = "b95cc8e0-4499-4bfe-ba5c-dfcb040c57a2"
+type = "basic"
+front = '''
+`match` 没有覆盖所有可能的值，会怎样？
+'''
+back = '''
+无法编译。
+'''
+
+[[cards]]
+id = "fcd2f8d7-4432-4643-a5da-5f2b653d8a66"
+type = "basic"
+front = '''
+如何用一个 `match` arm 处理所有其余的值，并使用这个值？
+'''
+back = '''
+在最后一个 arm 用变量名作 pattern，如 `other => ...`。
+'''
+
+[[cards]]
+id = "76ed9d22-9c41-43d9-bd44-c771ded025b6"
+type = "basic"
+front = '''
+在 `match` 的 catch-all arm 后面再写 arm，会怎样？
+'''
+back = '''
+能编译，但后面的 arm 永远不会匹配，编译器会给出警告。
+'''
+
+[[cards]]
+id = "0cbe1208-fbc0-45cf-a7be-cd3a6c4d0574"
+type = "basic"
+front = '''
+在 `match` 中用 `_` 和用变量名作 pattern，有什么区别？
+'''
+back = '''
+都匹配任意值，但 `_` 不绑定值。
+'''
+
+[[cards]]
+id = "d38eb14e-787b-41ba-931e-1cde86234bc6"
+type = "basic"
+front = '''
+如何让 `match` 对其余的值什么都不做？
+'''
+back = '''
+`_ => ()`
+'''

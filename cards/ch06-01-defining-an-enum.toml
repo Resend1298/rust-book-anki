@@ -1,0 +1,158 @@
+[[cards]]
+id = "84d6c8c0-446d-41db-b8d2-3bc945862852"
+type = "basic"
+front = '''
+如何引用 enum 的某个 variant？
+'''
+back = '''
+`EnumName::Variant`
+'''
+
+[[cards]]
+id = "7c0f7e3d-e27a-4e51-a3c7-e49c9f4d00df"
+type = "basic"
+front = '''
+同一个 enum 的不同 variant 是同一类型吗？
+'''
+back = '''
+是，都是这个 enum 类型。
+'''
+
+[[cards]]
+id = "0984014d-38fd-4b48-8494-1d126a949d5e"
+type = "basic"
+front = '''
+如何让 enum 的 variant 直接携带数据？
+'''
+back = '''
+在 variant 名后的括号里写数据类型：
+
+```rust
+enum E {
+	A(String),
+}
+
+let e = E::A(String::from("hello"));
+```
+'''
+
+[[cards]]
+id = "611d4491-c885-4c15-90f0-92e28a9552a0"
+type = "basic"
+front = '''
+定义 `enum E { A(String) }` 后，`E::A` 是什么？
+'''
+back = '''
+自动生成的构造函数，接收一个 `String`，返回一个 `E`。
+'''
+
+[[cards]]
+id = "49174a0e-d5b2-46f1-a866-9042ad69a435"
+type = "basic"
+front = '''
+同一个 enum 的不同 variant 能携带不同类型、不同数量的数据吗？
+'''
+back = '''
+能，比如一个是 `A(u8, u8, u8, u8)`，另一个是 `B(String)`。
+'''
+
+[[cards]]
+id = "0e54f120-d2eb-473a-b65c-0a80989e48af"
+type = "basic"
+front = '''
+enum 的 variant 有哪几种定义形式？
+'''
+back = '''
+与三种 struct 对应：
+
+```rust
+enum E {
+	A, // 不带数据，像 unit-like struct
+	B { x: i32, y: i32 }, // 有名字的 field，像 struct
+	C(String), // 无名的 field，像 tuple struct
+}
+```
+'''
+
+[[cards]]
+id = "1eebcfc5-c428-444d-b228-25c8581b9ef9"
+type = "basic"
+front = '''
+能为 enum 定义 method 吗？
+'''
+back = '''
+能。和 struct 一样，写在 `impl` 块里。
+'''
+
+[[cards]]
+id = "5442f02a-ccd5-4565-a2a0-c183c89f7b1f"
+type = "basic"
+front = '''
+Rust 没有 null，用什么表示一个值可能存在也可能不存在？
+'''
+back = '''
+`Option<T>`
+'''
+
+[[cards]]
+id = "406a6fbd-639e-4825-8efa-87f257868368"
+type = "basic"
+front = '''
+标准库中的 `Option<T>` 是如何定义的？
+'''
+back = '''
+```rust
+enum Option<T> {
+	None,
+	Some(T),
+}
+```
+'''
+
+[[cards]]
+id = "efd6b371-a5f8-4866-8312-f613f4f9ff0d"
+type = "basic"
+front = '''
+为什么可以直接写 `Some(5)` 和 `None`，不用写 `Option::Some(5)`？
+'''
+back = '''
+`Option<T>` 和它的 variant 都在 prelude 中。
+'''
+
+[[cards]]
+id = "54fa8a7e-2327-41f2-8e69-c4b0a960ac07"
+type = "basic"
+front = '''
+为什么 `let x = Some(5);` 不需要类型标注，而 `let x = None;` 通常需要？
+'''
+back = '''
+编译器能从 `Some` 中的值推断出 `T`，只看 `None` 则推断不出。
+需要写成 `let x: Option<i32> = None;`。
+'''
+
+[[cards]]
+id = "e62aa367-ba2c-4f52-b25c-51fa2ca783b4"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let x = 5;
+let y: Option<i32> = Some(5);
+let sum = x + y;
+```
+'''
+back = '''
+不能。`Option<i32>` 和 `i32` 是不同类型。
+'''
+
+[[cards]]
+id = "8cc1bc91-db67-4398-88f9-0652b743fff7"
+type = "basic"
+front = '''
+相比 null，`Option<T>` 好在哪？
+'''
+back = '''
+`Option<T>` 和 `T` 是不同类型，不能直接当作 `T` 使用，必须先显式取出其中的值。
+所以不会误把不存在的值当成有效值。
+'''
