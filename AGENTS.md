@@ -71,8 +71,9 @@ deleted = true
 - Test one fact per card. Keep answers short.
 - Make every card self-contained.
 - Restate ideas in your own words instead of translating the book's sentences.
-- Do not use unnecessary context or examples.
-  For example, a card should ask, "How do you create a new project with Cargo?" instead of "How do you create a new project named `hello_cargo` with Cargo?".
+- Do not use unnecessary context or examples. Ask about the general concept, not about the book's specific example.
+  For example, a card should ask, "How do you create a new project with Cargo?" instead of "How do you create a new project named `hello_cargo` with Cargo?",
+  and "How do you define methods on a struct?" instead of "How do you define methods on struct `Rectangle`?".
 
 ## Verifying code
 
@@ -87,6 +88,7 @@ For each section in that chapter:
 
 1. Read `book/src/<section>.md`.
 2. Write `cards/<section>.toml`.
+3. Check every card against "Writing cards".
 
 After all sections are done, stop.
 Another agent, running a different model, then reviews the cards.
