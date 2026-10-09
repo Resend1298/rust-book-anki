@@ -1,0 +1,155 @@
+[[cards]]
+id = "1875d4f3-fac4-41d5-8853-3d2221dca3c3"
+type = "basic"
+front = '''
+相比 tuple，struct 给 field 命名有什么好处？
+'''
+back = '''
+访问值时不必依赖顺序。
+'''
+
+[[cards]]
+id = "d5e8bc0b-ac85-4aeb-9245-9c31d7519d47"
+type = "basic"
+front = '''
+能否只把 struct instance 的部分 field 声明为 mutable？
+'''
+back = '''
+不能。只能把整个 instance 声明为 mutable。
+'''
+
+[[cards]]
+id = "631a2f6f-c4bb-44a4-bfb6-ca416dab6f8f"
+type = "basic"
+front = '''
+创建 struct instance 时，如果变量与 field 同名，可以怎样简写？
+'''
+back = '''
+名字只写一次，比如：
+
+```rust
+let a = A {
+	x,
+	y: ...,
+	z: ...,
+};
+```
+'''
+
+[[cards]]
+id = "e4e9a65c-cce4-4e96-84e3-2263c1730690"
+type = "basic"
+front = '''
+如何创建一个 struct instance，只给部分 field 新值，其余 field 取自同类型的另一个 instance？
+'''
+back = '''
+struct update syntax
+
+```rust
+let new_instance = StructType {
+	field1: new_value1,
+	..other_instance
+};
+```
+'''
+
+[[cards]]
+id = "cd872579-f30f-49b4-99b4-b1f992982454"
+type = "basic"
+front = '''
+struct update syntax 中，指定来源 instance 的 `..` 部分必须放在哪里？
+'''
+back = '''
+最后。其他 field 顺序任意。
+'''
+
+[[cards]]
+id = "5d281638-19dc-4a3a-a1ba-cb52706f723e"
+type = "basic"
+front = '''
+用 struct update syntax 创建新 instance 后，原 instance 中被使用的 `String` field 还能用吗？
+'''
+back = '''
+不能。struct update syntax 会 move 数据，这个 field 已经 move 到了新 instance。
+'''
+
+[[cards]]
+id = "cac8dec9-4513-4084-aa8b-dabb559629d2"
+type = "basic"
+front = '''
+用 struct update syntax 创建新 instance 后，什么情况下原 instance 仍然可以整体使用？
+'''
+back = '''
+被使用的 field 都实现了 `Copy`，没有任何 field 被 move 走。
+'''
+
+[[cards]]
+id = "c39cad27-d283-444a-9032-fc92ca4165e1"
+type = "basic"
+front = '''
+什么是 tuple struct？
+'''
+back = '''
+field 只有类型、没有名字的 struct，如 `struct Color(i32, i32, i32);`。
+'''
+
+[[cards]]
+id = "b5ec6391-70a0-41ca-bb4b-aaff48a9a997"
+type = "basic"
+front = '''
+两个 tuple struct 的 field 类型完全相同，接受其中一种的函数能传入另一种吗？
+'''
+back = '''
+不能。每个 struct 都是独立的类型。
+'''
+
+[[cards]]
+id = "a7a0a15d-2dc2-4138-b321-d2c81a261482"
+type = "basic"
+front = '''
+如何解构 tuple struct 的 instance？
+'''
+back = '''
+`let StructName(x, y, z) = instance;`
+'''
+
+[[cards]]
+id = "51401d51-6eeb-45b1-9dee-fec9ec336168"
+type = "basic"
+front = '''
+什么是 unit-like struct？
+'''
+back = '''
+没有任何 field 的 struct。
+定义写 `struct StructName;`。
+'''
+
+[[cards]]
+id = "e70b637d-3ca1-4f5f-ab91-e0848db48780"
+type = "basic"
+front = '''
+unit-like struct 适合什么场景？
+'''
+back = '''
+类型本身不需要存储数据。
+'''
+
+[[cards]]
+id = "a97903dc-a017-43aa-b279-3631aaced372"
+type = "basic"
+front = '''
+struct 的 field 能用 `&str` 这样的 reference 类型吗？
+'''
+back = '''
+能，但必须标注 lifetime，否则无法编译。
+'''
+
+[[cards]]
+id = "cf7bc819-c0d4-437d-a48a-77f83477db0e"
+type = "basic"
+front = '''
+struct 的字符串 field 用 `String` 而不用 `&str`，有什么好处？
+'''
+back = '''
+这些字符串数据归 instance 所有。
+'''

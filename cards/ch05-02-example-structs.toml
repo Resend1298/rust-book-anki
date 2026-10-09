@@ -1,0 +1,71 @@
+[[cards]]
+id = "fae708ac-fe13-45ab-93df-104625f67061"
+type = "basic"
+front = '''
+用 `println!` 的 `{}` 打印自定义 struct 时，这个类型需要实现哪个 trait？
+'''
+back = '''
+`Display`。struct 该怎样展示并不明确，所以 Rust 不会为自定义 struct 自动实现它。
+'''
+
+[[cards]]
+id = "58d938b2-e1a6-4515-8464-d8a627ee580a"
+type = "basic"
+front = '''
+`println!` 中的 `{:?}` 使用哪种输出格式？
+'''
+back = '''
+`Debug`
+'''
+
+[[cards]]
+id = "bbe4f814-b828-4494-8640-bd992dafc2db"
+type = "basic"
+front = '''
+如何让自定义的 struct 可以用 `{:?}` 打印？
+'''
+back = '''
+在 struct 定义前加 `#[derive(Debug)]`。
+'''
+
+[[cards]]
+id = "f8bb72f8-7232-46a0-8bd7-457c68e42d44"
+type = "basic"
+front = '''
+`{:?}` 和 `{:#?}` 有什么区别？
+'''
+back = '''
+`{:#?}` 是 pretty-print 的 `Debug` 格式，更易读。
+derive 生成的 `Debug` 会让每个 field 单独一行。
+'''
+
+[[cards]]
+id = "5d9207d8-cc4b-461b-a468-318e404870c2"
+type = "basic"
+front = '''
+`dbg!` 宏会打印哪些信息？
+'''
+back = '''
+调用处的位置，表达式本身，以及表达式的值（`{:#?}` 格式）。
+'''
+
+[[cards]]
+id = "7dbb7a02-2d0c-4e0b-bf4e-4b1183c6777d"
+type = "basic"
+front = '''
+`dbg!` 和 `println!` 分别输出到哪里？
+'''
+back = '''
+`dbg!` 输出到 stderr，`println!` 输出到 stdout。
+'''
+
+[[cards]]
+id = "0dac8471-3346-49bd-8040-855e4369b541"
+type = "basic"
+front = '''
+`dbg!` 宏如何处理传入值的 ownership？
+'''
+back = '''
+取得 ownership，打印后再把值返回。
+所以可以把 `dbg!` 包在表达式外面，而不影响表达式的结果。
+'''

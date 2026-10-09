@@ -1,0 +1,81 @@
+[[cards]]
+id = "6d5e809d-8a30-4f4c-bd5e-53cbf4e0d270"
+type = "basic"
+front = '''
+如何为 struct 定义 method？
+'''
+back = '''
+在这个类型的 `impl` 块中定义函数，第一个参数是 `self`。
+'''
+
+[[cards]]
+id = "01c8ad2d-74b8-43c8-b81b-88b758832530"
+type = "basic"
+front = '''
+method 签名中的 `&self` 是什么的简写？
+'''
+back = '''
+`self: &Self`
+'''
+
+[[cards]]
+id = "6cdc77bf-e751-4b6f-9791-0dbddf801417"
+type = "basic"
+front = '''
+在 `impl` 块中，`Self` 指什么？
+'''
+back = '''
+这个 `impl` 块对应的类型。
+'''
+
+[[cards]]
+id = "3c3d7383-653b-4661-906a-4193900a8c60"
+type = "cloze"
+text = '''
+method 的第一个参数：
+
+- 只读取 instance：{{c1::`&self`}}
+- 修改 instance：{{c2::`&mut self`}}
+- 取得 instance 的 ownership：{{c3::`self`}}
+'''
+
+[[cards]]
+id = "5c255e33-52e2-4023-9d7c-9f3d610b2379"
+type = "basic"
+front = '''
+struct 的 field 和 method 同名时，Rust 怎样区分二者？
+'''
+back = '''
+看有没有括号：`name.x()` 是 method，`name.x` 是 field。
+'''
+
+[[cards]]
+id = "d905a3eb-c4f9-4fea-a28c-4000dc0fa80a"
+type = "basic"
+front = '''
+什么是 associated function？
+'''
+back = '''
+定义在 `impl` 块中的所有函数，它们与 `impl` 对应的类型相关联。
+method 是其中的一种。
+'''
+
+[[cards]]
+id = "ec8b370d-5266-4611-8719-62053b7aa33d"
+type = "basic"
+front = '''
+如何调用不以 `self` 为第一个参数的 associated function？
+'''
+back = '''
+在类型名后加 `::`，如 `String::from("hello")`。
+'''
+
+[[cards]]
+id = "232d003b-9172-4077-927f-01084bf22e81"
+type = "basic"
+front = '''
+一个 struct 可以有多个 `impl` 块吗？
+'''
+back = '''
+可以。
+'''
