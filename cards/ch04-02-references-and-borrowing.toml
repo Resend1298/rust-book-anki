@@ -165,7 +165,7 @@ front = '''
 Rust 编译器如何保证 reference 不会成为 dangling reference？
 '''
 back = '''
-确保数据不会在它的 reference 之前离开 scope。
+编译器会确保被引用的数据比 reference 活得更久。
 '''
 
 [[cards]]
