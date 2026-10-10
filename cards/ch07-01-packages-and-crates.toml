@@ -1,0 +1,75 @@
+[[cards]]
+id = "130de13e-9d5f-42c6-a9aa-996dd58711c3"
+type = "basic"
+front = '''
+crate 是什么？
+'''
+back = '''
+Rust 编译器一次编译的最小代码单位。
+（直接用 `rustc` 编译单个 `.rs` 文件时，这个文件就是一个 crate。）
+'''
+
+[[cards]]
+id = "305798a7-8303-4086-91fc-40ec6b19a3a8"
+type = "basic"
+front = '''
+binary crate 和 library crate 有什么区别？
+'''
+back = '''
+binary crate 编译成可执行文件，必须有 `main` 函数。
+library crate 不生成可执行文件，不需要 `main`。
+'''
+
+[[cards]]
+id = "54f59ea7-d501-412b-b5d8-5d00e94ccc71"
+type = "basic"
+front = '''
+crate root 是什么？
+'''
+back = '''
+编译器编译 crate 时开始的源文件，它构成 crate 的 root module。
+'''
+
+[[cards]]
+id = "c767844c-1ce6-4fbc-a5f5-de28fd56820b"
+type = "basic"
+front = '''
+package 是什么？
+'''
+back = '''
+一个或多个 crate 的集合，用 `Cargo.toml` 描述如何构建它们。
+'''
+
+[[cards]]
+id = "28be734f-48b4-4097-a172-173b0bbb737d"
+type = "cloze"
+text = '''
+一个 package 可以包含{{c1::任意多个}} binary crate，{{c2::最多一个}} library crate，并且{{c3::至少要有一个}} crate。
+'''
+
+[[cards]]
+id = "f3f2d422-7488-4e04-bfca-11aca0a874c6"
+type = "cloze"
+text = '''
+按照 Cargo 的约定，{{c1::`src/main.rs`}} 是 binary crate 的 crate root，{{c2::`src/lib.rs`}} 是 library crate 的 crate root。
+'''
+
+[[cards]]
+id = "7b046798-d33d-41ea-b0b2-265823aafd68"
+type = "basic"
+front = '''
+Cargo 按约定从 `src/main.rs` 或 `src/lib.rs` 构建的 crate 叫什么名字？
+'''
+back = '''
+与 package 同名。
+'''
+
+[[cards]]
+id = "2accace0-587c-4d8c-bc23-0414a688dd27"
+type = "basic"
+front = '''
+如何让一个 package 包含多个 binary crate？
+'''
+back = '''
+把源文件放在 `src/bin/` 目录下，每个文件是一个单独的 binary crate。
+'''

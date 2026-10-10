@@ -1,0 +1,114 @@
+[[cards]]
+id = "db32fda6-d685-4840-bcbb-6f4c887c5284"
+type = "basic"
+front = '''
+`use` 有什么作用？
+'''
+back = '''
+在当前 scope 中为一个 path 创建短名字。
+'''
+
+[[cards]]
+id = "35e764aa-4f65-49cc-bbbc-3255c5b7981a"
+type = "basic"
+front = '''
+父 module 中用 `use` 引入的名字，在子 module 中能直接用吗？
+'''
+back = '''
+不能，`use` 只对它所在的 scope 有效。
+'''
+
+[[cards]]
+id = "4f41d7b1-d4e5-429b-b993-50d3169f9d09"
+type = "basic"
+front = '''
+用 `use` 引入函数，惯用写法是什么？
+'''
+back = '''
+只引入函数的父 module，调用时写 `module::f()`。
+'''
+
+[[cards]]
+id = "affe96d6-9b17-4655-af58-f4e0ee4212d1"
+type = "basic"
+front = '''
+用 `use` 引入 struct、enum，惯用写法是什么？
+'''
+back = '''
+写完整路径，调用时直接用名字。
+如 `use std::collections::HashMap;`，调用时直接写 `HashMap`。
+'''
+
+[[cards]]
+id = "6143c2ee-e633-4bf6-a9e8-f20be7ef297a"
+type = "basic"
+front = '''
+要在同一个 scope 中使用来自不同 module 的两个同名类型，有什么办法？
+'''
+back = '''
+1. 只 `use` 它们的父 module，如写成 `fmt::Result` 和 `io::Result`。
+2. 用 `as` 给其中一个起别名。
+'''
+
+[[cards]]
+id = "dfc6e43d-9b06-4fb7-91c9-da4daa68b2ae"
+type = "basic"
+front = '''
+用 `use` 引入东西时，如何给它起别名？
+'''
+back = '''
+用 `as`：
+
+```rust
+use std::io::Result as IoResult;
+```
+'''
+
+[[cards]]
+id = "93d56d0f-2129-4fde-993c-d99cbef28694"
+type = "basic"
+front = '''
+什么是 re-exporting？
+'''
+back = '''
+用 `pub use` 引入名字，让外部代码也能通过当前 module 的 path 使用它。
+单独用 `use` 引入的名字是 private 的。
+'''
+
+[[cards]]
+id = "97dac79f-958f-4002-95a2-6aa54be3c9b7"
+type = "basic"
+front = '''
+多条 `use` 的 path 有相同的前缀时，如何合并成一条？
+'''
+back = '''
+使用 `{}`：
+
+```rust
+use std::{cmp::Ordering, io};
+```
+'''
+
+[[cards]]
+id = "e51cdb51-dc81-47ae-bfdc-dbbb6753f32c"
+type = "basic"
+front = '''
+用 nested path 合并 `use` 时，如何同时引入公共前缀本身？
+'''
+back = '''
+在 `{}` 里写 `self`：
+
+```rust
+use std::io::{self, Write};
+```
+'''
+
+[[cards]]
+id = "746b4b28-ff17-4ef1-8f18-b3608f750647"
+type = "basic"
+front = '''
+如何把某个 path 下的所有 public item 引入 scope？
+'''
+back = '''
+用 `*`，如 `use std::collections::*;`。
+'''

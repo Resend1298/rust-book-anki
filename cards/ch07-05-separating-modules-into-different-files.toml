@@ -1,0 +1,49 @@
+[[cards]]
+id = "f60acd50-ff90-48df-91af-ebcaefcb5d7e"
+type = "basic"
+front = '''
+如何把 module 的代码移到单独的文件中？
+'''
+back = '''
+把 `mod name { ... }` 改成 `mod name;`，`{}` 里的代码放进对应的文件。
+'''
+
+[[cards]]
+id = "05e59674-2095-4aed-b957-a3c1fb62c037"
+type = "basic"
+front = '''
+`src/lib.rs` 或 `src/main.rs` 中声明了 `mod foo;`，编译器到哪里找 `foo` 的代码？
+'''
+back = '''
+`src/foo.rs`
+'''
+
+[[cards]]
+id = "7e32961d-c353-4280-b594-a8eafa7bc72e"
+type = "basic"
+front = '''
+`src/foo.rs` 中声明了 `mod bar;`，编译器到哪里找 `bar` 的代码？
+'''
+back = '''
+`src/foo/bar.rs`。
+'''
+
+[[cards]]
+id = "a26ad86f-90e0-49b1-a7d7-2918cadbe0c0"
+type = "basic"
+front = '''
+一个文件需要在每个用到它的地方都用 `mod` 声明一次吗？
+'''
+back = '''
+不需要。在 module tree 中只声明一次就够了。
+'''
+
+[[cards]]
+id = "3e4779fe-5f9d-43ac-954d-c2d2787542b4"
+type = "basic"
+front = '''
+决定哪些文件被编译进 crate 的是 `mod` 还是 `use`？
+'''
+back = '''
+`mod`。`use` 只创建快捷名字。
+'''

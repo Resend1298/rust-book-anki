@@ -1,0 +1,89 @@
+[[cards]]
+id = "127ace8f-731e-4ea9-be5e-e6dc85287103"
+type = "cloze"
+text = '''
+absolute path 从 crate root 开始：
+
+- 当前 crate 中的以 {{c1::`crate`}} 开头
+- 外部 crate 中的以{{c2::那个 crate 的名字}}开头
+'''
+
+[[cards]]
+id = "6d4be412-aeb8-4fa4-86c2-0d9295119a05"
+type = "basic"
+front = '''
+relative path 可以以什么开头？
+'''
+back = '''
+`self`、`super`，或直接写名字（也即省略 `self::`）。
+'''
+
+[[cards]]
+id = "6f095b45-8a1c-4486-bea8-f4a6e5b8331d"
+type = "basic"
+front = '''
+Rust 中的东西默认是 public 还是 private？
+'''
+back = '''
+private。
+'''
+
+[[cards]]
+id = "c96358ea-129a-4348-b8f3-b2afacf287b4"
+type = "basic"
+front = '''
+子 module 默认能使用父 module 中的 private 东西吗？
+'''
+back = '''
+能。
+'''
+
+[[cards]]
+id = "4d7d7e43-3c54-4950-9d2c-bf62dfe17dcc"
+type = "basic"
+front = '''
+同一个 module 中定义的东西互相访问，需要 `pub` 吗？
+'''
+back = '''
+不需要。
+'''
+
+[[cards]]
+id = "e52be132-595b-4159-8f7d-b6b1a9067229"
+type = "basic"
+front = '''
+给 module 加上 `pub`，其中的东西也会变成 public 吗？
+'''
+back = '''
+不会。`pub mod` 只让外部能引用这个 module 本身，里面的东西要各自加 `pub`。
+'''
+
+[[cards]]
+id = "453121b8-ba99-484f-b440-b1a58e32698b"
+type = "basic"
+front = '''
+`pub struct` 的 field 默认是 public 吗？
+'''
+back = '''
+不是，每个 field 要单独加 `pub`。
+'''
+
+[[cards]]
+id = "090ce3f2-b873-427e-84f8-cb27548a0eea"
+type = "basic"
+front = '''
+`pub enum` 的 variant 默认是 public 吗？
+'''
+back = '''
+是。
+'''
+
+[[cards]]
+id = "d845e734-e9c5-43b2-b076-dd3310524613"
+type = "basic"
+front = '''
+struct 有 private field 时，外部代码怎样创建它的 instance？
+'''
+back = '''
+必须通过 struct 提供的函数。
+'''
