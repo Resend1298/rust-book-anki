@@ -5,7 +5,7 @@ front = '''
 Rust 中的 slice 是什么？
 '''
 back = '''
-对集合中一段连续元素的 reference。它没有 ownership。
+对集合中一段连续元素的 reference。
 '''
 
 [[cards]]
