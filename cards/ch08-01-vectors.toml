@@ -1,0 +1,137 @@
+[[cards]]
+id = "367cf056-75d7-42bb-a16d-12d6b42aa1f9"
+type = "basic"
+front = '''
+如何创建一个空的 vector？
+'''
+back = '''
+`Vec::new()`
+'''
+
+[[cards]]
+id = "daeec0d4-1729-45f6-a63e-e4762c1c8dd7"
+type = "basic"
+front = '''
+如何创建带初始值的 vector？
+'''
+back = '''
+`vec![1, 2, 3]`
+'''
+
+[[cards]]
+id = "165c384b-119c-43ff-b597-6b8878727760"
+type = "basic"
+front = '''
+如何在 vector 末尾添加一个元素？
+'''
+back = '''
+`v.push(5);`
+'''
+
+[[cards]]
+id = "d51632af-18b0-42db-8468-cf9a700a63f4"
+type = "basic"
+front = '''
+如何移除并取出 vector 的最后一个元素？
+'''
+back = '''
+用 `pop`，它返回 `Option<T>`。
+'''
+
+[[cards]]
+id = "594b4489-7820-4586-840c-4050f67b67c6"
+type = "cloze"
+text = '''
+读取 vector 中 index 为 `i` 的元素：
+
+- `&v[i]` 得到 {{c1::`&T`}}
+- `v.get(i)` 得到 {{c2::`Option<&T>`}}
+'''
+
+[[cards]]
+id = "de14a25d-4257-41d8-b68f-c2966ba7356e"
+type = "basic"
+front = '''
+读取 vector 元素时，如果索引越界，`[]` 和 `get` 分别会怎样？
+'''
+back = '''
+`[]` 会 panic，`get` 返回 `None`。
+'''
+
+[[cards]]
+id = "20a3fe60-b8ea-4586-9cc7-9919f5ea46f7"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let mut v = vec![1, 2, 3];
+let first = &v[0];
+v.push(4);
+println!("{first}");
+```
+'''
+back = '''
+不能。`first` 是对 `v` 的 immutable borrow，而 `push` 需要 mutable borrow。
+'''
+
+[[cards]]
+id = "910b9f0c-fac4-4b07-ae01-11887ccbfe4d"
+type = "basic"
+front = '''
+vector 中某个元素的 reference 之后还要使用时，为什么连往末尾添加元素都不允许？
+'''
+back = '''
+vector 的元素在内存中连续存放。添加元素时如果空间不够，可能要分配新内存并把所有元素搬过去，原来的 reference 就会指向已释放的内存。
+'''
+
+[[cards]]
+id = "9a5112d3-08a8-4b1a-8e2e-d6f373d2e3a9"
+type = "cloze"
+text = '''
+用 `for` 遍历 vector `v`：
+
+- 只读取每个元素：`for x in {{c1::&v}}`
+- 修改每个元素：`for x in {{c2::&mut v}}`
+'''
+
+[[cards]]
+id = "02f3a9b6-fee9-402d-b4fa-d6f0ed400ded"
+type = "basic"
+front = '''
+通过 mutable reference `r` 修改它指向的值，怎么写？
+'''
+back = '''
+```rust
+*r += 1;
+```
+'''
+
+[[cards]]
+id = "f2b37435-9983-49e7-8301-cc4bfb3fd22e"
+type = "basic"
+front = '''
+用 for 遍历 vector 时，能在循环中增删元素吗？
+'''
+back = '''
+不能。
+'''
+
+[[cards]]
+id = "c4bbca57-cafe-492b-9618-dbc3ccb70848"
+type = "basic"
+front = '''
+vector 的所有元素必须是同一类型。如何在一个 vector 中存放几种不同类型的值？
+'''
+back = '''
+定义一个 enum，每个 variant 携带一种类型，再让 vector 存放这个 enum：
+
+```rust
+enum E {
+	Int(i32),
+	Text(String),
+}
+
+let v = vec![E::Int(3), E::Text(String::from("a"))];
+```
+'''

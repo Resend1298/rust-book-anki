@@ -1,0 +1,146 @@
+[[cards]]
+id = "85410964-4f91-442d-80c9-d60abd2ef3c7"
+type = "basic"
+front = '''
+如何创建一个 `HashMap`？
+'''
+back = '''
+```rust
+let mut hm = HashMap::new();
+```
+'''
+
+[[cards]]
+id = "0dad8805-0487-4e44-98f8-dcbaeb0e8a34"
+type = "basic"
+front = '''
+如何向 `HashMap` 插入键值对？
+'''
+back = '''
+```rust
+hm.insert(key, value);
+```
+'''
+
+[[cards]]
+id = "64c64e45-e035-4158-9a0b-fc300d225594"
+type = "basic"
+front = '''
+`HashMap` 中的 key 和 value 可以是不同类型吗？
+'''
+back = '''
+不能。所有 key 必须是同一类型，所有 value 也必须是同一类型。
+'''
+
+[[cards]]
+id = "186bf03e-f5bf-4e9c-b75d-be18900e490c"
+type = "basic"
+front = '''
+`HashMap<K, V>` 的 `get` 方法返回什么类型？
+'''
+back = '''
+`Option<&V>`
+'''
+
+[[cards]]
+id = "6a53bb81-f11f-4f70-8382-3d3b77d62f86"
+type = "basic"
+front = '''
+`T` 实现了 `Copy`，如何把 `Option<&T>` 转换成 `Option<T>`？
+'''
+back = '''
+`.copied()`
+'''
+
+[[cards]]
+id = "54963bec-61be-411e-b26a-9e9212f3c371"
+type = "basic"
+front = '''
+如何取出 `Option<T>` 中的值，并在它是 `None` 时使用默认值？
+'''
+back = '''
+`.unwrap_or(默认值)`
+'''
+
+[[cards]]
+id = "fe1783a3-f2f4-4fda-b5d2-7109486d712b"
+type = "basic"
+front = '''
+如何遍历 `HashMap` 中的所有键值对？
+'''
+back = '''
+```rust
+for (key, value) in &hm {
+	println!("{key}: {value}");
+}
+```
+'''
+
+[[cards]]
+id = "c186a648-47ce-41cb-a729-9fdeb61b4b80"
+type = "basic"
+front = '''
+遍历 `HashMap` 时，键值对按什么顺序出现？
+'''
+back = '''
+任意顺序
+'''
+
+[[cards]]
+id = "4c8eab6c-1791-4a19-814a-c7b8a0ebd5c3"
+type = "basic"
+front = '''
+把一个 `String` 变量作为 key 或 value 添加进 `HashMap` 后，这个变量还能用吗？
+'''
+back = '''
+不能，它被 move 了。
+实现了 `Copy` 的类型则是复制进去。
+'''
+
+[[cards]]
+id = "37116755-9bc1-4763-9814-13f3c69fb99e"
+type = "basic"
+front = '''
+对 `HashMap` 中已存在的 key 再次 `insert`，会怎样？
+'''
+back = '''
+新值覆盖旧值。
+'''
+
+[[cards]]
+id = "0aec4845-3261-43bc-b5e2-c1b85007ea81"
+type = "basic"
+front = '''
+如何只在 key 不存在时才向 `HashMap` 插入值？
+'''
+back = '''
+```rust
+hm.entry(key).or_insert(value);
+```
+
+entry() 返回的是一个 Enum，表示 key 是否存在。
+'''
+
+[[cards]]
+id = "6a648ff6-6271-42ff-8131-caf351888761"
+type = "basic"
+front = '''
+对一个 HashMap，如何在 key 存在时更新它的值，key 不存在时先设为初始值？
+'''
+back = '''
+```rust
+let x = hm.entry(key).or_insert(value); // 如果 key 不存在，先插入 value
+*x += 1; // or_insert 返回的是 &mut
+```
+'''
+
+[[cards]]
+id = "ab5fb2d5-4c8a-49a3-a66c-c1c0e05479e8"
+type = "basic"
+front = '''
+如何按空白字符把字符串拆分成多段？
+'''
+back = '''
+`.split_whitespace()`
+它返回一个 iterator，每个元素是一个 `&str`。
+'''

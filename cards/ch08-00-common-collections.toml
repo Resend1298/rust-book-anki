@@ -1,0 +1,9 @@
+[[cards]]
+id = "a869a0d2-7755-4a78-9ee4-a88cfb3df01e"
+type = "basic"
+front = '''
+`Vec<T>`、`String`、`HashMap` 这类 collection 和 array、tuple 相比，存储数据的方式有什么不同？
+'''
+back = '''
+collection 的数据存放在 heap 上，数量不必在编译期确定。
+'''

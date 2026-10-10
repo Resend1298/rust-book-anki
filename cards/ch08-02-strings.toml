@@ -1,0 +1,115 @@
+[[cards]]
+id = "d7019754-3016-4983-91ba-e3416ee31622"
+type = "basic"
+front = '''
+从字符串字面量创建 `String`，该怎么写？
+'''
+back = '''
+- `"hello".to_string()`
+- `String::from("hello")`
+
+效果相同。
+'''
+
+[[cards]]
+id = "3345b06b-d484-41e7-be9c-518b95db2739"
+type = "basic"
+front = '''
+如何在 `String` 末尾追加一个 `char`？
+'''
+back = '''
+```rust
+s.push('c');
+```
+'''
+
+[[cards]]
+id = "2d269fce-ced4-4beb-8b54-39d0ffd8efab"
+type = "basic"
+front = '''
+`a`、`b` 都是 `String`。执行 `let c = a + &b;` 之后，`a` 和 `b` 还能用吗？
+'''
+back = '''
+`a` 不能，它被 move 了。
+`b` 能，`+` 只借用了它。
+'''
+
+[[cards]]
+id = "b200123c-a8ff-4e89-aa89-e3ece33a1523"
+type = "basic"
+front = '''
+对 `String` 使用 `+` 时调用的 `add` 方法，签名是什么？
+'''
+back = '''
+```rust
+fn add(self, s: &str) -> String
+```
+'''
+
+[[cards]]
+id = "11ad1577-abb5-461d-982f-4a4ea30ac43d"
+type = "basic"
+front = '''
+拼接多个字符串时，比 `+` 更清晰的写法是什么？
+'''
+back = '''
+```rust
+let s = format!("{a} {b} {c}");
+```
+
+它不取得参数的 ownership。
+'''
+
+[[cards]]
+id = "8efdfab1-40af-4ffc-90fb-d8dfe6c4a388"
+type = "basic"
+front = '''
+为什么 Rust 不允许用整数索引 `String`，比如 `s[0]`？
+'''
+back = '''
+- UTF-8 中一个字符可能占多个 byte，某个 byte 位置上的值不一定是完整的字符。
+- 索引操作应该是 O(1) 的，但要找到第 n 个字符，必须从头遍历。
+'''
+
+[[cards]]
+id = "c093039c-e2ff-4570-a2da-310ddb41e47c"
+type = "basic"
+front = '''
+`String` 的 `len` 方法返回的是什么？
+'''
+back = '''
+UTF-8 编码后的 byte 数，不是字符数。
+比如 `"你好".len()` 是 6，而不是 2。
+'''
+
+[[cards]]
+id = "31ecb8e4-bdb9-48de-b00c-42601b0e1c75"
+type = "cloze"
+text = '''
+Rust 中，一个字符串可以看作三种序列：
+
+- {{c1::byte}}
+- {{c2::char}}
+- {{c3::“字母”（grapheme cluster）}}
+'''
+extra = '''
+一个 `char` 不一定是一个字母，比如有些附加符号本身也是一个 `char`。
+标准库不提供按 grapheme cluster 拆分字符串的功能。
+'''
+
+[[cards]]
+id = "3ce3016b-b54c-47a7-bfde-ced1cc2feda5"
+type = "cloze"
+text = '''
+遍历字符串中的每个 char 用 {{c1::`s.chars()`}}，遍历每个 byte 用 {{c2::`s.bytes()`}}。
+'''
+
+[[cards]]
+id = "b9391638-5aca-47f4-a03c-ace9f4e0ecdf"
+type = "basic"
+front = '''
+用 `&s[a..b]` 取 string slice 时，`a` 和 `b` 以什么为单位？
+'''
+back = '''
+byte。
+'''
