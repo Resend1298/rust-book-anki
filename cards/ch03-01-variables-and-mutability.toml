@@ -2,18 +2,18 @@
 id = "6085e8fc-0fe0-4255-a160-8403b149e439"
 type = "basic"
 front = '''
-Rust 的变量默认可变吗？
+Rust的变量默认可变吗？
 '''
 back = '''
 不可变。
-要让变量可变，使用 `let mut`。
+要让变量可变，使用`let mut`。
 '''
 
 [[cards]]
 id = "f932e1a2-869c-40f8-b4db-df94fd8e109b"
 type = "basic"
 front = '''
-声明 `const` 常量时，什么是必须写的，而 `let` 可以省略？
+声明`const`常量时，什么是必须写的，而`let`可以省略？
 '''
 back = '''
 类型注解。
@@ -23,18 +23,18 @@ back = '''
 id = "b5af3bd1-a48d-4818-8da6-7d115a656236"
 type = "basic"
 front = '''
-`const` 和 `let` 在能声明的位置上有什么不同？
+`const`和`let`在能声明的位置上有什么不同？
 '''
 back = '''
-`const` 可以在任何 scope 中声明，包括全局 scope；
-`let` 不能用在全局 scope。
+`const`可以在任何scope中声明，包括全局scope；
+`let`不能用在全局scope。
 '''
 
 [[cards]]
 id = "87f96615-db22-4e70-ba4f-3b18838f3c44"
 type = "basic"
 front = '''
-`const` 常量的值可以是运行时才能算出的结果吗？
+`const`常量的值可以是运行时才能算出的结果吗？
 '''
 back = '''
 不可以，只能是编译时能求值的。
@@ -44,7 +44,7 @@ back = '''
 id = "7086635c-9f74-4a55-b305-9fe165a7e68b"
 type = "basic"
 front = '''
-Rust 中常量的命名惯例是什么？
+Rust中常量的命名惯例是什么？
 '''
 back = '''
 全大写，下划线分隔。
@@ -54,11 +54,11 @@ back = '''
 id = "77f8f1a5-781e-430e-8798-44fb21becd51"
 type = "basic"
 front = '''
-Rust 中的 shadowing 是什么？
+Rust中的shadowing是什么？
 '''
 back = '''
-用 `let` 声明一个与已有变量同名的新变量。
-此后这个名字指向新变量，直到它再被 shadow 或 scope 结束。
+用`let`声明一个与已有变量同名的新变量。
+此后这个名字指向新变量，直到它再被shadow或scope结束。
 '''
 
 [[cards]]
@@ -77,8 +77,8 @@ println!("{x}");
 ```
 '''
 back = '''
-`2`，然后 `1`。
-内层 scope 结束时，其中的 shadowing 也随之结束。
+`2`，然后`1`。
+内层scope结束时，其中的shadowing也随之结束。
 '''
 
 [[cards]]
@@ -93,15 +93,15 @@ x = x.len();
 ```
 '''
 back = '''
-不能。`mut` 变量不能改变类型。
-改用 shadowing：`let x = x.len();`。
+不能。`mut`变量不能改变类型。
+改用shadowing：`let x = x.len();`。
 '''
 
 [[cards]]
 id = "6f67f63a-ca19-4d7f-8a28-0f7e0df9e85b"
 type = "basic"
 front = '''
-比起 `mut`，用不带 `mut` 的 `let` 分几步 shadow 一个值，能保证什么？
+比起`mut`，用不带`mut`的`let`分几步shadow一个值，能保证什么？
 '''
 back = '''
 转换完成后，变量仍是不可变的，之后误赋值会编译报错。

@@ -2,37 +2,37 @@
 id = "f850dbe4-3c57-4e6f-9dc7-2a2aafa10982"
 type = "basic"
 front = '''
-Rust 的 reference 和指针相比，多了什么保证？
+Rust的reference和指针相比，多了什么保证？
 '''
 back = '''
-在 reference 存在期间，它一定指向某个类型的有效值。
+在reference存在期间，它一定指向某个类型的有效值。
 '''
 
 [[cards]]
 id = "6ab9288b-e1a9-49bb-9bb3-5289fd635366"
 type = "basic"
 front = '''
-如何让函数使用一个 `String`，但不取得它的 ownership？
+如何让函数使用一个`String`，但不取得它的ownership？
 '''
 back = '''
-参数类型写成 `&String`，调用时传入 `&s`。
+参数类型写成`&String`，调用时传入`&s`。
 '''
 
 [[cards]]
 id = "278c8163-a10b-4ea5-8b8e-83965f31310e"
 type = "basic"
 front = '''
-一个 reference 不再被使用后，它指向的值会被 drop 吗？
+一个reference不再被使用后，它指向的值会被drop吗？
 '''
 back = '''
-不会。reference 不拥有这个值。
+不会。reference不拥有这个值。
 '''
 
 [[cards]]
 id = "13f9cd90-4495-4a8d-8d27-b335c93694ed"
 type = "basic"
 front = '''
-在 Rust 中，创建 reference 这一行为叫什么？
+在Rust中，创建reference这一行为叫什么？
 '''
 back = '''
 borrowing
@@ -51,17 +51,17 @@ fn change(s: &String) {
 ```
 '''
 back = '''
-不能。和变量一样，reference 默认不可变，不能通过它修改值。
+不能。和变量一样，reference默认不可变，不能通过它修改值。
 '''
 
 [[cards]]
 id = "b471b615-50e1-4092-a38b-6df89a5d5eb6"
 type = "basic"
 front = '''
-如何让函数修改借来的 `String`？
+如何让函数修改借来的`String`？
 '''
 back = '''
-参数类型写成 `&mut String`，调用时传入 `&mut s`。
+参数类型写成`&mut String`，调用时传入`&mut s`。
 '''
 
 [[cards]]
@@ -78,7 +78,7 @@ println!("{r1}, {r2}");
 ```
 '''
 back = '''
-不能。同一时刻只能有一个 mutable reference，而 `r2` 创建之后 `r1` 还要使用。
+不能。同一时刻只能有一个mutable reference，而`r2`创建之后`r1`还要使用。
 '''
 
 [[cards]]
@@ -95,24 +95,24 @@ println!("{r1}");
 ```
 '''
 back = '''
-不能。`r1` 之后还要使用，在它有效期间，不能再创建 mutable reference。
+不能。`r1`之后还要使用，在它有效期间，不能再创建mutable reference。
 '''
 
 [[cards]]
 id = "44b46504-b586-4889-ab22-d14d4a3abb70"
 type = "cloze"
 text = '''
-Reference 的规则：
+Reference的规则：
 
-- 任意时刻，对同一个值，要么只能有{{c1::一个 mutable reference}}，要么只能有{{c2::任意数量的 immutable reference}}。
-- reference 必须{{c3::始终有效}}。
+- 任意时刻，对同一个值，要么只能有{{c1::一个mutable reference}}，要么只能有{{c2::任意数量的immutable reference}}。
+- reference必须{{c3::始终有效}}。
 '''
 
 [[cards]]
 id = "04fe2be0-b7f2-4a10-8998-f946d22202aa"
 type = "basic"
 front = '''
-禁止对同一数据同时存在多个 mutable reference，让 Rust 能在编译时防止什么问题？
+禁止对同一数据同时存在多个mutable reference，让Rust能在编译时防止什么问题？
 '''
 back = '''
 data race
@@ -122,7 +122,7 @@ data race
 id = "f1afc4e3-fe51-47e0-aa89-a3b8f7b42d85"
 type = "cloze"
 text = '''
-以下三个条件同时满足时，会发生 data race：
+以下三个条件同时满足时，会发生data race：
 
 - {{c1::多个指针同时访问同一数据}}。
 - {{c2::至少有一个指针在写入数据}}。
@@ -133,10 +133,10 @@ text = '''
 id = "67873067-b80d-4c12-8368-a361d2cc4b7b"
 type = "basic"
 front = '''
-一个 reference 的 borrow 在什么时候结束？
+一个reference的borrow在什么时候结束？
 '''
 back = '''
-在最后一次使用这个 reference 之后，而不是所在 block 的末尾。
+在最后一次使用这个reference之后，而不是所在block的末尾。
 '''
 
 [[cards]]
@@ -155,17 +155,17 @@ println!("{r3}");
 ```
 '''
 back = '''
-能。`r1` 和 `r2` 的 borrow 在最后一次使用后就结束了，与 `r3` 的 mutable borrow 不重叠。
+能。`r1`和`r2`的borrow在最后一次使用后就结束了，与`r3`的mutable borrow不重叠。
 '''
 
 [[cards]]
 id = "5e6fa4ee-e37b-43a8-9f62-dd6a27c4e053"
 type = "basic"
 front = '''
-Rust 编译器如何保证 reference 不会成为 dangling reference？
+Rust编译器如何保证reference不会成为dangling reference？
 '''
 back = '''
-编译器会确保被引用的数据比 reference 活得更久。
+编译器会确保被引用的数据比reference活得更久。
 '''
 
 [[cards]]
@@ -175,13 +175,13 @@ front = '''
 以下函数能编译吗？
 
 ```rust
-fn dangle() -> &String {
+fn f() -> &String {
 	let s = String::from("hello");
 	&s
 }
 ```
 '''
 back = '''
-不能。`s` 在函数结束时被 drop，返回的 reference 会指向已释放的内存。
-应直接返回 `String`，把 ownership move 出去。
+不能。`s`在函数结束时被drop，返回的reference会指向已释放的内存。
+应直接返回`String`，把ownership move出去。
 '''

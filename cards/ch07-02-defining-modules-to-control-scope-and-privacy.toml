@@ -2,18 +2,18 @@
 id = "cb8918df-64ab-4492-80d8-e5417c649b79"
 type = "basic"
 front = '''
-如何定义 module？
+如何定义module？
 '''
 back = '''
-`mod` 加上名字，再加上 `{}` 或 `;`。
+`mod`加上名字，再加上`{}`或`;`。
 '''
 
 [[cards]]
 id = "e660a03a-2c3a-4ab7-b8b1-249936ada6df"
 type = "basic"
 front = '''
-crate root 文件的内容构成哪个 module？
+crate root文件的内容构成哪个module？
 '''
 back = '''
-名为 `crate` 的 module，它是 module tree 的根。
+名为`crate`的module，它是module tree的根。
 '''

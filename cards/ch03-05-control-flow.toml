@@ -11,17 +11,17 @@ if number {
 ```
 '''
 back = '''
-不能。`if` 的条件必须是 `bool`，Rust 不会把其他类型自动转换为 `bool`。
+不能。`if`的条件必须是`bool`，Rust不会把其他类型自动转换为`bool`。
 '''
 
 [[cards]]
 id = "d9da4416-d0e8-46b8-b3e3-9fe7975fae0a"
 type = "basic"
 front = '''
-Rust 中如何根据条件给变量赋不同的值？
+Rust中如何根据条件给变量赋不同的值？
 '''
 back = '''
-`if` 是 expression，可以直接放在 `let` 右边：
+`if`是expression，可以直接放在`let`右边：
 
 ```rust
 let x = if condition { 5 } else { 6 };
@@ -39,27 +39,27 @@ let x = if condition { 5 } else { "six" };
 ```
 '''
 back = '''
-不能。`if` 各分支的值必须是同一类型，因为变量的类型必须在编译时确定。
+不能。`if`各分支的值必须是同一类型，因为变量的类型必须在编译时确定。
 '''
 
 [[cards]]
 id = "d94d2f99-5843-45bc-9fe2-004186399300"
 type = "basic"
 front = '''
-如何从 `loop` 中返回一个值？
+如何从`loop`中返回一个值？
 '''
 back = '''
-把值写在 `break` 后面，如 `break 42;`，整个 `loop` 表达式的值就是它。
+把值写在`break`后面，如`break 42;`，整个`loop`表达式的值就是它。
 '''
 
 [[cards]]
 id = "b2d231a3-b1c8-4ff6-8527-d337efc365cb"
 type = "basic"
 front = '''
-嵌套循环中，如何从内层循环直接 `break` 出外层循环？
+嵌套循环中，如何从内层循环直接`break`出外层循环？
 '''
 back = '''
-给外层循环加一个以单引号开头的 loop label，然后 `break` 这个 label：
+给外层循环加一个以单引号开头的loop label，然后`break`这个label：
 
 ```rust
 'outer: loop {
@@ -74,7 +74,7 @@ back = '''
 id = "83856522-5e32-4682-8f74-7681c4591313"
 type = "basic"
 front = '''
-遍历 array 时，用 `for` 比用 `while` 加索引好在哪？
+遍历array时，用`for`比用`while`加索引好在哪？
 '''
 back = '''
 不会越界或漏掉元素。
@@ -85,8 +85,8 @@ back = '''
 id = "d17cd5e7-e94f-4b9b-94ef-059e35bb7b31"
 type = "basic"
 front = '''
-`for n in (1..4).rev()` 中，`n` 依次是什么？
+`for n in (1..4).rev()`中，`n`依次是什么？
 '''
 back = '''
-`3`、`2`、`1`。`1..4` 不包含 `4`，`rev()` 将其反转。
+`3`、`2`、`1`。`1..4`不包含`4`，`rev()`将其反转。
 '''
