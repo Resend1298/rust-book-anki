@@ -17,6 +17,7 @@ front = '''
 back = '''
 参数类型写成`&String`，调用时传入`&s`。
 '''
+deleted = true
 
 [[cards]]
 id = "278c8163-a10b-4ea5-8b8e-83965f31310e"
@@ -63,6 +64,7 @@ front = '''
 back = '''
 参数类型写成`&mut String`，调用时传入`&mut s`。
 '''
+deleted = true
 
 [[cards]]
 id = "85323fcc-2891-436b-8fd6-5954692110fc"
