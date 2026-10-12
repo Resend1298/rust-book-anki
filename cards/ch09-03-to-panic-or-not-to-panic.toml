@@ -1,0 +1,21 @@
+[[cards]]
+id = "34b797f5-856c-483e-b4da-0024ab977dca"
+type = "basic"
+front = '''
+如何保证某个类型的值总是满足某个约束？
+'''
+back = '''
+- 把struct放在单独的module中
+- field保持private
+- 通过检查约束的associated function（如`new`）创建instance
+'''
+
+[[cards]]
+id = "a41a6d54-4043-44fc-922d-22ba47c43c53"
+type = "basic"
+front = '''
+用`new`检查约束来保证值有效的类型，为什么field必须是private？
+'''
+back = '''
+否则`new`可以被绕过，直接创建一个不满足约束的instance
+'''

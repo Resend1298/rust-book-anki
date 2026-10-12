@@ -1,0 +1,9 @@
+[[cards]]
+id = "62514bcb-c56c-42aa-8a7d-9fdd0135de8b"
+type = "cloze"
+text = '''
+Rust没有exception。
+
+- recoverable error用{{c1::`Result<T, E>`}}
+- unrecoverable error用{{c2::`panic!`}}
+'''

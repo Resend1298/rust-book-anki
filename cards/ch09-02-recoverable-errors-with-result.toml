@@ -1,0 +1,87 @@
+[[cards]]
+id = "732a7591-608f-41c2-a020-f373d6a478af"
+type = "basic"
+front = '''
+`Result<T, E>`是如何定义的？
+'''
+back = '''
+```rust
+enum Result<T, E> {
+	Ok(T),
+	Err(E),
+}
+```
+'''
+
+[[cards]]
+id = "41c60a93-439a-4be4-8b99-73171214033d"
+type = "basic"
+front = '''
+`Result`的`unwrap` method做什么？
+'''
+back = '''
+`Ok`时返回其中的值；`Err`时panic。
+'''
+
+[[cards]]
+id = "ac34facc-0c80-4f1a-b533-f11cfabc03c6"
+type = "basic"
+front = '''
+`Result`的`expect`和`unwrap`有什么区别？
+'''
+back = '''
+`expect`可以指定panic时的错误信息。
+'''
+
+[[cards]]
+id = "b3460d7f-7a80-4821-ac03-8803013eecd1"
+type = "basic"
+front = '''
+传播（propagate）错误是什么意思？
+'''
+back = '''
+函数不自己处理错误，而是把它返回给调用者，由调用者决定如何处理。
+'''
+
+[[cards]]
+id = "b30a856e-b812-472c-b298-f3b85f91980e"
+type = "basic"
+front = '''
+在`Result`值后面加`?`，会怎样？
+'''
+back = '''
+`Ok(x)`时，提取出`x`；
+`Err(e)`时，return `Err(e)`从当前函数提前返回。
+'''
+
+[[cards]]
+id = "66c59ffb-8485-4561-bec6-9b77317f9a19"
+type = "basic"
+front = '''
+传播错误时，用`?`和用`match`手动返回`Err`有什么区别？
+'''
+back = '''
+`?`会自动尝试把错误类型转换成函数的返回类型，而`match`需要手动转换。
+'''
+
+[[cards]]
+id = "d7c25232-5819-4baf-992a-f169a314dc85"
+type = "basic"
+front = '''
+`?`对所在函数的返回类型有什么要求？
+'''
+back = '''
+必须匹配`?`提前返回的类型。
+比如对`Result`用`?`，函数必须返回`Result`；对`Option`用`?`，函数必须返回`Option`。
+'''
+
+[[cards]]
+id = "145b7b21-46d4-490e-846e-e1a6104bf398"
+type = "basic"
+front = '''
+在`Option`值后面加`?`，会怎样？
+'''
+back = '''
+`Some(x)`时，提取出`x`；
+`None`时，return `None`从当前函数提前返回。
+'''
