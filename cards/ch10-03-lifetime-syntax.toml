@@ -1,0 +1,176 @@
+[[cards]]
+id = "bd6608ac-d112-4bb0-9256-e4ebc00395f9"
+type = "basic"
+front = '''
+reference的lifetime是什么？
+'''
+back = '''
+这个reference保持有效的范围。
+'''
+
+[[cards]]
+id = "8c524bd0-5d87-4272-8a17-0aa25e90dcc6"
+type = "basic"
+front = '''
+什么是borrow checker？
+'''
+back = '''
+编译器中通过比较scope来检查所有borrow是否有效的机制。
+'''
+
+[[cards]]
+id = "a5e22a93-dce1-487f-91aa-a48535397db1"
+type = "basic"
+front = '''
+Rust中能先声明变量，之后再赋值吗？
+'''
+back = '''
+能，但在赋值前使用它会编译错误。
+'''
+
+[[cards]]
+id = "aed11e89-9fc7-4819-8b94-0323fdf5fb38"
+type = "basic"
+front = '''
+函数有两个reference参数并返回一个reference时，为什么常常需要lifetime annotation？
+'''
+back = '''
+编译器不知道返回的reference来自哪个参数，无法确定它的lifetime。
+'''
+
+[[cards]]
+id = "31c9ba7a-d014-4a69-a0c7-4e5edf9e9a1b"
+type = "basic"
+front = '''
+lifetime annotation会改变reference活多久吗？
+'''
+back = '''
+不会。它只描述多个reference的lifetime之间的关系。
+'''
+
+[[cards]]
+id = "f180715b-39f5-4637-aaa1-2ead597b4258"
+type = "basic"
+front = '''
+如何给reference类型标注lifetime？
+'''
+back = '''
+写在`&`后面：`&'a i32`、`&'a mut i32`。
+'''
+
+[[cards]]
+id = "f19d6e3f-2801-42d0-9a21-482869ea464e"
+type = "basic"
+front = '''
+函数的lifetime parameter如何声明？
+'''
+back = '''
+和type parameter一样，在函数名后的`<>`中声明。
+如`fn f<'a>(x: &'a str)`。
+'''
+
+[[cards]]
+id = "b9b4d1db-9e6f-4242-920b-51c002c46c71"
+type = "basic"
+front = '''
+按签名`fn f<'a>(x: &'a str, y: &'a str) -> &'a str`，返回的reference的lifetime是什么？
+'''
+back = '''
+`x`和`y`lifetime中较短的那个。
+'''
+
+[[cards]]
+id = "3cf35350-6f9c-4f86-b4f8-98a9b23c41e1"
+type = "basic"
+front = '''
+函数返回的reference只可能来自某一个参数时，其他参数也需要标注lifetime吗？
+'''
+back = '''
+不需要。
+'''
+
+[[cards]]
+id = "87310042-547e-4543-97a0-ac42e6eaf884"
+type = "basic"
+front = '''
+如何定义持有reference的struct？
+'''
+back = '''
+```rust
+struct S<'a> {
+	x: &'a str,
+}
+```
+'''
+
+[[cards]]
+id = "b18f0f0b-d28d-412d-a4b7-f5093ca28ec2"
+type = "basic"
+front = '''
+`struct S<'a> { x: &'a str }`中的lifetime annotation有什么含义？
+'''
+back = '''
+`S`不能比`x`活得更久。
+'''
+
+[[cards]]
+id = "4ac23c4d-94e0-4d11-bcf1-00427b3ce4fe"
+type = "basic"
+front = '''
+什么是lifetime elision rules？
+'''
+back = '''
+编译器内置的几条规则，用来在没有标注时推断函数签名中的lifetime。
+'''
+
+[[cards]]
+id = "b6465405-6a74-4dc6-aa0f-3c06fabf22d9"
+type = "cloze"
+text = '''
+lifetime elision rules：
+
+- 每个reference参数{{c1::各自得到一个lifetime parameter}}。
+- 参数中只有一个lifetime时，{{c2::返回值中的reference都使用这个lifetime}}。
+- 参数中有多个lifetime，但其中一个是`&self`或`&mut self`时，{{c3::返回值中的reference都使用`self`的lifetime}}。
+'''
+
+[[cards]]
+id = "97d35b9d-549c-42f8-a5d6-d8ec62041de1"
+type = "basic"
+front = '''
+为带lifetime parameter的struct定义method时，`impl`怎么写？
+'''
+back = '''
+`impl<'a> S<'a> { ... }`
+'''
+
+[[cards]]
+id = "b106de4b-d29c-48c0-bd26-e60ea001dd5b"
+type = "basic"
+front = '''
+`'static` lifetime表示什么？
+'''
+back = '''
+reference可以在整个程序运行期间有效。
+'''
+
+[[cards]]
+id = "9b94e1e9-4e4d-49b9-b9dc-e698cdc42c47"
+type = "basic"
+front = '''
+字符串字面量的lifetime是什么？为什么？
+'''
+back = '''
+`'static`。它的文本直接存储在程序的二进制文件中。
+'''
+
+[[cards]]
+id = "037c4589-22ac-4327-a574-60fc6ff102dd"
+type = "basic"
+front = '''
+函数同时有lifetime parameter和type parameter时，怎么声明？
+'''
+back = '''
+写在同一个`<>`中，lifetime必须在前。
+如`fn f<'a, T>(x: &'a T)`。
+'''

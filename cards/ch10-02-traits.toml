@@ -1,0 +1,195 @@
+[[cards]]
+id = "8016850c-d907-48d0-a5ee-978b3647ae6a"
+type = "basic"
+front = '''
+什么是trait？
+'''
+back = '''
+一组method签名。
+'''
+
+[[cards]]
+id = "7880f682-ceb1-4083-a1f8-c58fc75571b5"
+type = "basic"
+front = '''
+如何定义trait？
+'''
+back = '''
+```rust
+trait T {
+	fn f();
+}
+```
+'''
+
+[[cards]]
+id = "55b7b989-0885-4c93-ba03-ea54d4bf93cd"
+type = "basic"
+front = '''
+如何为一个类型实现trait？
+'''
+back = '''
+```rust
+impl Trait for Type {
+	fn f() {
+		...
+	}
+}
+```
+'''
+
+[[cards]]
+id = "756875c7-e48a-40e8-b6e9-06b0665d3d15"
+type = "basic"
+front = '''
+什么是orphan rule？
+'''
+back = '''
+不能为外部类型实现外部trait。
+'''
+
+[[cards]]
+id = "d32db7d2-2694-45c4-b800-1a3470b88284"
+type = "basic"
+front = '''
+orphan rule防止了什么问题？
+'''
+back = '''
+两个crate为同一类型实现同一trait，Rust不知道该用哪个。
+'''
+
+[[cards]]
+id = "8948882e-0bfe-4459-a98a-f05e0f6be53b"
+type = "basic"
+front = '''
+如何为trait method提供默认实现？
+'''
+back = '''
+在trait定义中直接写实现，而不是只写签名。
+'''
+
+[[cards]]
+id = "11f9556c-0d9b-4e81-8dfe-632137300477"
+type = "basic"
+front = '''
+实现trait时，如何直接使用某个method的默认实现？
+'''
+back = '''
+在`impl`块中不写这个method。
+全部使用默认实现时，写空的`impl Trait for Type {}`。
+'''
+
+[[cards]]
+id = "8ccd2835-7110-432b-876b-940d03419db7"
+type = "basic"
+front = '''
+trait method的默认实现，能调用同一trait中没有默认实现的method吗？
+'''
+back = '''
+能。
+'''
+
+[[cards]]
+id = "da094118-dba4-4882-acd0-cd9629e00c09"
+type = "basic"
+front = '''
+如何让函数参数接受任何实现了某个trait的类型？
+'''
+back = '''
+参数类型写`impl Trait`，如`fn f(x: &impl Trait)`。
+'''
+
+[[cards]]
+id = "896c2622-958f-4a13-86c3-5b0b18e82828"
+type = "basic"
+front = '''
+`fn f(x: &impl Trait)`是哪种写法的简写？
+'''
+back = '''
+```rust
+fn f<T: Trait>(x: &T)
+```
+'''
+
+[[cards]]
+id = "48d6af7a-37a2-4cf2-b24a-1435008a135b"
+type = "basic"
+front = '''
+以下两个函数的参数有什么区别？
+
+```rust
+fn f(a: &impl Trait, b: &impl Trait)
+fn g<T: Trait>(a: &T, b: &T)
+```
+'''
+back = '''
+`f`的`a`和`b`可以是不同类型；`g`的必须是同一类型。
+'''
+
+[[cards]]
+id = "680cb637-8bfa-43c4-9bc2-7fd9f8deb693"
+type = "basic"
+front = '''
+如何要求一个类型同时实现多个trait？
+'''
+back = '''
+用`+`连接。如`T: Tx + Ty`或`impl Tx + Ty`。
+'''
+
+[[cards]]
+id = "eee329c3-6eab-4087-9e3f-593c07caa0ad"
+type = "basic"
+front = '''
+trait bound太多导致函数签名难读时，可以怎么写？
+'''
+back = '''
+用`where`子句：
+
+```rust
+fn f<T, U>(t: &T, u: &U) -> i32
+where
+	T: Tx + Ty,
+	U: Ty + Tz,
+```
+'''
+
+[[cards]]
+id = "0d3eb0a6-4d3d-4c5b-9f9f-eda4ab6975aa"
+type = "basic"
+front = '''
+函数的返回类型写`impl Trait`是什么意思？
+'''
+back = '''
+返回某个实现了这个trait的类型，但不写出具体是哪个类型。
+'''
+
+[[cards]]
+id = "6f807145-2866-4fc2-90e5-8cb699995d85"
+type = "basic"
+front = '''
+返回类型为`impl Trait`的函数，能在不同分支返回不同类型的值吗？
+'''
+back = '''
+不能，只能返回同一种具体类型。
+'''
+
+[[cards]]
+id = "0601d377-d5a0-44ae-960c-a35ff5efee50"
+type = "basic"
+front = '''
+如何给泛型定义一个method，但是这个method只对实现了某个trait的类型可用？
+'''
+back = '''
+在带trait bound的`impl`块中定义这个method。
+如`impl<T: Trait> S<T> { ... }`。
+'''
+
+[[cards]]
+id = "bdd5a953-17ba-4d5c-85c8-b507c78ea69f"
+type = "basic"
+front = '''
+什么是blanket implementation？
+'''
+back = '''
+为所有实现某个trait的类型实现另一个trait，如`impl<T: Tx> Ty for T`。
+'''

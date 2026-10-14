@@ -1,0 +1,80 @@
+[[cards]]
+id = "3ebfbbe2-1401-4e0b-af54-b596143cad33"
+type = "basic"
+front = '''
+如何定义generic函数？
+'''
+back = '''
+在函数名和参数列表之间的`<>`中声明type parameter，然后在签名中使用它：
+
+```rust
+fn f<T>(x: T) -> T
+```
+'''
+
+[[cards]]
+id = "52efe80c-63b9-48c2-88ad-3100595f7c2f"
+type = "basic"
+front = '''
+generic struct中类型都是`T`的几个field，可以是不同的具体类型吗？
+'''
+back = '''
+不能，它们必须是同一类型。
+要允许不同类型，需要用多个type parameter：
+
+```rust
+struct S<T, U> {
+	a: T,
+	b: U,
+}
+```
+'''
+
+[[cards]]
+id = "9c709f88-7921-4e69-81f5-649df6d769ae"
+type = "basic"
+front = '''
+如何为generic struct定义method？
+'''
+back = '''
+```rust
+impl<T> S<T> { ... }
+```
+'''
+
+[[cards]]
+id = "2b6b0259-7457-4279-9ab3-4cbb0fa1291f"
+type = "basic"
+front = '''
+如何只为generic struct的某一个具体类型定义method？
+'''
+back = '''
+在`impl`后面写具体类型，不声明type parameter。
+如`impl S<i32> { ... }`。
+'''
+
+[[cards]]
+id = "7b9d35c8-7fd9-43e2-9511-b3a9b6af4629"
+type = "basic"
+front = '''
+generic struct的method需要struct之外的type parameter时，如何声明？
+'''
+back = '''
+在method名后面声明：
+
+```rust
+impl<T> S<T> {
+	fn f<U>(self, x: U) { ... }
+}
+```
+'''
+
+[[cards]]
+id = "d2f6c476-309b-41f0-b0d4-8dd47cdecc77"
+type = "basic"
+front = '''
+Rust的generic有运行时开销吗？
+'''
+back = '''
+没有。编译时会进行monomorphization：为每个实际用到的具体类型生成一份专门的代码。
+'''
