@@ -5,7 +5,7 @@ front = '''
 什么是trait？
 '''
 back = '''
-一组method签名。
+定义一组类型共享的行为。
 '''
 
 [[cards]]
