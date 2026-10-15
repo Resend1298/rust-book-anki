@@ -27,7 +27,7 @@ front = '''
 crate root是什么？
 '''
 back = '''
-编译器编译crate时开始的源文件，它构成crate的root module。
+编译器编译crate时开始的源文件。
 '''
 
 [[cards]]

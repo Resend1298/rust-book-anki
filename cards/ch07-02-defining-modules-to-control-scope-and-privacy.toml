@@ -15,5 +15,5 @@ front = '''
 crate root文件的内容构成哪个module？
 '''
 back = '''
-名为`crate`的module，它是module tree的根。
+crate的root module，名为`crate`。
 '''
