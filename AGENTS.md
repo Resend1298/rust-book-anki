@@ -67,7 +67,6 @@ deleted = true
 ## Writing cards
 
 - Write cards in Chinese. Keep technical terms in English.
-- Aim for around 600 cards total.
 - Test one fact per card. Keep answers short.
 - Make every card self-contained.
 - Restate ideas in your own words instead of translating the book's sentences.
@@ -92,7 +91,9 @@ For each section in that chapter:
 
 After all sections are done, stop.
 Another agent, running a different model, then reviews the cards.
-When the review comes back, revise the cards based on it, then stop and ask the human to review them.
+The review agent should write its findings to `REVIEW.md` in the project root, without editing the cards or reporting to the human.
+When the review comes back, revise the cards based on `REVIEW.md`, delete it, then stop.
+No need to summarize the changes, the human will review every card anyway.
 
 ## Building
 
