@@ -1,0 +1,140 @@
+[[cards]]
+id = "98102886-45a3-413f-9b78-2a4510ab59d2"
+type = "basic"
+front = '''
+如何把一个函数标记为测试？
+'''
+back = '''
+在前面加上`#[test]`。
+'''
+
+[[cards]]
+id = "2fc5dc04-d5ef-42eb-9549-aabcd1033117"
+type = "basic"
+front = '''
+如何运行项目中的测试？
+'''
+back = '''
+`cargo test`
+'''
+
+[[cards]]
+id = "fac4ab6f-72ab-42d0-9ec7-e67f9dbbd596"
+type = "basic"
+front = '''
+测试函数在什么情况下失败？
+'''
+back = '''
+发生panic时。
+'''
+
+[[cards]]
+id = "eb4f23b8-b125-4d03-af35-b351eb6708a9"
+type = "basic"
+front = '''
+`assert!`做什么？
+'''
+back = '''
+参数为`false`时panic。
+'''
+
+[[cards]]
+id = "e7c067c3-cb30-4dd5-b0c1-0c3f90142125"
+type = "basic"
+front = '''
+测试中如何断言两个值相等？不相等呢？
+'''
+back = '''
+`assert_eq!`和`assert_ne!`
+'''
+
+[[cards]]
+id = "8fbb9887-2933-4f54-9ffd-9448c44d074f"
+type = "basic"
+front = '''
+`assert_eq!`的两个参数需要区分期望值和实际值吗？
+'''
+back = '''
+不需要。
+'''
+
+[[cards]]
+id = "b50ff7ca-6de2-4fa1-b707-291021c88d30"
+type = "basic"
+front = '''
+用`assert_eq!`或`assert_ne!`比较的值，类型必须实现哪些trait？
+'''
+back = '''
+`PartialEq`和`Debug`。
+通常加`#[derive(PartialEq, Debug)]`即可。
+'''
+
+[[cards]]
+id = "681f35b2-3c11-4d57-a3aa-8b6975c36b0d"
+type = "basic"
+front = '''
+如何给`assert!`、`assert_eq!`等添加自定义的失败信息？
+'''
+back = '''
+在参数后面加上`format!`风格的参数，如`assert!(bool, "{x} {}", x+1)`。
+'''
+
+[[cards]]
+id = "dfee60ee-e658-413b-9f50-78ffa8e67147"
+type = "basic"
+front = '''
+如何测试panic才是正确结果的函数？
+'''
+back = '''
+加上`#[should_panic]`。
+'''
+
+[[cards]]
+id = "5eea3243-dc79-4523-b891-95a681248843"
+type = "basic"
+front = '''
+如何让`should_panic`测试同时检查panic信息？
+'''
+back = '''
+`#[should_panic(expected = "...")]`
+'''
+
+[[cards]]
+id = "e1c028fb-7f55-4220-a3c8-05014433f0df"
+type = "basic"
+front = '''
+`#[should_panic(expected = "...")]`要求panic信息与`expected`完全相同吗？
+'''
+back = '''
+不需要，panic信息包含`expected`的文本即可。
+'''
+
+[[cards]]
+id = "26ded1e3-bf2e-43c1-9971-b5f8ee609e88"
+type = "basic"
+front = '''
+返回`Result<(), E>`的测试函数，如何表示测试失败？
+'''
+back = '''
+返回`Err`。
+'''
+
+[[cards]]
+id = "a5d6a2a4-7d3d-403a-8298-3d8a304a0ecd"
+type = "basic"
+front = '''
+让测试函数返回`Result<(), E>`有什么好处？
+'''
+back = '''
+可以在测试中使用`?`。
+'''
+
+[[cards]]
+id = "4515f3ac-1a10-4671-aab1-782fed9355f1"
+type = "basic"
+front = '''
+测试中如何断言一个`Result`是`Err`？
+'''
+back = '''
+`assert!(x.is_err())`
+'''

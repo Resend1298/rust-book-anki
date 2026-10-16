@@ -1,0 +1,29 @@
+[[cards]]
+id = "49b84437-619b-4c7e-916a-7a8066c7391e"
+type = "basic"
+front = '''
+`cargo test`默认如何运行多个测试？
+'''
+back = '''
+用多个线程并行运行。
+'''
+
+[[cards]]
+id = "fd4fb0c7-4e05-4b54-9ac2-bce1794b8642"
+type = "basic"
+front = '''
+为什么测试之间不应该共享状态？
+'''
+back = '''
+测试默认并行运行，可能互相干扰。
+'''
+
+[[cards]]
+id = "fc5d2d7c-4e93-4a4f-bf40-9e45abcdaa4f"
+type = "basic"
+front = '''
+如何让某个测试默认不运行？
+'''
+back = '''
+加上`#[ignore]`。
+'''

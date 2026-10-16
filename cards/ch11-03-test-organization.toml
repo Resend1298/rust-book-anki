@@ -1,0 +1,99 @@
+[[cards]]
+id = "e101eaba-f952-4339-8517-350b7bc1493d"
+type = "basic"
+front = '''
+unit test通常放在哪里？
+'''
+back = '''
+和被测代码在同一个文件中，放在带`#[cfg(test)]`的`mod tests`中。
+'''
+
+[[cards]]
+id = "f3f4f677-b328-45f5-b82e-1995010ded1c"
+type = "basic"
+front = '''
+integration test放在哪里？
+'''
+back = '''
+项目根目录的`tests/`。
+'''
+
+[[cards]]
+id = "4cb732d6-6984-46ed-a84b-c306b6701706"
+type = "basic"
+front = '''
+`#[cfg(test)]`有什么作用？
+'''
+back = '''
+只在`cargo test`时才编译它标注的代码。
+'''
+
+[[cards]]
+id = "94e7141c-2e44-4cb7-a42c-80c2b03267c1"
+type = "basic"
+front = '''
+`tests/`目录中的integration test需要加`#[cfg(test)]`吗？
+'''
+back = '''
+不需要。`tests/`目录会被特殊处理，只有`cargo test`才会编译它。
+'''
+
+[[cards]]
+id = "5bd92e7a-9768-400d-841c-42bd3057b204"
+type = "basic"
+front = '''
+Rust的unit test能测试private函数吗？
+'''
+back = '''
+能。`tests` module是被测代码的子module，可以使用父module的private item。
+'''
+
+[[cards]]
+id = "c55fd32f-44fb-4304-a1bc-f654d974eb2b"
+type = "basic"
+front = '''
+integration test能测试private函数吗？
+'''
+back = '''
+不能。它和外部代码一样，只能使用库的public API。
+'''
+
+[[cards]]
+id = "20b65501-4d77-4c82-8e86-dde463c71411"
+type = "basic"
+front = '''
+integration test的目的是什么？
+'''
+back = '''
+测试库的多个部分组合在一起时能否正确工作。
+'''
+
+[[cards]]
+id = "327f5695-93be-4b3c-97fc-384148689bb2"
+type = "basic"
+front = '''
+Cargo如何编译`tests/`目录？
+'''
+back = '''
+每个文件编译成一个单独的crate。
+'''
+
+[[cards]]
+id = "136b82be-7787-46d0-a98c-f6fc1712368b"
+type = "basic"
+front = '''
+多个integration test文件共用的辅助代码，应该放在哪里？
+'''
+back = '''
+`tests/`的子目录中，比如`tests/a/mod.rs`，然后通过`mod a;`引入。
+'''
+
+[[cards]]
+id = "4a69b836-648f-4c4b-bbde-4f34cf80b3d2"
+type = "basic"
+front = '''
+integration test共用的辅助代码，为什么不放在`tests/a.rs`？
+'''
+back = '''
+它会被当作一个integration test crate。
+'''
