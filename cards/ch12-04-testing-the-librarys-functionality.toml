@@ -1,0 +1,39 @@
+[[cards]]
+id = "141c788d-5ce5-447e-adf5-4dfb5910693c"
+type = "basic"
+front = '''
+字符串字面量中，行尾的`\`有什么作用？
+'''
+back = '''
+去掉这里的`\n`，以及下一行开头的空白。
+'''
+
+[[cards]]
+id = "56c27a01-4a3d-4e31-8377-1beb60a70f69"
+type = "basic"
+front = '''
+如何逐行遍历字符串？
+'''
+back = '''
+`.lines()`
+'''
+
+[[cards]]
+id = "4ce7746b-cf67-40b0-bb6d-d59272f42b7a"
+type = "basic"
+front = '''
+`.lines()`产生的每一行包含行尾的换行符吗？
+'''
+back = '''
+不包含。
+'''
+
+[[cards]]
+id = "7612e1e2-0cb7-41d1-81ba-c9f428b50842"
+type = "basic"
+front = '''
+如何检查字符串是否包含某个子串？
+'''
+back = '''
+`.contains()`
+'''

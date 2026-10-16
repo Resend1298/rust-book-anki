@@ -1,0 +1,19 @@
+[[cards]]
+id = "b564b9ed-9998-4c62-9b22-49bfaad6ce3f"
+type = "basic"
+front = '''
+错误信息为什么应该输出到stderr，而不是stdout？
+'''
+back = '''
+stdout被重定向时，错误信息仍然显示在终端上，便于用户看到。
+'''
+
+[[cards]]
+id = "d5543a9b-9236-45e2-87ce-e923f80d6117"
+type = "basic"
+front = '''
+如何打印到stderr？
+'''
+back = '''
+`eprintln!`
+'''

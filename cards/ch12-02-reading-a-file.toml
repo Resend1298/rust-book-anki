@@ -1,0 +1,9 @@
+[[cards]]
+id = "1b6503d9-5e4d-454f-99cd-cc0e31432edf"
+type = "basic"
+front = '''
+如何把整个文件的内容读入一个`String`？
+'''
+back = '''
+`std::fs::read_to_string(path)`，返回一个Result。
+'''

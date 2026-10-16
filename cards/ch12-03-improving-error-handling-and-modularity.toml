@@ -1,0 +1,72 @@
+[[cards]]
+id = "23cf1da4-97d4-44a4-b98e-89c5607a2367"
+type = "basic"
+front = '''
+binary项目为什么经常把程序从`main.rs`移到`lib.rs`？
+'''
+back = '''
+binary crate中的代码不能被integration test测试。
+'''
+
+[[cards]]
+id = "b9410ad6-9c3e-4b6f-bae0-890b7737b3a4"
+type = "basic"
+front = '''
+把程序逻辑移到`lib.rs`之后，binary项目的`main`函数应该只负责哪些事？
+'''
+back = '''
+- 处理命令行参数和配置
+- 调用实际的程序
+- 处理它返回的错误
+'''
+
+[[cards]]
+id = "9998adaf-4670-4021-9dd6-3e31fefe80e4"
+type = "basic"
+front = '''
+可能失败的构造函数，为什么通常不命名为`new`？
+'''
+back = '''
+习惯上大家认为`new`不会失败。
+可以用`build`。
+'''
+
+[[cards]]
+id = "107ef7ff-8587-4cd5-817d-b36ab6f49ffc"
+type = "basic"
+front = '''
+如何立即结束程序，并指定exit status？
+'''
+back = '''
+`std::process::exit(code)`
+'''
+
+[[cards]]
+id = "5e3a3989-8c74-418c-8efa-c56da26369ea"
+type = "basic"
+front = '''
+不需要返回值，但可能失败的函数，通常返回什么类型？
+'''
+back = '''
+`Result<(), E>`，成功时返回`Ok(())`。
+'''
+
+[[cards]]
+id = "986a290b-c86f-4d07-8ab9-002f355b3ac8"
+type = "basic"
+front = '''
+`unimplemented!`做什么？
+'''
+back = '''
+panic，信息为`not implemented`。
+'''
+
+[[cards]]
+id = "9341f6c9-42f9-48bc-b624-f91da0e32459"
+type = "basic"
+front = '''
+binary crate里如何使用library crate里的东西？
+'''
+back = '''
+使用`packape/crate名::`，Cargo能理解这里指的是library crate而不是binary crate，因为此时binary crate是`crate::`。
+'''

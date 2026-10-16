@@ -1,0 +1,42 @@
+[[cards]]
+id = "15b1eee7-3108-4dc5-bc1f-d44c04880d0e"
+type = "basic"
+front = '''
+用`cargo run`运行程序时，如何把命令行参数传给程序？
+'''
+back = '''
+`cargo run -- 参数`
+`--`之后的参数传给程序，而不是传给Cargo。
+'''
+
+[[cards]]
+id = "44f6a87c-04ee-4550-852f-088c3a398a6f"
+type = "basic"
+front = '''
+如何把命令行参数收集到一个Vec中？
+'''
+back = '''
+```rust
+let args: Vec<String> = std::env::args().collect();`
+```
+'''
+
+[[cards]]
+id = "68a064ac-5a08-4aba-8e34-6d6dc8c43da1"
+type = "basic"
+front = '''
+`std::env::args()`产生的第一个值是什么？
+'''
+back = '''
+调用程序的路径。
+'''
+
+[[cards]]
+id = "58ad009b-4aa1-4d1a-9ceb-5595e6442f68"
+type = "basic"
+front = '''
+为什么调用`collect`时经常需要标注类型？
+'''
+back = '''
+`collect`能生成多种collection，编译器无法推断要哪一种。
+'''

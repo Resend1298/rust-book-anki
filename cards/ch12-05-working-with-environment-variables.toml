@@ -1,0 +1,30 @@
+[[cards]]
+id = "43a2580e-7eb9-4a3f-a9e0-045782c3e0b0"
+type = "basic"
+front = '''
+如何读取环境变量的值？
+'''
+back = '''
+`std::env::var("NAME")`
+返回`Result`，变量未设置时为`Err`。
+'''
+
+[[cards]]
+id = "4a04d352-318d-44b3-899f-c0779d516875"
+type = "basic"
+front = '''
+如何检查Result是否为`Ok`？
+'''
+back = '''
+`.is_ok()`
+'''
+
+[[cards]]
+id = "dd7990cb-4ca9-4cbe-af7f-560634c1b9b5"
+type = "basic"
+front = '''
+`to_lowercase`返回`&str`还是`String`？为什么？
+'''
+back = '''
+`String`。小写后的内容是新数据，原字符串中不一定有。
+'''
