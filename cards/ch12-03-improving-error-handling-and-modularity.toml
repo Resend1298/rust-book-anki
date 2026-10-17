@@ -68,5 +68,5 @@ front = '''
 binary crate里如何使用library crate里的东西？
 '''
 back = '''
-使用`packape/crate名::`，Cargo能理解这里指的是library crate而不是binary crate，因为此时binary crate是`crate::`。
+使用`package/crate名::`，Cargo能理解这里指的是library crate而不是binary crate，因为此时binary crate是`crate::`。
 '''
