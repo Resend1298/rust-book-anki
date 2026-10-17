@@ -17,7 +17,7 @@ front = '''
 '''
 back = '''
 ```rust
-let args: Vec<String> = std::env::args().collect();`
+let args: Vec<String> = std::env::args().collect();
 ```
 '''
 
