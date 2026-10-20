@@ -1,0 +1,9 @@
+[[cards]]
+id = "e78a2f23-61b6-4642-b448-cbf725cd6f5b"
+type = "basic"
+front = '''
+如何声明一个接受String iterator的函数？
+'''
+back = '''
+`fn f(x: impl Iterator<Item = String>)`
+'''

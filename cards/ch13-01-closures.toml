@@ -1,0 +1,246 @@
+[[cards]]
+id = "e51f4e34-2c5f-4fb4-b1ef-f19496f0c255"
+type = "basic"
+front = '''
+什么是closure？
+'''
+back = '''
+可以存进变量、作为参数传递的匿名函数。
+'''
+
+[[cards]]
+id = "28d5a4e8-3e9e-43d9-9da0-c620537bd945"
+type = "basic"
+front = '''
+closure能做到、而普通函数做不到的是什么？
+'''
+back = '''
+使用定义处所在scope里的变量。
+'''
+
+[[cards]]
+id = "9502a24f-43e8-45a4-95a5-c404a09b4412"
+type = "basic"
+front = '''
+closure的语法是什么？
+'''
+back = '''
+参数写在两个`|`之间，后面接函数内容，如`|x| x + 1`。
+没有参数时写`||`。
+'''
+
+[[cards]]
+id = "76344118-6991-4cbb-b693-84c3af0169ae"
+type = "basic"
+front = '''
+如何给closure标注参数和返回值的类型？
+'''
+back = '''
+`|x: i32| -> i32 { x + 1 }`
+注意此时函数内容必须用`{}`包起来。
+'''
+
+[[cards]]
+id = "711188c6-b3b3-4bcc-abc0-e65a03b40e93"
+type = "basic"
+front = '''
+closure的函数内容什么时候可以省略`{}`？
+'''
+back = '''
+函数内容只有一个表达式，并且没有标注返回类型时。
+'''
+
+[[cards]]
+id = "99cb7cf1-b91a-4803-be16-8988af468f24"
+type = "basic"
+front = '''
+为什么普通函数的参数类型必须标注，而closure通常可以省略？
+'''
+back = '''
+函数签名是暴露给使用者的接口，类型必须明确。
+closure通常只在局部使用，让编译器推断类型就够了。
+'''
+
+[[cards]]
+id = "5cfaf619-a93a-492a-a796-a16e7b91a7a8"
+type = "basic"
+front = '''
+没有类型标注的closure，能先后用不同类型的参数调用吗？
+'''
+back = '''
+不能。编译器会推断出一个具体类型，之后用其他类型调用会编译错误。
+'''
+
+[[cards]]
+id = "5a3708af-0316-4cfe-87d5-a122fba8c31a"
+type = "basic"
+front = '''
+`.unwrap_or_else(f)`做什么？
+'''
+back = '''
+- `Some(x)`时返回`x`
+- `None`时调用closure `f`，返回它的结果
+'''
+
+[[cards]]
+id = "9ffbe9d9-6d57-4dd8-8a41-20dfb6474a3e"
+type = "basic"
+front = '''
+closure可以用哪几种方式使用局部变量？
+'''
+back = '''
+- immutable borrow
+- mutable borrow
+- 获取ownership
+'''
+
+[[cards]]
+id = "f3fa1401-c9f6-412b-a6d5-faa91f0dd1da"
+type = "basic"
+front = '''
+closure用哪种方式使用局部变量，由什么决定？
+'''
+back = '''
+由函数如何使用这个值决定，自动选用满足需要的、权限最少的方式。
+'''
+
+[[cards]]
+id = "b4851841-e7a3-44d5-83e8-e090786cce16"
+type = "basic"
+front = '''
+closure使用一个变量的reference时，这个reference的生命周期是什么？
+'''
+back = '''
+从定义closure开始，到closure最后一次调用结束。
+'''
+
+[[cards]]
+id = "f5f1bed9-66bf-40a5-89d3-bc0e7a6a43ea"
+type = "basic"
+front = '''
+如何强制让closure获取所需变量的ownership？
+'''
+back = '''
+`move || ...`
+'''
+
+[[cards]]
+id = "b2f4ea37-9c7f-41c7-be24-341bfbd519a2"
+type = "basic"
+front = '''
+为什么传给新thread的closure通常要加`move`？
+'''
+back = '''
+新thread可能活得更久。如果closure只借用数据，有可能途中就被drop掉了。
+'''
+
+[[cards]]
+id = "a3eb8b28-f4bb-417e-93ab-a25969eccc64"
+type = "basic"
+front = '''
+closure会实现哪些`Fn` trait，由什么决定？
+'''
+back = '''
+由函数如何使用局部变量自动选择。
+'''
+
+[[cards]]
+id = "eee180cb-efae-471b-87e7-0ed5a6196fe5"
+type = "basic"
+front = '''
+所有closure都实现了哪个`Fn` trait？
+'''
+back = '''
+`FnOnce`
+'''
+
+[[cards]]
+id = "c3711ba2-33c1-4cc1-add8-789a216cfad1"
+type = "basic"
+front = '''
+什么样的closure只实现`FnOnce`？
+'''
+back = '''
+把capture的值move出函数的closure，因此它只能被调用一次。
+'''
+
+[[cards]]
+id = "8c06800e-d0fa-4917-aa46-61176cfedfd8"
+type = "basic"
+front = '''
+什么样的closure实现`FnMut`，但不实现`Fn`？
+'''
+back = '''
+会修改capture的值，但不把它move出函数的closure。
+'''
+
+[[cards]]
+id = "845d3dd3-7906-422f-93de-7527533883db"
+type = "basic"
+front = '''
+什么样的closure实现`Fn`？
+'''
+back = '''
+- capture值，但是既不修改，也不move出函数
+- 不capture任何值
+'''
+
+[[cards]]
+id = "042a5b5d-6b68-4044-bd5d-96a413bb96c3"
+type = "basic"
+front = '''
+`Fn`、`FnMut`、`FnOnce`之间是什么关系？
+'''
+back = '''
+实现`Fn`的closure也实现`FnMut`；实现`FnMut`的closure也实现`FnOnce`。
+'''
+
+[[cards]]
+id = "3d9c453d-3779-49db-bdf9-85e73cb9e103"
+type = "basic"
+front = '''
+`move` closure一定只实现`FnOnce`吗？
+'''
+back = '''
+不一定。只要函数不把值move出去，它仍然可以实现`Fn`或`FnMut`。
+'''
+
+[[cards]]
+id = "351d33f4-b713-4cc4-a4d8-925e794215e7"
+type = "basic"
+front = '''
+最多调用一次时，trait bound应该用哪个`Fn` trait？为什么？
+'''
+back = '''
+`FnOnce`。所有closure都实现了它，因此调用方传什么closure都可以。
+'''
+
+[[cards]]
+id = "9a258148-b79a-4f87-9252-24bdf0bf6437"
+type = "basic"
+front = '''
+要多次调用传入的closure，trait bound应该用哪个`Fn` trait？
+'''
+back = '''
+`FnMut`
+'''
+
+[[cards]]
+id = "0ace01a3-03d2-45f7-b1a3-148cf8ad25aa"
+type = "basic"
+front = '''
+用`Fn`系列trait约束泛型参数时，如何写trait bound？
+'''
+back = '''
+`<F: FnMut(i32) -> i32>`
+'''
+
+[[cards]]
+id = "0cf032d0-7948-4588-a80e-847d01f3e30e"
+type = "basic"
+front = '''
+参数要求实现某个`Fn` trait时，除了closure还能传什么？
+'''
+back = '''
+普通函数的名字，如`.unwrap_or_else(Vec::new)`。
+'''

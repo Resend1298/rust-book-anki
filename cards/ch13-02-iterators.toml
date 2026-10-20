@@ -1,0 +1,129 @@
+[[cards]]
+id = "b4fbeffe-1253-47ac-a086-156f68a3ab07"
+type = "basic"
+front = '''
+Rust的iterator是lazy的，这是什么意思？
+'''
+back = '''
+在实际使用之前，iterator什么都不做。
+'''
+
+[[cards]]
+id = "b28fc5a8-dc32-4964-813f-f1f34e6142b5"
+type = "basic"
+front = '''
+如何创建collection的iterator？
+'''
+back = '''
+`.iter()`
+'''
+
+[[cards]]
+id = "97c0236c-00c8-4b09-94cd-86f89af12050"
+type = "basic"
+front = '''
+如何创建collection的mutable iterator？
+'''
+back = '''
+`.iter_mut()`
+'''
+
+[[cards]]
+id = "c7147aa8-5cc4-40c3-9ac0-235f085b7b95"
+type = "basic"
+front = '''
+如何创建获取collection的ownership的iterator？
+'''
+back = '''
+`.into_iter()`
+'''
+
+[[cards]]
+id = "bb2a0ed6-2fc1-4858-b704-92a2943a8099"
+type = "basic"
+front = '''
+`Iterator` trait要求实现哪个method？
+'''
+back = '''
+`next()`
+'''
+
+[[cards]]
+id = "b8e956c0-6fd6-473c-b017-322fb3b729ef"
+type = "basic"
+front = '''
+iterator的`next`返回什么？
+'''
+back = '''
+`Option`：还有元素时返回`Some`，没有元素时返回`None`。
+'''
+
+[[cards]]
+id = "c530ed1b-e122-433e-8aee-622fa709c5fa"
+type = "basic"
+front = '''
+实现`Iterator` trait时，除了`next`还必须定义什么？
+'''
+back = '''
+类型`Item`，即元素的类型。
+'''
+
+[[cards]]
+id = "f90b228a-1a3a-4753-9eb2-93a513faefa6"
+type = "basic"
+front = '''
+调用iterator的next为什么需要mut？
+'''
+back = '''
+next会修改iterator内部记录的当前位置。
+'''
+
+[[cards]]
+id = "5871535d-9500-4db5-a61b-881ba172035e"
+type = "basic"
+front = '''
+用for遍历一个iterator时，ownership如何变化？
+'''
+back = '''
+for会获取iterator的ownership。
+'''
+
+[[cards]]
+id = "236a4fe3-6a79-448f-857f-757d24f53677"
+type = "basic"
+front = '''
+什么是consuming adapter？
+'''
+back = '''
+调用`next`、会把iterator用掉的method，如sum和collect。
+'''
+
+[[cards]]
+id = "24a9c9a0-b380-49a6-b7ce-be12cbd974b0"
+type = "basic"
+front = '''
+什么是iterator adapter？
+'''
+back = '''
+生成另一个iterator的method，如map和filter。
+'''
+
+[[cards]]
+id = "148dee9e-0f49-4258-9104-6828e136ad44"
+type = "basic"
+front = '''
+iterator的map做什么？
+'''
+back = '''
+对每个元素调用closure，返回由closure返回值组成的新iterator。
+'''
+
+[[cards]]
+id = "41eb1e7f-588e-4b19-bbd4-e0b84bac0fa1"
+type = "basic"
+front = '''
+iterator的filter做什么？
+'''
+back = '''
+返回一个新iterator，只保留closure返回true的元素。
+'''
