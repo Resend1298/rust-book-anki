@@ -5,7 +5,7 @@ front = '''
 什么是interior mutability？
 '''
 back = '''
-即使只有immutable reference，也能修改数据的设计模式。
+一些类型即使只有immutable reference，也能修改数据的能力。
 '''
 
 [[cards]]
@@ -15,7 +15,7 @@ front = '''
 使用interior mutability的类型，内部靠什么绕过borrowing rule？
 '''
 back = '''
-`unsafe` code，再包装成safe API对外提供。
+`unsafe`，再包装成safe API对外提供。
 '''
 
 [[cards]]
@@ -24,10 +24,10 @@ type = "cloze"
 text = '''
 `Box<T>`、`Rc<T>`、`RefCell<T>`的区别：
 
-- {{c1::`Rc<T>`}}允许同一数据有多个owner；`Box<T>`和`RefCell<T>`只有一个owner。
-- `Box<T>`允许{{c2::编译时检查的immutable或mutable borrow}}。
-- `Rc<T>`只允许{{c3::编译时检查的immutable borrow}}。
-- `RefCell<T>`允许{{c4::运行时检查的immutable或mutable borrow}}。
+- {{c1::`Rc<T>`}}允许同一数据有多个owner；{{c1::`Box<T>`和`RefCell<T>`}}只有一个owner。
+- `Box<T>`允许{{c2::编译时检查的immutable或mutable borrow}}
+- `Rc<T>`只允许{{c3::编译时检查的immutable borrow}}
+- `RefCell<T>`允许{{c4::运行时检查的immutable或mutable borrow}}
 '''
 
 [[cards]]
@@ -47,7 +47,7 @@ front = '''
 编译时已经能检查borrowing rule，为什么还需要运行时检查？
 '''
 back = '''
-编译器的静态分析是保守的，会拒绝一些实际上正确的程序。
+编译器的分析是保守的，会拒绝一些实际上正确的程序。
 '''
 
 [[cards]]
@@ -57,7 +57,7 @@ front = '''
 在运行时检查borrowing rule有什么缺点？
 '''
 back = '''
-- 错误发现得更晚，可能到上线后才暴露
+- 错误发现得更晚
 - 有少量运行时开销
 '''
 
@@ -92,31 +92,11 @@ back = '''
 '''
 
 [[cards]]
-id = "be86fe10-2ad4-42e7-93e3-20b7cc90bc2d"
-type = "basic"
-front = '''
-实现mock object时，trait method只接收`&self`，如何记录调用？
-'''
-back = '''
-把记录放进`RefCell<T>`，用`.borrow_mut()`修改。
-'''
-
-[[cards]]
 id = "12795407-67e1-43ff-97a6-51fb23fc74bc"
 type = "basic"
 front = '''
 `Rc<RefCell<T>>`有什么用？
 '''
 back = '''
-让数据既有多个owner，又可以修改。
-'''
-
-[[cards]]
-id = "19b633c3-4175-47fa-b658-9c1229c4b781"
-type = "basic"
-front = '''
-`RefCell<T>`能在多个thread之间共享吗？
-'''
-back = '''
-不能，会编译错误。多线程中要用`Mutex<T>`。
+让数据既能有多个owner，又可以使用mutable reference。
 '''

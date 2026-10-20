@@ -5,37 +5,28 @@ front = '''
 `Drop` trait有什么用？
 '''
 back = '''
-自定义值离开scope时执行的代码，如释放文件、网络连接等资源。
+自定义值离开scope时执行的代码。
 '''
 
 [[cards]]
 id = "7e048cb0-ed61-4911-93a0-3d8394ca2dd9"
 type = "basic"
 front = '''
-实现`Drop` trait需要实现哪个method？
+实现`Drop` trait需要实现什么method？
 '''
 back = '''
 `fn drop(&mut self)`
 '''
 
 [[cards]]
-id = "a92fabb6-a6a0-400f-9f54-58bcbd1735cd"
-type = "basic"
-front = '''
-同一scope中的多个局部变量，按什么顺序drop？
-'''
-back = '''
-与变量声明的顺序相反。
-'''
-
-[[cards]]
 id = "d0de432f-8aee-40cb-be18-fce05fce3a82"
 type = "basic"
 front = '''
-能手动调用`Drop` trait的`drop` method吗？为什么？
+能手动调用`drop` method吗？为什么？
 '''
 back = '''
-不能，会编译错误。scope结束时Rust还会自动调用一次，导致double free。
+不能。
+scope结束时Rust还会自动调用一次，导致double free。
 '''
 
 [[cards]]
@@ -45,5 +36,5 @@ front = '''
 如何在scope结束前提前drop一个值？
 '''
 back = '''
-`drop(x)`，即prelude中的`std::mem::drop`。
+`drop(x)`
 '''

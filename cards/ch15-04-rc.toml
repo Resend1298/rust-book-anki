@@ -5,7 +5,7 @@ front = '''
 `Rc<T>`有什么用？
 '''
 back = '''
-用reference counting让一个值有多个owner。
+允许一个值有多个owner。
 '''
 
 [[cards]]
@@ -35,17 +35,17 @@ front = '''
 如何让`Rc<T>`中的值多一个owner？
 '''
 back = '''
-`Rc::clone(&a)`，引用计数加1。
+`Rc::clone(&a)`
 '''
 
 [[cards]]
 id = "6f21029a-5d72-4248-877f-23fb141e2f91"
 type = "basic"
 front = '''
-为什么习惯写`Rc::clone(&a)`，而不是`a.clone()`？
+为什么`Rc::clone(&a)`和`a.clone()`效果相同，但更推荐写`Rc::clone(&a)`？
 '''
 back = '''
-和做deep copy的`clone`区分开。`Rc::clone`只增加引用计数，排查性能问题时可以忽略。
+明确表达这里不是通常`.clone()`的深拷贝，而仅仅是增加了引用计数。
 '''
 
 [[cards]]
@@ -59,31 +59,12 @@ back = '''
 '''
 
 [[cards]]
-id = "25c0ae09-2f76-4e6b-b042-c61c3ca0910f"
-type = "basic"
-front = '''
-`Rc<T>`的引用计数什么时候减少？
-'''
-back = '''
-一个`Rc<T>`离开scope时，由它的`Drop`实现自动减1。
-'''
-
-[[cards]]
 id = "d28660b5-5b61-4af1-8b18-d6bd11a951d8"
 type = "basic"
 front = '''
 对`Rc<T>`解引用，能得到mutable reference吗？
 '''
 back = '''
-不能，只能得到immutable reference。多个owner同时修改会违反borrowing rule。
-'''
-
-[[cards]]
-id = "1ba71248-b588-4842-a5a1-c325e39b688f"
-type = "basic"
-front = '''
-`Rc<T>`能用于多线程吗？
-'''
-back = '''
-不能，只能用于单线程。
+不能，只能得到immutable reference。
+多个owner同时修改会违反规则。
 '''

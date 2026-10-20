@@ -15,14 +15,15 @@ front = '''
 smart pointer和reference在ownership上有什么不同？
 '''
 back = '''
-reference只借用数据；smart pointer通常拥有它指向的数据。
+reference只借用数据；
+smart pointer经常拥有它指向的数据。
 '''
 
 [[cards]]
 id = "3c91b893-cc45-4c8b-9dbe-16458b99e6a3"
 type = "basic"
 front = '''
-smart pointer通常实现哪两个trait？
+smart pointer通常实现哪些trait？
 '''
 back = '''
 - `Deref`：让它能像reference一样使用
