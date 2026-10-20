@@ -68,25 +68,24 @@ back = '''
 类型`Item`，即元素的类型。
 '''
 
-# TODO
 [[cards]]
 id = "f90b228a-1a3a-4753-9eb2-93a513faefa6"
 type = "basic"
 front = '''
-对自己拥有的iterator变量直接调用`next`时，为什么这个变量必须是`mut`？
+调用iterator的next为什么需要mut？
 '''
 back = '''
-`next`接收`&mut self`，它要修改iterator内部记录当前位置的状态。
+next会修改iterator内部记录的当前位置。
 '''
 
 [[cards]]
 id = "5871535d-9500-4db5-a61b-881ba172035e"
 type = "basic"
 front = '''
-用`for`遍历一个iterator变量时，为什么这个变量不需要是`mut`？
+用for遍历一个iterator时，ownership如何变化？
 '''
 back = '''
-`for`获取了iterator的ownership，在内部把它变成mutable。
+for会获取iterator的ownership。
 '''
 
 [[cards]]
@@ -96,17 +95,7 @@ front = '''
 什么是consuming adapter？
 '''
 back = '''
-调用`next`、把iterator用掉的method，如`sum`、`collect`。
-'''
-
-[[cards]]
-id = "37746f3c-e42d-4167-9c2d-5750226c4efa"
-type = "basic"
-front = '''
-对iterator调用`sum`后，还能继续使用这个iterator吗？
-'''
-back = '''
-不能，`sum`获取了iterator的ownership。
+调用`next`、会把iterator用掉的method，如sum和collect。
 '''
 
 [[cards]]
@@ -116,24 +105,14 @@ front = '''
 什么是iterator adapter？
 '''
 back = '''
-不consume iterator，而是把它变成另一个iterator的method，如`map`、`filter`。
-'''
-
-[[cards]]
-id = "894e83eb-690d-459f-84f7-1882b14cdfff"
-type = "basic"
-front = '''
-只调用iterator adapter，不consume它返回的iterator，会怎样？
-'''
-back = '''
-什么都不会发生，传入的closure也不会被调用。
+生成另一个iterator的method，如map和filter。
 '''
 
 [[cards]]
 id = "148dee9e-0f49-4258-9104-6828e136ad44"
 type = "basic"
 front = '''
-iterator的`map`做什么？
+iterator的map做什么？
 '''
 back = '''
 对每个元素调用closure，返回由closure返回值组成的新iterator。
@@ -143,20 +122,8 @@ back = '''
 id = "41eb1e7f-588e-4b19-bbd4-e0b84bac0fa1"
 type = "basic"
 front = '''
-iterator的`filter`做什么？
+iterator的filter做什么？
 '''
 back = '''
-返回一个新iterator，只保留closure返回`true`的元素。
-'''
-
-[[cards]]
-id = "90fbfe49-9573-4fd1-9159-169c2b84e242"
-type = "basic"
-front = '''
-如何把iterator的元素收集到`Vec`中？
-'''
-back = '''
-```rust
-let v: Vec<_> = iter.collect();
-```
+返回一个新iterator，只保留closure返回true的元素。
 '''

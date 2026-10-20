@@ -1,70 +1,9 @@
-# TODO
-[[cards]]
-id = "4ca88e8d-59f3-45d6-993e-0ab5a0ea61f8"
-type = "basic"
-front = '''
-`std::env::args()`返回什么？
-'''
-back = '''
-一个产生`String`的iterator，类型是`std::env::Args`。
-'''
-
 [[cards]]
 id = "e78a2f23-61b6-4642-b448-cbf725cd6f5b"
 type = "basic"
 front = '''
-如何声明一个函数参数，接受任何元素类型为`T`的iterator？
+如何声明一个接受String iterator的函数？
 '''
 back = '''
-`fn f<T>(iter: impl Iterator<Item = T>)`
-'''
-
-[[cards]]
-id = "b60dcf5e-d691-40e6-9b7a-237fcc1d6afd"
-type = "basic"
-front = '''
-函数需要拥有传入的一组`String`时，参数为什么用`impl Iterator<Item = String>`比`&[String]`好？
-'''
-back = '''
-可以直接把`String`从iterator中move出来，不需要`clone`。
-'''
-
-[[cards]]
-id = "9fd6828c-da7e-49f8-a243-b52b652d29b9"
-type = "basic"
-front = '''
-如何让函数参数在函数体内可以被修改？
-'''
-back = '''
-在参数名前加`mut`，如`fn f(mut x: T)`。
-'''
-
-[[cards]]
-id = "f1613400-a2cc-4155-9e38-01ba9ca6db35"
-type = "basic"
-front = '''
-用iterator adapter代替“创建空`Vec`，再在循环里`push`”，有什么好处？
-'''
-back = '''
-去掉了mutable的中间状态，代码只表达目的，以后也更容易改成并行。
-'''
-
-[[cards]]
-id = "58fd2fe2-96fc-4d1c-87e3-1c2b79e9364c"
-type = "basic"
-front = '''
-如何声明一个返回iterator的函数？
-'''
-back = '''
-返回类型写`impl Iterator<Item = T>`。
-'''
-
-[[cards]]
-id = "ce292469-6ee2-4552-91f3-550eb025c3a3"
-type = "basic"
-front = '''
-函数返回iterator而不是`collect`好的`Vec`，有什么好处？
-'''
-back = '''
-调用方可以每产生一个元素就处理一个，不必等全部结果都算完。
+`fn f(x: impl Iterator<Item = String>)`
 '''

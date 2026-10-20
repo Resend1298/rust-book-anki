@@ -1,20 +1,9 @@
-# TODO
 [[cards]]
 id = "90e9bb66-b7c2-4849-a403-2d808542934d"
 type = "basic"
 front = '''
-用iterator代替手写的`for`循环，会有运行时性能损失吗？
+用iterator代替手写的for循环，会有性能损失吗？
 '''
 back = '''
-开启优化时基本没有。等价的iterator代码通常会编译成和手写循环差不多的代码。
-'''
-
-[[cards]]
-id = "736feee5-efb5-4105-bb51-0d6d936a2cc2"
-type = "basic"
-front = '''
-什么是zero-cost abstraction？
-'''
-back = '''
-使用它不会带来额外运行时开销的抽象。
+没有。编译器会编译成一样的代码。
 '''
