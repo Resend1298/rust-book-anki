@@ -1,0 +1,80 @@
+[[cards]]
+id = "c0bb32ec-211f-4b7d-955c-b2fd309d880d"
+type = "basic"
+front = '''
+Cargo workspace是什么？
+'''
+back = '''
+共用同一个`Cargo.lock`和`target/`目录的一组package。
+'''
+
+[[cards]]
+id = "e1c1afb4-31ce-4a04-9826-c42ff8ebfb98"
+type = "basic"
+front = '''
+如何创建Cargo workspace？
+'''
+back = '''
+在顶层`Cargo.toml`中写`[workspace]`：
+
+```toml
+[workspace]
+resolver = "3"
+members = ["package_a", "package_b"]
+```
+'''
+
+[[cards]]
+id = "8842e3ed-4d02-4366-93a1-517c7f848acf"
+type = "basic"
+front = '''
+在workspace中运行`cargo new`，除了创建package，还会做什么？
+'''
+back = '''
+自动把新package加入workspace的`members`。
+'''
+
+[[cards]]
+id = "774aea1e-b475-483b-8053-62b6c41befeb"
+type = "basic"
+front = '''
+为什么workspace共用一个`target/`目录？
+'''
+back = '''
+减少重复编译。
+'''
+
+[[cards]]
+id = "01f31538-1c74-42d9-bfa7-e3a17450ad32"
+type = "basic"
+front = '''
+workspace中，如何声明package之间的依赖关系？
+'''
+back = '''
+在`Cargo.toml`中添加path dependency：
+
+```toml
+[dependencies]
+package_x = { path = "../package_x" }
+```
+'''
+
+[[cards]]
+id = "ef8d73da-a5ae-45fe-9c2a-49b605c5e14b"
+type = "basic"
+front = '''
+为什么workspace共用一个`Cargo.lock`？
+'''
+back = '''
+同一个依赖尽量解析为同一版本。
+'''
+
+[[cards]]
+id = "ae694efd-499b-4d2e-b2ed-1bb7ccdc826e"
+type = "basic"
+front = '''
+workspace中一个package添加了某个依赖，其他package能直接使用它吗？
+'''
+back = '''
+不能，每个package都要在自己的`Cargo.toml`中声明。
+'''

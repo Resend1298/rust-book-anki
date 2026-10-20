@@ -1,0 +1,41 @@
+[[cards]]
+id = "848eee21-4c8a-4ba3-b917-097aaba715eb"
+type = "basic"
+front = '''
+如何写documentation comment？
+'''
+back = '''
+在想注释的东西前面用`///`。
+'''
+
+[[cards]]
+id = "4c8ec90e-89f9-4c56-9dff-08ef3a39afcc"
+type = "basic"
+front = '''
+documentation comment支持什么格式？
+'''
+back = '''
+Markdown。
+'''
+
+[[cards]]
+id = "9db791ff-c157-4ce5-803c-fdfc61b56d89"
+type = "basic"
+front = '''
+如何从documentation comment生成并打开HTML文档？
+'''
+back = '''
+`cargo doc`，输出到`target/doc/`。
+加`--open`会在浏览器中打开。
+'''
+
+[[cards]]
+id = "a840846b-9211-4be6-8a24-6fd04cf1bfb0"
+type = "basic"
+front = '''
+`//!`和`///`有什么区别？
+'''
+back = '''
+`///`说明它后面的东西；
+`//!`说明包含它的东西（通常用在crate root或module文件的开头）。
+'''

@@ -1,0 +1,19 @@
+[[cards]]
+id = "f228cdfb-6a70-4331-9828-7a2834d883ae"
+type = "basic"
+front = '''
+`cargo build`使用哪个profile？
+'''
+back = '''
+`dev`
+'''
+
+[[cards]]
+id = "39fa40c8-1a8c-4abf-969d-2dee644f003f"
+type = "basic"
+front = '''
+`cargo build --release`使用哪个profile？
+'''
+back = '''
+`release`
+'''

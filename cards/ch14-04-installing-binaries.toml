@@ -1,0 +1,19 @@
+[[cards]]
+id = "d77a79d6-c314-4de9-b3aa-411d5b224811"
+type = "basic"
+front = '''
+`cargo install`做什么？
+'''
+back = '''
+安装crates.io上的binary crate。
+'''
+
+[[cards]]
+id = "7347881f-9603-4bfd-9cf8-36ce73e752b8"
+type = "basic"
+front = '''
+`cargo install`把程序安装到哪里？
+'''
+back = '''
+`~/.cargo/bin`。
+'''
