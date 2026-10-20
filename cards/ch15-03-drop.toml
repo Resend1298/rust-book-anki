@@ -1,0 +1,40 @@
+[[cards]]
+id = "3ecfe874-409b-415c-8622-cd0dcb3af00e"
+type = "basic"
+front = '''
+`Drop` trait有什么用？
+'''
+back = '''
+自定义值离开scope时执行的代码。
+'''
+
+[[cards]]
+id = "7e048cb0-ed61-4911-93a0-3d8394ca2dd9"
+type = "basic"
+front = '''
+实现`Drop` trait需要实现什么method？
+'''
+back = '''
+`fn drop(&mut self)`
+'''
+
+[[cards]]
+id = "d0de432f-8aee-40cb-be18-fce05fce3a82"
+type = "basic"
+front = '''
+能手动调用`drop` method吗？为什么？
+'''
+back = '''
+不能。
+scope结束时Rust还会自动调用一次，导致double free。
+'''
+
+[[cards]]
+id = "92146984-3059-4fab-9a92-2d70ff31475d"
+type = "basic"
+front = '''
+如何在scope结束前提前drop一个值？
+'''
+back = '''
+`drop(x)`
+'''

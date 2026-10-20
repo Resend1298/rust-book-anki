@@ -1,0 +1,31 @@
+[[cards]]
+id = "16053153-2232-408d-9a86-695e6568f776"
+type = "basic"
+front = '''
+什么是smart pointer？
+'''
+back = '''
+像指针一样使用，但带有额外metadata和功能的数据结构。
+'''
+
+[[cards]]
+id = "b6ff6458-7f28-4d5f-ba75-913dee14f4ec"
+type = "basic"
+front = '''
+smart pointer和reference在ownership上有什么不同？
+'''
+back = '''
+reference只借用数据；
+smart pointer经常拥有它指向的数据。
+'''
+
+[[cards]]
+id = "3c91b893-cc45-4c8b-9dbe-16458b99e6a3"
+type = "basic"
+front = '''
+smart pointer通常实现哪些trait？
+'''
+back = '''
+- `Deref`：让它能像reference一样使用
+- `Drop`：自定义离开scope时执行的代码
+'''

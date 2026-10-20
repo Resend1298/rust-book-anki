@@ -1,0 +1,81 @@
+[[cards]]
+id = "ba75712f-20e1-4655-a0c7-efe619441892"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let x = 5;
+let r = &x;
+assert_eq!(5, r);
+```
+'''
+back = '''
+不能。
+整数和整数的reference是不同类型，要写`*r`。
+'''
+
+[[cards]]
+id = "e7cf46bb-621f-47dc-a3e6-2689cc4932b7"
+type = "basic"
+front = '''
+如何让自定义类型可以用`*`解引用？
+'''
+back = '''
+实现`Deref` trait。
+'''
+
+[[cards]]
+id = "9e3fc76a-248b-4358-af9a-5d4531c096b6"
+type = "basic"
+front = '''
+什么是deref coercion？
+'''
+back = '''
+自动把实现了`Deref`的类型的reference，转换成另一个类型的reference，以满足函数参数类型的要求。
+如`&String`->`&str`。
+'''
+
+[[cards]]
+id = "488910ee-e60a-48f2-b6c8-7e938b471b58"
+type = "basic"
+front = '''
+函数参数是`&str`，能直接传入`&Box<String>`吗？
+'''
+back = '''
+能。
+deref coercion会按需多次调用`deref`：`&Box<String>` → `&String` → `&str`。
+'''
+
+[[cards]]
+id = "d8cb3438-eda5-4c9a-8d55-d4c26a15b761"
+type = "basic"
+front = '''
+deref coercion有运行时开销吗？
+'''
+back = '''
+没有。
+需要调用几次`deref`在编译时就确定了。
+'''
+
+[[cards]]
+id = "d67a9aff-1085-4fcd-a000-ef279e4bad79"
+type = "basic"
+front = '''
+`DerefMut` trait有什么用？
+'''
+back = '''
+让`*`解引用时返回`&mut T`，以便用于修改值。
+'''
+
+[[cards]]
+id = "6f113106-d660-46ba-acee-81aab6e4117a"
+type = "basic"
+front = '''
+deref coercion能把`&T`转换成`&mut U`吗？
+'''
+back = '''
+不能。
+`&T`可能不是唯一的reference，转成mutable reference会违反规则。
+但反过来，`&mut T`可以转换成`&U`。
+'''

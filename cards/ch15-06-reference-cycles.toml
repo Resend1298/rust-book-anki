@@ -1,0 +1,60 @@
+[[cards]]
+id = "69aa8234-2e49-4ee8-852c-4f86c64d4bb3"
+type = "basic"
+front = '''
+Rust能保证不发生内存泄漏吗？
+'''
+back = '''
+不能。
+'''
+
+[[cards]]
+id = "b81972f7-d84d-4684-9474-d2b7345a4e99"
+type = "basic"
+front = '''
+使用`Rc<T>`时，怎样会形成内存泄漏？
+'''
+back = '''
+形成reference cycle。
+'''
+
+[[cards]]
+id = "2cd16a9b-75e7-4bc7-9ade-af0f80ba273b"
+type = "basic"
+front = '''
+如何避免`Rc<T>`形成reference cycle？
+'''
+back = '''
+让一部分reference不表达ownership，也即用`Weak<T>`代替`Rc<T>`。
+'''
+
+[[cards]]
+id = "cf7b88a3-65bd-47e3-9d4c-75bf7621e198"
+type = "basic"
+front = '''
+什么是weak reference？
+'''
+back = '''
+不表达ownership的reference（`Weak<T>`），它的数量不影响值被清理。
+'''
+
+[[cards]]
+id = "3a07908c-97f0-4dd7-824f-c3e0167fbddb"
+type = "basic"
+front = '''
+如何从`Rc<T>`创建`Weak<T>`？
+'''
+back = '''
+`Rc::downgrade(&rc)`
+'''
+
+[[cards]]
+id = "f6f998ba-60ed-424a-b8fd-3b6b7745763d"
+type = "basic"
+front = '''
+如何使用`Weak<T>`指向的值？
+'''
+back = '''
+`.upgrade()`，返回`Option<Rc<T>>`。
+因为值可能已经被清理。
+'''
