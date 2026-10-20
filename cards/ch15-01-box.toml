@@ -1,0 +1,50 @@
+[[cards]]
+id = "42a89a84-04ba-4a54-8aaf-74e5a0530497"
+type = "basic"
+front = '''
+如何把一个值存到heap上？
+'''
+back = '''
+`Box::new(x)`。stack上只保存指向heap数据的指针。
+'''
+
+[[cards]]
+id = "e29a2d05-b64d-4ff1-a4ed-c07621778938"
+type = "cloze"
+text = '''
+`Box<T>`的常见用途：
+
+- {{c1::编译时无法确定大小的类型}}，要用在需要确定大小的地方。
+- {{c2::转移大量数据的ownership时，避免复制数据}}。
+- {{c3::只关心值实现了某个trait，而不关心具体类型}}。
+'''
+
+[[cards]]
+id = "6fef3d43-e095-4017-9aee-d266c270bd5a"
+type = "basic"
+front = '''
+什么是recursive type？
+'''
+back = '''
+值中可以包含同类型的另一个值的类型。
+'''
+
+[[cards]]
+id = "41889d14-4593-48ce-b243-6613c053caa5"
+type = "basic"
+front = '''
+为什么不能直接定义recursive type？
+'''
+back = '''
+嵌套可以无限进行，编译器无法在编译时算出它的大小。
+'''
+
+[[cards]]
+id = "323de20e-824d-44b6-804a-1b894e165039"
+type = "basic"
+front = '''
+如何让recursive type有确定的大小？
+'''
+back = '''
+用`Box<T>`等指针间接保存内部的同类型值。指针的大小是固定的。
+'''

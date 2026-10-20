@@ -1,0 +1,69 @@
+[[cards]]
+id = "69aa8234-2e49-4ee8-852c-4f86c64d4bb3"
+type = "basic"
+front = '''
+Rust能保证不发生memory leak吗？
+'''
+back = '''
+不能。memory leak在Rust中是memory safe的。
+'''
+
+[[cards]]
+id = "b81972f7-d84d-4684-9474-d2b7345a4e99"
+type = "basic"
+front = '''
+使用`Rc<T>`时，怎样会造成memory leak？
+'''
+back = '''
+形成reference cycle。环中每个值的引用计数都不会降到0，永远不会被drop。
+'''
+
+[[cards]]
+id = "2cd16a9b-75e7-4bc7-9ade-af0f80ba273b"
+type = "basic"
+front = '''
+如何避免`Rc<T>`形成reference cycle？
+'''
+back = '''
+让一部分reference不表达ownership，用`Weak<T>`代替`Rc<T>`。
+'''
+
+[[cards]]
+id = "cf7b88a3-65bd-47e3-9d4c-75bf7621e198"
+type = "basic"
+front = '''
+什么是weak reference？
+'''
+back = '''
+不表达ownership的reference（`Weak<T>`），它的数量不影响值何时被清理。
+'''
+
+[[cards]]
+id = "3a07908c-97f0-4dd7-824f-c3e0167fbddb"
+type = "basic"
+front = '''
+如何从`Rc<T>`创建`Weak<T>`？
+'''
+back = '''
+`Rc::downgrade(&rc)`
+'''
+
+[[cards]]
+id = "f6f998ba-60ed-424a-b8fd-3b6b7745763d"
+type = "basic"
+front = '''
+如何使用`Weak<T>`指向的值？
+'''
+back = '''
+`.upgrade()`，返回`Option<Rc<T>>`。值已被drop时返回`None`。
+'''
+
+[[cards]]
+id = "48d9be10-29a2-4c29-a39f-9bd6c47f9829"
+type = "basic"
+front = '''
+树节点用`Rc<T>`共享，且子节点要能访问父节点时，父子之间该用什么reference？
+'''
+back = '''
+父节点用`Rc<T>`拥有子节点；子节点用`Weak<T>`指向父节点。
+'''

@@ -1,0 +1,89 @@
+[[cards]]
+id = "fc94f0e2-71e2-427a-9f74-82c89f133d0b"
+type = "basic"
+front = '''
+`Rc<T>`有什么用？
+'''
+back = '''
+用reference counting让一个值有多个owner。
+'''
+
+[[cards]]
+id = "1ff2246a-7058-4dfe-8789-ee76aa57bc36"
+type = "basic"
+front = '''
+`Rc<T>`中的值什么时候被清理？
+'''
+back = '''
+引用计数变为0时。
+'''
+
+[[cards]]
+id = "d9ad4acb-c4bd-4a74-8000-7b9185fb3149"
+type = "basic"
+front = '''
+什么时候需要用`Rc<T>`？
+'''
+back = '''
+程序的多个部分要读取同一份数据，而编译时无法确定哪个部分最后用完。
+'''
+
+[[cards]]
+id = "2d3cc322-7bb3-44a5-a4ec-a0feb9c5c1af"
+type = "basic"
+front = '''
+如何让`Rc<T>`中的值多一个owner？
+'''
+back = '''
+`Rc::clone(&a)`，引用计数加1。
+'''
+
+[[cards]]
+id = "6f21029a-5d72-4248-877f-23fb141e2f91"
+type = "basic"
+front = '''
+为什么习惯写`Rc::clone(&a)`，而不是`a.clone()`？
+'''
+back = '''
+和做deep copy的`clone`区分开。`Rc::clone`只增加引用计数，排查性能问题时可以忽略。
+'''
+
+[[cards]]
+id = "7210ed97-2d5a-4558-811f-68ba655e62a4"
+type = "basic"
+front = '''
+如何查看`Rc<T>`的引用计数？
+'''
+back = '''
+`Rc::strong_count(&a)`
+'''
+
+[[cards]]
+id = "25c0ae09-2f76-4e6b-b042-c61c3ca0910f"
+type = "basic"
+front = '''
+`Rc<T>`的引用计数什么时候减少？
+'''
+back = '''
+一个`Rc<T>`离开scope时，由它的`Drop`实现自动减1。
+'''
+
+[[cards]]
+id = "d28660b5-5b61-4af1-8b18-d6bd11a951d8"
+type = "basic"
+front = '''
+对`Rc<T>`解引用，能得到mutable reference吗？
+'''
+back = '''
+不能，只能得到immutable reference。多个owner同时修改会违反borrowing rule。
+'''
+
+[[cards]]
+id = "1ba71248-b588-4842-a5a1-c325e39b688f"
+type = "basic"
+front = '''
+`Rc<T>`能用于多线程吗？
+'''
+back = '''
+不能，只能用于单线程。
+'''

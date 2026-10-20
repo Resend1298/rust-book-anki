@@ -1,0 +1,128 @@
+[[cards]]
+id = "ba75712f-20e1-4655-a0c7-efe619441892"
+type = "basic"
+front = '''
+以下代码能编译吗？
+
+```rust
+let x = 5;
+let r = &x;
+assert_eq!(5, r);
+```
+'''
+back = '''
+不能。整数和整数的reference是不同类型，不能比较，要写`*r`。
+'''
+
+[[cards]]
+id = "e7cf46bb-621f-47dc-a3e6-2689cc4932b7"
+type = "basic"
+front = '''
+如何让自定义类型可以用`*`解引用？
+'''
+back = '''
+实现`Deref` trait。
+'''
+
+[[cards]]
+id = "d15d646d-83cc-4fa5-b742-d64c33f7d1a8"
+type = "basic"
+front = '''
+如何实现`Deref` trait？
+'''
+back = '''
+```rust
+use std::ops::Deref;
+
+struct Wrapper<T>(T);
+
+impl<T> Deref for Wrapper<T> {
+	type Target = T;
+
+	fn deref(&self) -> &Self::Target {
+		&self.0
+	}
+}
+```
+'''
+
+[[cards]]
+id = "79084340-9450-4d80-8402-e7434ee5f764"
+type = "basic"
+front = '''
+对实现了`Deref`的值`x`，读取`*x`时Rust实际执行的是什么？
+'''
+back = '''
+`*(x.deref())`
+'''
+
+[[cards]]
+id = "7c3d3cd2-a70b-4ad0-837e-895e0b86174d"
+type = "basic"
+front = '''
+为什么`deref`返回reference，而不是直接返回值？
+'''
+back = '''
+直接返回值会把它move出`self`，而解引用时通常不想取得ownership。
+'''
+
+[[cards]]
+id = "9e3fc76a-248b-4358-af9a-5d4531c096b6"
+type = "basic"
+front = '''
+什么是deref coercion？
+'''
+back = '''
+自动把实现了`Deref`的类型的reference，转换成另一个类型的reference，如`&String`转换成`&str`。
+'''
+
+[[cards]]
+id = "aec01e1b-4241-445e-92c5-237148d45e83"
+type = "basic"
+front = '''
+调用函数或method时，deref coercion在什么情况下发生？
+'''
+back = '''
+传入的reference与参数类型不一致时。
+'''
+
+[[cards]]
+id = "488910ee-e60a-48f2-b6c8-7e938b471b58"
+type = "basic"
+front = '''
+函数参数是`&str`，能直接传入`&Box<String>`吗？
+'''
+back = '''
+能。deref coercion会按需多次调用`deref`：`&Box<String>` → `&String` → `&str`。
+'''
+
+[[cards]]
+id = "d8cb3438-eda5-4c9a-8d55-d4c26a15b761"
+type = "basic"
+front = '''
+deref coercion有运行时开销吗？
+'''
+back = '''
+没有额外开销。需要调用几次`deref`在编译时就确定了，和手写这些调用一样。
+'''
+
+[[cards]]
+id = "d67a9aff-1085-4fcd-a000-ef279e4bad79"
+type = "basic"
+front = '''
+`DerefMut` trait有什么用？
+'''
+back = '''
+重载mutable reference上的`*`，也让deref coercion可以把`&mut T`转换成`&mut U`。
+'''
+
+[[cards]]
+id = "6f113106-d660-46ba-acee-81aab6e4117a"
+type = "basic"
+front = '''
+deref coercion能把`&T`转换成`&mut U`吗？
+'''
+back = '''
+不能。`&T`可能不是唯一的reference，转成mutable reference会违反borrowing rule。
+反过来，`&mut T`可以转换成`&U`。
+'''
