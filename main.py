@@ -37,6 +37,13 @@ pre, ul, ol {
 	margin-right: auto;
 	text-align: left;
 }
+/* shrink the answer side to its widest content, so the line between question and answer is no wider than either */
+.card-body {
+	width: fit-content;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
 """
 # noinspection SpellCheckingInspection
 MODEL_BASIC = genanki.Model(model_id=1534339908,
@@ -44,7 +51,7 @@ MODEL_BASIC = genanki.Model(model_id=1534339908,
                             fields=[{"name": "id"}, {"name": "front"}, {"name": "back"}],
                             templates=[{"name": "Card 1",
                                         "qfmt": "{{front}}",
-                                        "afmt": "{{FrontSide}}<hr id='answer'>{{back}}"}],
+                                        "afmt": "<div class='card-body'>{{FrontSide}}<hr id='answer'>{{back}}</div>"}],
                             css=CSS)
 # noinspection SpellCheckingInspection
 MODEL_CLOZE = genanki.Model(model_id=1220447748,
@@ -52,7 +59,7 @@ MODEL_CLOZE = genanki.Model(model_id=1220447748,
                             fields=[{"name": "id"}, {"name": "text"}, {"name": "extra"}],
                             templates=[{"name": "Card 1",
                                         "qfmt": "{{cloze:text}}",
-                                        "afmt": "{{cloze:text}}{{#extra}}<hr id='answer'>{{extra}}{{/extra}}"}],
+                                        "afmt": "<div class='card-body'>{{cloze:text}}{{#extra}}<hr id='answer'>{{extra}}{{/extra}}</div>"}],
                             css=CSS,
                             model_type=genanki.Model.CLOZE)
 
