@@ -19,6 +19,7 @@ pre {
 .card {
 	font-size: 20px;
 	line-height: 1.5;
+	text-align: center;
 }
 .cloze {
 	font-weight: bold;
@@ -26,6 +27,15 @@ pre {
 }
 .nightMode .cloze {
 	color: lightblue;
+}
+/* center code blocks and lists as a whole, but keep their contents left-aligned */
+pre, ul, ol {
+	width: fit-content;
+	max-width: 100%;
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
 }
 """
 # noinspection SpellCheckingInspection
