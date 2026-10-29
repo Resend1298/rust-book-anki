@@ -1,0 +1,10 @@
+[[cards]]
+id = "0fc3ef73-2098-441f-a23d-de1632bca8e0"
+type = "basic"
+front = '''
+concurrent programming和parallel programming有什么区别？
+'''
+back = '''
+- concurrent：多个任务在同一段时间内都在推进，但不一定同时执行，可能是轮流执行。
+- parallel：多个任务在同一时刻真正同时执行，通常需要多核CPU。
+'''

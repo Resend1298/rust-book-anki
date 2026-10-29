@@ -1,0 +1,132 @@
+[[cards]]
+id = "70aafbab-8863-4886-99ba-87ac43647fbc"
+type = "basic"
+front = '''
+什么是mutex？
+'''
+back = '''
+mutual exclusion：
+同一时间只允许一个thread访问它。
+'''
+
+[[cards]]
+id = "b3b3efe0-c9a5-48c0-9cab-5ea0ea341bdf"
+type = "basic"
+front = '''
+使用mutex要遵守哪些规则？
+'''
+back = '''
+- 使用数据前先获取lock
+- 用完后释放lock
+'''
+
+[[cards]]
+id = "457d081a-9983-4cc2-b568-1cc35dc3b8fb"
+type = "basic"
+front = '''
+如何获取Mutex的lock？
+'''
+back = '''
+`.lock()`，会block当前thread直到拿到lock。
+'''
+
+[[cards]]
+id = "623c2199-7c4e-4403-b6e4-5274096f6a8a"
+type = "basic"
+front = '''
+Mutex的`.lock()`什么时候会失败？
+'''
+back = '''
+有thread在持有lock时panic了。
+'''
+
+[[cards]]
+id = "c8460ac3-30b4-434d-a1ef-7d02208408af"
+type = "basic"
+front = '''
+拿到Mutex的lock后，如何访问内部数据？
+'''
+back = '''
+先通过`.unwrap()`等解开`Result`，然后通过`*`解引用即可。
+'''
+
+[[cards]]
+id = "33ce4e72-b4c8-4fe9-97c7-1f317ebf0f97"
+type = "basic"
+front = '''
+Mutex的lock什么时候释放？
+'''
+back = '''
+离开scope时自动释放。
+'''
+
+[[cards]]
+id = "81b3d58b-2439-49c3-bd98-1b8e9427bf49"
+type = "basic"
+front = '''
+为什么Mutex变量不声明为`mut`，也能修改其中的值？
+'''
+back = '''
+Mutex提供interior mutability。
+'''
+
+[[cards]]
+id = "43751edf-b050-4ff4-bc23-8d43f0dd39f7"
+type = "basic"
+front = '''
+为什么不能用`Rc<T>`让多个thread共享ownership？
+'''
+back = '''
+`Rc<T>`更新引用计数不是thread-safe的。
+'''
+
+[[cards]]
+id = "55df885d-118b-4ce0-959c-df34b571d743"
+type = "basic"
+front = '''
+如何让多个thread共享同一个值的ownership？
+'''
+back = '''
+使用`Arc<T>`
+'''
+
+[[cards]]
+id = "8d5f87d1-7d9a-4d8a-9641-5706d75490cd"
+type = "basic"
+front = '''
+`Arc<T>`名字中的A代表什么？
+'''
+back = '''
+atomic
+引用计数用atomic操作更新，是thread-safe的。
+'''
+
+[[cards]]
+id = "79668fd2-a06f-4426-a130-f63fb80e5c07"
+type = "basic"
+front = '''
+为什么不在所有地方都用`Arc<T>`代替`Rc<T>`？
+'''
+back = '''
+thread safety有性能开销。
+'''
+
+[[cards]]
+id = "9a8bc0f8-f8db-4ed8-bb29-627d627c7051"
+type = "basic"
+front = '''
+多线程中，要让一个值有多个owner且可修改，通常用什么类型？
+'''
+back = '''
+`Arc<Mutex<T>>`，相当于单线程中的`Rc<RefCell<T>>`。
+'''
+
+[[cards]]
+id = "745a60be-2cde-4b8f-80fe-ae3919fe5239"
+type = "basic"
+front = '''
+Rust能防止deadlock吗？
+'''
+back = '''
+不能。
+'''

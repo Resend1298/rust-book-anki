@@ -1,0 +1,46 @@
+[[cards]]
+id = "d859dea2-a371-4da5-8283-b715f0ea1cc1"
+type = "basic"
+front = '''
+什么是marker trait？
+'''
+back = '''
+没有任何method，只用来标记类型具有某种性质的trait，如`Send`和`Sync`。
+'''
+
+[[cards]]
+id = "2a08498b-14d3-4f63-9d6a-5e82e42d5d32"
+type = "basic"
+front = '''
+`Send` trait表示什么？
+'''
+back = '''
+这个类型的值的ownership可以在thread之间转移。
+'''
+
+[[cards]]
+id = "48ba0f88-f10c-4442-ac5a-a1e169ee2fa9"
+type = "basic"
+front = '''
+`Sync` trait表示什么？
+'''
+back = '''
+这个类型可以安全地被多个thread同时引用。
+'''
+
+[[cards]]
+id = "8628ee35-fa04-4bca-9572-c1f3367872b3"
+type = "cloze"
+text = '''
+{{c1::`T`实现`Sync`}}，等价于{{c2::`&T`实现`Send`}}。
+'''
+
+[[cards]]
+id = "c4abc862-e4db-41a2-95d7-c2b6959e3403"
+type = "basic"
+front = '''
+struct和enum什么时候会自动实现`Send`或`Sync`？
+'''
+back = '''
+所有字段都实现了`Send`或`Sync`。
+'''

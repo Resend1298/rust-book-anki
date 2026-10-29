@@ -1,0 +1,124 @@
+[[cards]]
+id = "be1f2916-d00e-4a2c-9bcb-6bd3bfbe673f"
+type = "basic"
+front = '''
+什么是message passing concurrency？
+'''
+back = '''
+thread之间通过互相发送消息来通信。
+'''
+
+[[cards]]
+id = "e5fb9368-77b2-4ef6-bfed-9f8124660d21"
+type = "basic"
+front = '''
+channel由哪些部分组成？
+'''
+back = '''
+- transmitter（发送端）
+- receiver（接收端）
+'''
+
+[[cards]]
+id = "d77c1c74-91c6-4668-a80e-4cac01a5db8b"
+type = "basic"
+front = '''
+channel什么时候关闭？
+'''
+back = '''
+receiver被drop，或者所有transmitter都被drop时。
+'''
+
+[[cards]]
+id = "acca0a76-3f22-48f5-8390-5cc7d18fd12b"
+type = "basic"
+front = '''
+如何创建channel？
+'''
+back = '''
+```rust
+let (tx, rx) = std::sync::mpsc::channel();
+```
+'''
+
+[[cards]]
+id = "4df8712d-e014-4a73-9af9-541cc60e6f49"
+type = "basic"
+front = '''
+`mpsc`是什么意思？
+'''
+back = '''
+multiple producer, single consumer
+可以有多个发送端，但只有一个接收端。
+'''
+
+[[cards]]
+id = "e899fbb6-f5d5-4500-8e6e-9bc8bcdfdc68"
+type = "basic"
+front = '''
+如何通过channel发送值？
+'''
+back = '''
+`tx.send(v)`，返回`Result<>`。
+'''
+
+[[cards]]
+id = "ea1792cb-2a4c-438c-a62f-31250caea7dd"
+type = "basic"
+front = '''
+`tx.send(v)`什么时候返回`Err`？
+'''
+back = '''
+receiver已经被drop时。
+'''
+
+[[cards]]
+id = "9bde4887-0411-47c8-aedf-26a998f7d57f"
+type = "basic"
+front = '''
+`rx.recv()`做什么？
+'''
+back = '''
+block当前thread直到收到一个值，返回`Result<>`。
+'''
+
+[[cards]]
+id = "f2747365-cd02-4799-972b-5226df5eab82"
+type = "basic"
+front = '''
+`rx.recv()`什么时候返回`Err`？
+'''
+back = '''
+所有transmitter都被drop，并且channel里没有剩下的值时。
+'''
+
+[[cards]]
+id = "6250a2e2-eda3-42eb-bf0d-493cd530d6d6"
+type = "basic"
+front = '''
+`rx.try_recv()`和`rx.recv()`有什么区别？
+'''
+back = '''
+`try_recv`不block，立即返回：有消息时返回`Ok`，没有时返回`Err`。
+'''
+
+[[cards]]
+id = "8961e79d-94c7-4a3f-88fb-3736be93793d"
+type = "basic"
+front = '''
+如何不断接收channel里的值，直到channel关闭？
+'''
+back = '''
+把receiver当作iterator使用：
+`for x in rx`
+'''
+
+[[cards]]
+id = "c440e28e-01db-4faa-947a-60680f8a7c22"
+type = "basic"
+front = '''
+如何让多个thread向同一个receiver发送值？
+'''
+back = '''
+用`tx.clone()`复制transmitter。
+'''

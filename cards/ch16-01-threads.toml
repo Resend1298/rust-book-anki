@@ -1,0 +1,70 @@
+[[cards]]
+id = "1f4a0752-55e1-4e78-9236-c739d12bb182"
+type = "basic"
+front = '''
+什么是race condition？
+'''
+back = '''
+多个thread访问数据的顺序不确定，导致结果出错。
+'''
+
+[[cards]]
+id = "126ccaed-2a84-4d1f-8127-5f4d32ac8102"
+type = "basic"
+front = '''
+什么是deadlock？
+'''
+back = '''
+多个thread循环等待彼此，导致都无法继续执行。
+'''
+
+[[cards]]
+id = "d4c14448-1fe0-42e2-84d0-b93419d8c561"
+type = "basic"
+front = '''
+如何创建thread？
+'''
+back = '''
+`std::thread::spawn(|| { ... })`
+传入要在新thread中运行的closure。
+'''
+
+[[cards]]
+id = "4be0b714-b0e6-4a16-8aa6-ed3ff05bbbc8"
+type = "basic"
+front = '''
+main thread结束时，还没执行完的其他thread会怎样？
+'''
+back = '''
+全部被关闭。
+'''
+
+[[cards]]
+id = "634294c2-628c-4242-b268-6455713c98c4"
+type = "basic"
+front = '''
+多个thread的执行顺序由什么决定？
+'''
+back = '''
+由OS调度决定，没有任何保证。
+'''
+
+[[cards]]
+id = "6a3868e6-fa85-4c9f-8d19-c0520a8afd88"
+type = "basic"
+front = '''
+如何让当前thread暂停一段时间？
+'''
+back = '''
+`thread::sleep()`
+'''
+
+[[cards]]
+id = "e0568dbe-3b6a-4cd8-994c-878d7085b57a"
+type = "basic"
+front = '''
+如何等待一个thread执行完？
+'''
+back = '''
+对它调用`.join()`，会block当前thread直到那个thread结束。
+'''
