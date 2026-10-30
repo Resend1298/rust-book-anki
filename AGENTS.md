@@ -70,6 +70,7 @@ deleted = true
 - Test one fact per card. Keep answers short.
 - Make every card self-contained.
 - Restate ideas in your own words instead of translating the book's sentences.
+- Test what real-world Rust code uses. When the book uses something made only for teaching, such as the `trpl` crate, test the real equivalent instead, such as `tokio`.
 - Do not use unnecessary context or examples. Ask about the general concept, not about the book's specific example.
   For example, a card should ask, "How do you create a new project with Cargo?" instead of "How do you create a new project named `hello_cargo` with Cargo?",
   and "How do you define methods on a struct?" instead of "How do you define methods on struct `Rectangle`?".
