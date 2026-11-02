@@ -68,9 +68,12 @@ deleted = true
 
 - Write cards in Chinese. Keep technical terms in English.
 - Test one fact per card. Keep answers short.
+- Answer only what the question asks. Keep examples, side notes and caveats minimal.
 - Make every card self-contained.
+- Write functions and macros outside the prelude with their full path, such as `std::thread::sleep` instead of `thread::sleep`.
 - Restate ideas in your own words instead of translating the book's sentences.
 - Test what real-world Rust code uses. When the book uses something made only for teaching, such as the `trpl` crate, test the real equivalent instead, such as `tokio`.
+- Skip details that everyday code does not need.
 - Do not use unnecessary context or examples. Ask about the general concept, not about the book's specific example.
   For example, a card should ask, "How do you create a new project with Cargo?" instead of "How do you create a new project named `hello_cargo` with Cargo?",
   and "How do you define methods on a struct?" instead of "How do you define methods on struct `Rectangle`?".
