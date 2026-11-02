@@ -7,6 +7,12 @@
 
 Anki decks for [The Rust Programming Language](https://doc.rust-lang.org/book/).
 
+## Relationship to the book
+
+The decks are a companion to the book, not a replacement for it.
+Read a chapter first, then use its cards to remember what you read.
+Using the cards alone to learn Rust is not the intended use case.
+
 ## Language
 
 The cards are written in Chinese, with technical terms kept in English.
