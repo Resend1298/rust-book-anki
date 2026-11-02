@@ -56,7 +56,7 @@ front = '''
 如何让当前thread暂停一段时间？
 '''
 back = '''
-`thread::sleep()`
+`std::thread::sleep()`
 '''
 
 [[cards]]
