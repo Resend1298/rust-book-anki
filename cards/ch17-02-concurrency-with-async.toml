@@ -1,0 +1,187 @@
+[[cards]]
+id = "0025d6e6-b8df-4e58-bdde-6eb320181607"
+type = "basic"
+front = '''
+如何创建一个async task？
+'''
+back = '''
+`tokio::spawn()`
+'''
+
+[[cards]]
+id = "0d3b558c-71d6-404f-b321-a93fd1e5dfde"
+type = "basic"
+front = '''
+`tokio::spawn`创建的task，需要被`.await`才开始执行吗？
+'''
+back = '''
+不需要，spawn之后就立即开始在后台执行。
+'''
+
+[[cards]]
+id = "c604a99d-e1a1-406a-95dd-7fd72369a580"
+type = "basic"
+front = '''
+如何在async代码中暂停一段时间？
+'''
+back = '''
+`tokio::time::sleep(duration).await`
+'''
+
+[[cards]]
+id = "a15745ba-72b1-4d1a-abf8-e851353379ae"
+type = "basic"
+front = '''
+如何等待一个tokio task执行完？
+'''
+back = '''
+```rust
+let handle = tokio::spawn();
+let result = handle.await;
+```
+
+注意此时`result`的类型是Result<>。
+'''
+
+[[cards]]
+id = "bfe4375f-c083-484b-9d5d-4f00df2fd50b"
+type = "basic"
+front = '''
+对tokio task进行`.await`时，什么时候会返回`Err`？
+'''
+back = '''
+task panic了，或者task被取消了。
+'''
+
+[[cards]]
+id = "f2b14cd7-5586-4369-87c4-86591548d107"
+type = "basic"
+front = '''
+`#[tokio::main]`的`main`结束时，`tokio::spawn`创建的、还没执行完的task会怎样？
+'''
+back = '''
+被取消。
+'''
+
+[[cards]]
+id = "1c72608f-684c-41e3-a0fa-a59795815c3f"
+type = "basic"
+front = '''
+drop一个tokio task的`JoinHandle`，会取消这个task吗？
+'''
+back = '''
+不会，task继续在后台执行，只是无法再等待它的结果。
+'''
+
+[[cards]]
+id = "879b2c86-3982-4a5c-aed0-c3111af83c3a"
+type = "basic"
+front = '''
+如何让多个future concurrent执行，并等待它们全部完成？
+'''
+back = '''
+`tokio::join!(fut1, fut2, ...)`
+返回由各个future的输出组成的tuple。
+'''
+
+[[cards]]
+id = "0434d0bf-2830-4ff8-a8e8-eea8641b477f"
+type = "basic"
+front = '''
+`tokio::join!`和`tokio::spawn`在执行方式上有什么区别？
+'''
+back = '''
+- `join!`：所有future都在当前task中concurrent执行，不会parallel。
+- `spawn`：创建新的task，可能在其他thread上parallel执行。
+'''
+
+[[cards]]
+id = "090264d3-bc22-4ba9-aa2b-666135202252"
+type = "basic"
+front = '''
+依次写`a.await; b.await;`时，没有被spawn的future `a`和`b`会concurrent执行吗？
+'''
+back = '''
+不会。先把`a`执行完，才开始执行`b`。
+'''
+
+[[cards]]
+id = "6f6e928c-80b2-4b7a-979a-17c94c0a7fa3"
+type = "basic"
+front = '''
+如何创建async channel？
+'''
+back = '''
+```rust
+let (tx, mut rx) = tokio::sync::mpsc::channel(capacity);
+```
+
+`mux rx`是因为编译器可以通过mut ref来确保只有一个接收端。
+`capacity`是channel里最多能缓存多少条消息。
+'''
+
+[[cards]]
+id = "51fc6fd3-3f6a-46de-89e8-dec5340a0589"
+type = "basic"
+front = '''
+tokio的`mpsc::channel`和`mpsc::unbounded_channel`有什么区别？
+'''
+back = '''
+- `channel(n)`：最多缓存n条消息，满了时`send`要等待，所以要写`tx.send(v).await`。
+- `unbounded_channel()`：没有容量上限，`tx.send(v)`不需要`.await`。
+'''
+
+[[cards]]
+id = "c21f7707-4908-462c-bc89-bcbd74751b1d"
+type = "basic"
+front = '''
+tokio channel的`rx.recv()`和`std::sync::mpsc`的有什么不同？
+'''
+back = '''
+它返回future，需要`.await`，因此不会阻塞当前thread。
+'''
+
+[[cards]]
+id = "e56e1577-7688-4bea-baa1-56ac8a057083"
+type = "basic"
+front = '''
+tokio channel的`rx.recv().await`什么时候返回`None`？
+'''
+back = '''
+所有sender都被drop，并且channel里没有剩余消息时。
+'''
+
+[[cards]]
+id = "01be6fcc-f530-4721-af45-e7514cd06143"
+type = "basic"
+front = '''
+如何不断接收async channel里的消息，直到channel关闭？
+'''
+back = '''
+```rust
+while let Some(msg) = rx.recv().await {
+	...
+}
+```
+'''
+
+[[cards]]
+id = "72708414-ac7f-4552-bb2c-817c9af81a76"
+type = "basic"
+front = '''
+`async move` block有什么作用？
+'''
+back = '''
+和`move` closure一样，把block里用到的变量都move进block。
+'''
+
+[[cards]]
+id = "b51fea2b-e074-4583-8fa0-1c98c237321a"
+type = "basic"
+front = '''
+在async block中通过channel发送消息时，为什么通常要使用`async move`？
+'''
+back = '''
+让`tx`被move进block，这样block结束时`tx`会被drop。
+否则因为还有`tx`存在，channel不会关闭，接收端的`rx.recv().await`就会一直等待，形成死锁。
+'''

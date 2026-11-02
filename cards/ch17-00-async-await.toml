@@ -1,0 +1,9 @@
+[[cards]]
+id = "144ba713-25ef-4f15-a893-04126d7bf4df"
+type = "basic"
+front = '''
+什么是asynchronous programming？
+'''
+back = '''
+代码标明哪里可以暂停，如果那里需要等待的话，就运行其他代码而不是阻塞。
+'''

@@ -1,0 +1,84 @@
+# TODO
+
+[[cards]]
+id = "069ff0ea-96a1-433f-8e97-d602d621f996"
+type = "basic"
+front = '''
+什么是stream？
+'''
+back = '''
+随时间陆续产生一系列值的异步序列，相当于async版本的iterator。
+'''
+
+[[cards]]
+id = "c5682a76-1426-46ff-9599-67eec9dd1ca3"
+type = "basic"
+front = '''
+如何把iterator转换成stream？
+'''
+back = '''
+`tokio_stream::iter(iter)`或`futures::stream::iter(iter)`
+'''
+
+[[cards]]
+id = "03dfb97f-378a-4de2-9a41-5e0826138576"
+type = "basic"
+front = '''
+如何逐个获取stream中的值？
+'''
+back = '''
+```rust
+use tokio_stream::StreamExt;
+
+while let Some(v) = stream.next().await {
+	...
+}
+```
+
+stream没有实现`Unpin`时，要先pin住它。
+'''
+
+[[cards]]
+id = "6d1840da-5312-47c0-acb6-146a7135f322"
+type = "basic"
+front = '''
+对没有实现`Unpin`的stream调用`.next()`之前，要做什么？
+'''
+back = '''
+先pin住它：
+
+```rust
+let mut stream = std::pin::pin!(stream);
+```
+'''
+
+[[cards]]
+id = "0541ad40-c8f7-42ff-8844-5278639fd122"
+type = "basic"
+front = '''
+stream的`next`等常用方法定义在哪个trait中？
+'''
+back = '''
+`StreamExt`，而不是`Stream`。
+使用前要把它引入scope。
+'''
+
+[[cards]]
+id = "c2b36bc8-2249-4580-be84-b99457c11807"
+type = "basic"
+front = '''
+trait名中的`Ext`后缀通常表示什么？
+'''
+back = '''
+extension：在另一个trait的基础上提供额外的方法。
+'''
+
+[[cards]]
+id = "85a61c99-c7d0-4726-a3fd-ebab425e7604"
+type = "basic"
+front = '''
+`Stream`和`StreamExt` trait在标准库中吗？
+'''
+back = '''
+不在，目前来自`futures`、`tokio-stream`等crate。
+'''

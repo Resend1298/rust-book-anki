@@ -1,0 +1,84 @@
+# TODO
+
+[[cards]]
+id = "5bfac802-bc5f-4a0a-9bb2-97c00e2b1028"
+type = "basic"
+front = '''
+在async中，一个future starve其他future是指什么？
+'''
+back = '''
+它长时间运行而不让出控制权，导致其他future无法推进。
+'''
+
+[[cards]]
+id = "eb620658-54de-48b5-ad82-6db82e7021d7"
+type = "basic"
+front = '''
+`.await`一定会把控制权交还给runtime吗？
+'''
+back = '''
+不一定。如果被await的future已经ready，就直接继续往下执行。
+'''
+
+[[cards]]
+id = "faf20927-5365-42f3-bde0-22f3a2c5c5cc"
+type = "basic"
+front = '''
+为什么不应该在async代码中调用`std::thread::sleep`这样的blocking函数？
+'''
+back = '''
+它会block整个thread，同一thread上的其他future也无法推进。
+'''
+
+[[cards]]
+id = "8153c6e7-9f3c-4c01-b65a-873517f2017f"
+type = "basic"
+front = '''
+在async代码中，如何把控制权交还给runtime，但不等待任何东西？
+'''
+back = '''
+`tokio::task::yield_now().await`
+'''
+
+[[cards]]
+id = "5ff8e616-97dc-448f-9f1f-29cb8bb66055"
+type = "basic"
+front = '''
+只为了让出控制权时，为什么用`yield_now`而不是`sleep`？
+'''
+back = '''
+- 意图更清楚
+- 更快：`sleep`的计时器有最小精度，在tokio中至少要等约1ms
+'''
+
+[[cards]]
+id = "319a81b9-fe38-418d-91a2-6893e29c2313"
+type = "basic"
+front = '''
+什么是cooperative multitasking？
+'''
+back = '''
+每个任务自己决定何时让出控制权（在async中，只能在await point让出），因此每个任务也有责任不长时间占用。
+'''
+
+[[cards]]
+id = "8bd590d3-49b8-40c5-a200-1d84ddc54800"
+type = "basic"
+front = '''
+如何给future设置超时？
+'''
+back = '''
+`tokio::time::timeout(duration, fut).await`
+完成时返回`Ok(output)`，超时返回`Err(Elapsed)`。
+'''
+
+[[cards]]
+id = "07be34e3-3d69-4184-8d11-f8affecb746a"
+type = "basic"
+front = '''
+`tokio::select!`按什么顺序poll各个分支？
+'''
+back = '''
+默认随机选择先检查哪个分支。
+在开头加上`biased;`则按书写顺序。
+'''

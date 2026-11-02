@@ -1,0 +1,202 @@
+[[cards]]
+id = "cdd0db40-0988-4630-b5c8-2959d7038ac7"
+type = "basic"
+front = '''
+什么是future？
+'''
+back = '''
+现在可能还没准备好，但将来会准备好的值。
+在Rust中，就是实现了`Future` trait的类型。
+'''
+
+[[cards]]
+id = "b3b61dca-26a7-4067-98da-291b8a163566"
+type = "basic"
+front = '''
+`async`关键字可以用在哪里？
+'''
+back = '''
+block、function和closure上。
+'''
+
+[[cards]]
+id = "ea8febcf-af07-48d9-be0c-2c1fb717df58"
+type = "basic"
+front = '''
+在async中，如何获取future的值？
+'''
+back = '''
+`.await`
+'''
+
+[[cards]]
+id = "98086b02-5e02-47e0-92e1-9bbbba2dfb22"
+type = "basic"
+front = '''
+在async中，什么是polling？
+'''
+back = '''
+检查future的值是否已经准备好。
+'''
+
+[[cards]]
+id = "584d26ca-0f8e-4815-87f0-726bd0074f68"
+type = "basic"
+front = '''
+async function返回的future如果从未被poll，函数会执行吗？
+'''
+back = '''
+不会，因为future是lazy的。
+'''
+
+[[cards]]
+id = "0817072d-f6f7-42a2-aeda-a0b04da8ffbb"
+type = "basic"
+front = '''
+Rust中`await`为什么要写在future的后面？
+'''
+back = '''
+方便链式调用，如`a().await.b().await`。
+'''
+
+[[cards]]
+id = "7cc24f95-d998-46d3-b55f-accf787bb6e9"
+type = "basic"
+front = '''
+编译器把async block编译成什么？
+'''
+back = '''
+一个实现了`Future` trait的匿名类型。
+'''
+
+[[cards]]
+id = "c14ecc8d-1dbf-45bd-a13a-b6d920a2e322"
+type = "basic"
+front = '''
+下面的async function会被编译成什么？
+
+```rust
+async fn f() -> i32 {
+	...
+}
+```
+'''
+back = '''
+```rust
+fn f() -> impl Future<Output = i32> {
+	async move {
+		...
+	}
+}
+```
+'''
+
+[[cards]]
+id = "63071d05-1439-45b9-9cc2-7481658eb2bc"
+type = "basic"
+front = '''
+什么是async runtime？
+'''
+back = '''
+负责管理和运行async代码的crate。
+'''
+
+[[cards]]
+id = "6170c375-d24b-4322-81c0-ba34cb1ac0de"
+type = "basic"
+front = '''
+Rust自带async runtime吗？
+'''
+back = '''
+不带，需要使用第三方crate。
+'''
+
+[[cards]]
+id = "2da5a3b9-e8b5-41e5-91d4-a37cf9e8a39c"
+type = "basic"
+front = '''
+什么是executor？
+'''
+back = '''
+async runtime中负责运行async代码的部分。
+'''
+
+[[cards]]
+id = "89df80dd-8a73-465f-87da-263939f0cc05"
+type = "basic"
+front = '''
+为什么`main`函数不能直接写成`async fn main`？
+'''
+back = '''
+async代码需要runtime来执行，而`main`是程序的起点，此时还没有runtime。
+'''
+
+[[cards]]
+id = "d38b01fa-e0ec-4ba1-9831-354c883c1da1"
+type = "basic"
+front = '''
+使用tokio时，如何让`main`函数可以是`async`的？
+'''
+back = '''
+```rust
+#[tokio::main]
+async fn main() {
+	...
+}
+```
+'''
+
+[[cards]]
+id = "02a3f1a7-7483-4eac-a652-2e43a141005e"
+type = "basic"
+front = '''
+`#[tokio::main]`做了什么？
+'''
+back = '''
+把`async fn main`改写成普通的`fn main`，在其中创建runtime，再用它执行原来的main函数。
+'''
+
+[[cards]]
+id = "e56b0c73-898d-480b-8c08-2d1b2ed6b91c"
+type = "basic"
+front = '''
+如何在同步代码中取得future的值？
+'''
+back = '''
+```rust
+let rt = tokio::runtime::Runtime::new().unwrap();
+let v = rt.block_on(fut);
+```
+
+`block_on`会block当前thread，直到future完成。
+'''
+
+[[cards]]
+id = "350989bf-21ed-49fa-8489-a0f9bdb78fc8"
+type = "basic"
+front = '''
+编译器如何保存async代码在各个await处的状态？
+'''
+back = '''
+自动生成一个state machine，每个await对应一个状态。
+'''
+
+[[cards]]
+id = "72f9348a-f11d-4e58-bd1f-7e11efa71b82"
+type = "basic"
+front = '''
+如何同时等待多个future，只处理最先完成的那个？
+'''
+back = '''
+`tokio::select!`
+'''
+
+[[cards]]
+id = "39788667-0f16-456c-bc5c-1de28e05d26c"
+type = "basic"
+front = '''
+`tokio::select!`中传入的future，如果不是最先完成的，会怎样？
+'''
+back = '''
+被取消。
+'''
