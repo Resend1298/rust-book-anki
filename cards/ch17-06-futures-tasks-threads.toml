@@ -1,0 +1,75 @@
+[[cards]]
+id = "43a35ae1-ec12-47dc-8946-a5b1b5064003"
+type = "basic"
+front = '''
+async中的task是什么？
+'''
+back = '''
+类似thread，但由runtime而不是OS管理。
+'''
+
+[[cards]]
+id = "ca54891d-9ea7-4669-a445-ac84ef18e930"
+type = "basic"
+front = '''
+async runtime、task和future之间是什么关系？
+'''
+back = '''
+runtime管理task，task管理future。
+future是最小的concurrency单位。
+'''
+
+[[cards]]
+id = "c728f423-df36-4c6d-b4f0-01c54b4ad08c"
+type = "basic"
+front = '''
+thread和async task在concurrency上有什么不同？
+'''
+back = '''
+- thread：只能在不同thread之间concurrent
+- task：在不同task之间，以及同一task内的多个future之间，都可以concurrent
+'''
+
+[[cards]]
+id = "e7185c8e-acd5-4c36-8192-01f0b9de0687"
+type = "basic"
+front = '''
+相比async task，thread有什么缺点？
+'''
+back = '''
+- 每个thread占用较多内存
+- 需要OS和硬件支持
+'''
+
+[[cards]]
+id = "7b8efd6b-1611-4810-9e0a-b11053573207"
+type = "basic"
+front = '''
+什么样的工作适合用thread，什么样的适合用async？
+'''
+back = '''
+- thread：CPU-bound
+- async：I/O-bound
+'''
+
+[[cards]]
+id = "0bf3772c-9334-4cec-8fd6-397d2d1c14d3"
+type = "basic"
+front = '''
+在async中，应当如何执行耗时的blocking操作？
+'''
+back = '''
+`tokio::task::spawn_blocking(|| ...)`
+在专门的线程池上运行closure，返回可以`.await`的future。
+'''
+
+[[cards]]
+id = "8dabf20f-112e-493a-8630-c86f4158b380"
+type = "basic"
+front = '''
+如何在普通thread中向tokio channel发送消息？
+'''
+back = '''
+- unbounded channel：直接`tx.send(v)`
+- bounded channel：`tx.blocking_send(v)`
+'''

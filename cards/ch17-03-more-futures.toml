@@ -1,0 +1,41 @@
+[[cards]]
+id = "eb620658-54de-48b5-ad82-6db82e7021d7"
+type = "basic"
+front = '''
+`.await`一定会切到别的task吗？
+'''
+back = '''
+不一定。如果被await的future已经就绪，就直接继续往下执行。
+'''
+
+[[cards]]
+id = "8153c6e7-9f3c-4c01-b65a-873517f2017f"
+type = "basic"
+front = '''
+在async中，如何在没有future需要await时切换到别的task？
+'''
+back = '''
+`tokio::task::yield_now().await`
+'''
+
+[[cards]]
+id = "8bd590d3-49b8-40c5-a200-1d84ddc54800"
+type = "basic"
+front = '''
+如何给future设置超时？
+'''
+back = '''
+`tokio::time::timeout(duration, fut).await`
+返回Result。
+'''
+
+[[cards]]
+id = "07be34e3-3d69-4184-8d11-f8affecb746a"
+type = "basic"
+front = '''
+`tokio::select!`按什么顺序poll各个分支？
+'''
+back = '''
+随机。
+加上`biased;`则按书写顺序。
+'''
