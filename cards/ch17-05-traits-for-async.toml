@@ -1,21 +1,3 @@
-# TODO
-
-[[cards]]
-id = "77f036d8-fc76-456a-b983-4f7c70c8dbba"
-type = "basic"
-front = '''
-`Future` trait是如何定义的？
-'''
-back = '''
-```rust
-pub trait Future {
-	type Output;
-
-	fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output>;
-}
-```
-'''
-
 [[cards]]
 id = "ebad3a16-60f7-4c9c-826c-3169f08bb9b9"
 type = "basic"
@@ -35,52 +17,18 @@ front = '''
 '''
 back = '''
 调用future的`poll`。
-返回`Pending`时，runtime先去执行其他future，之后再回来poll，直到返回`Ready`。
-'''
-
-[[cards]]
-id = "9a550de9-ae89-445e-950c-4c551fded5ef"
-type = "basic"
-front = '''
-future的`poll`返回`Ready`之后，还能再调用`poll`吗？
-'''
-back = '''
-通常不行，很多future（如async block）会panic。
-'''
-
-[[cards]]
-id = "3f014351-de84-4cc6-997d-6d69f22a3403"
-type = "basic"
-front = '''
-`Future::poll`的`cx: &mut Context`参数有什么用？
-'''
-back = '''
-让future在可以继续推进时通知runtime再来poll，runtime就不用反复轮询。
+返回`Pending`时，之后再回来poll，直到返回`Ready`。
 '''
 
 [[cards]]
 id = "9bb6a43a-de49-42c2-82e5-3bda5d30242e"
 type = "basic"
 front = '''
-为什么两个不同async block产生的future不能放进同一个`Vec`？
+两个类型相同的async block，它们的future类型相同吗？
 '''
 back = '''
-每个async block都有自己独特的匿名类型，即使输出类型相同。
-'''
-
-[[cards]]
-id = "886bb1ab-e9a4-4588-973d-f1e103caf594"
-type = "basic"
-front = '''
-如何把多个不同的future放进同一个`Vec`？
-'''
-back = '''
-```rust
-let futs: Vec<Pin<Box<dyn Future<Output = T>>>> = vec![
-	Box::pin(async { ... }),
-	Box::pin(async { ... }),
-];
-```
+不同。
+编译器为每个async block生成一个独特的匿名类型。
 '''
 
 [[cards]]
@@ -95,24 +43,13 @@ back = '''
 '''
 
 [[cards]]
-id = "5b6dc333-8b3f-4b3a-8c9c-327972665961"
-type = "basic"
-front = '''
-`join!`和`join_all`分别适用于什么情况？
-'''
-back = '''
-- `join!`：future的数量在编译时已知
-- `join_all`：future的数量到运行时才确定
-'''
-
-[[cards]]
 id = "7c008ab2-c249-4229-8d21-54b983130765"
 type = "basic"
 front = '''
 `Pin`有什么作用？
 '''
 back = '''
-包装一个pointer（如`&mut T`、`Box<T>`），保证它指向的值不会在内存中被移动，除非这个值的类型实现了`Unpin`。
+包装一个pointer，保证它指向的值不会在内存中被移动，除非这个值的类型实现了`Unpin`。
 '''
 
 [[cards]]
@@ -129,11 +66,10 @@ back = '''
 id = "5d4865d9-206a-4077-8101-a87f20c1447f"
 type = "basic"
 front = '''
-为什么`Future::poll`要求`self`是`Pin<&mut Self>`？
+为什么future开始被poll时，它必须被pin？
 '''
 back = '''
 async block生成的state machine可能包含指向自身的reference。
-如果它被移动，这些reference就会指向旧的、无效的内存。
 '''
 
 [[cards]]
@@ -143,7 +79,7 @@ front = '''
 `Unpin` trait表示什么？
 '''
 back = '''
-这个类型可以安全地移动，即使它被`Pin`包装。
+这个类型的值可以安全地在内存中被移动。
 '''
 
 [[cards]]
@@ -153,15 +89,15 @@ front = '''
 哪些类型实现了`Unpin`？
 '''
 back = '''
-所有字段都实现了`Unpin`的类型会自动实现它，所以大多数类型（如`i32`、`String`）都是。
-async block和async function产生的future不是。
+绝大多数类型都实现了`Unpin`。
+典型没有实现的包括async block和async function产生的future。
 '''
 
 [[cards]]
 id = "7ca89829-0dd5-48e0-94e4-e2c720cf25b0"
 type = "basic"
 front = '''
-`pin!`和`Box::pin`有什么区别？
+`std::pin::pin!`和`Box::pin`有什么区别？
 '''
 back = '''
 - `std::pin::pin!(v)`：就地pin，不分配heap，得到`Pin<&mut T>`，只能在当前scope使用
@@ -176,40 +112,4 @@ front = '''
 '''
 back = '''
 `.await`会自动pin它。
-'''
-
-[[cards]]
-id = "3ef34e9a-360f-42ad-9242-87c386cf2d1e"
-type = "basic"
-front = '''
-method的`self`参数可以标注为哪些常见类型？
-'''
-back = '''
-- `Self`、`&Self`、`&mut Self`
-- `Box<Self>`、`Rc<Self>`、`Arc<Self>`
-- 用`Pin`包装的上述pointer，如`Pin<&mut Self>`
-'''
-
-[[cards]]
-id = "5cb585b6-1845-453a-a407-039bf5592818"
-type = "basic"
-front = '''
-`Stream::poll_next`返回什么类型，各层表示什么？
-'''
-back = '''
-`Poll<Option<Self::Item>>`
-
-- `Poll`：是否已经ready
-- `Option`：是否还有下一个item
-'''
-
-[[cards]]
-id = "b039b283-83b6-47b5-a6c0-1777293d86c7"
-type = "basic"
-front = '''
-自己实现stream类型时，需要实现哪个trait？
-'''
-back = '''
-只需实现`Stream`。
-`StreamExt`会自动为所有`Stream`实现。
 '''

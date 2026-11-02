@@ -1,5 +1,3 @@
-# TODO
-
 [[cards]]
 id = "069ff0ea-96a1-433f-8e97-d602d621f996"
 type = "basic"
@@ -17,7 +15,7 @@ front = '''
 如何把iterator转换成stream？
 '''
 back = '''
-`tokio_stream::iter(iter)`或`futures::stream::iter(iter)`
+`tokio_stream::iter(iter)`
 '''
 
 [[cards]]
@@ -34,8 +32,6 @@ while let Some(v) = stream.next().await {
 	...
 }
 ```
-
-stream没有实现`Unpin`时，要先pin住它。
 '''
 
 [[cards]]
@@ -45,7 +41,7 @@ front = '''
 对没有实现`Unpin`的stream调用`.next()`之前，要做什么？
 '''
 back = '''
-先pin住它：
+pin住它：
 
 ```rust
 let mut stream = std::pin::pin!(stream);
@@ -80,5 +76,5 @@ front = '''
 `Stream`和`StreamExt` trait在标准库中吗？
 '''
 back = '''
-不在，目前来自`futures`、`tokio-stream`等crate。
+不在，需要使用第三方crate。
 '''

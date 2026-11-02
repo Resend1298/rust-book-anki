@@ -1,5 +1,3 @@
-# TODO
-
 [[cards]]
 id = "43a35ae1-ec12-47dc-8946-a5b1b5064003"
 type = "basic"
@@ -17,7 +15,7 @@ front = '''
 async runtime、task和future之间是什么关系？
 '''
 back = '''
-runtime（的executor）管理task，task管理future。
+runtime管理task，task管理future。
 future是最小的concurrency单位。
 '''
 
@@ -33,16 +31,6 @@ back = '''
 '''
 
 [[cards]]
-id = "c5dfbba7-0563-4a0d-8156-b652fdf31053"
-type = "basic"
-front = '''
-什么是work stealing？
-'''
-back = '''
-runtime根据各thread的繁忙程度，把task在thread之间移动。
-'''
-
-[[cards]]
 id = "e7185c8e-acd5-4c36-8192-01f0b9de0687"
 type = "basic"
 front = '''
@@ -50,7 +38,7 @@ front = '''
 '''
 back = '''
 - 每个thread占用较多内存
-- 需要OS和硬件支持，有些嵌入式系统没有thread
+- 需要OS和硬件支持
 '''
 
 [[cards]]
@@ -60,29 +48,19 @@ front = '''
 什么样的工作适合用thread，什么样的适合用async？
 '''
 back = '''
-- thread：CPU-bound、可以高度parallel的工作，如分块处理大量数据
-- async：I/O-bound、需要高度concurrent的工作，如处理来自很多来源的消息
-'''
-
-[[cards]]
-id = "3bb10199-749c-477d-b9f8-5be8b50e78fd"
-type = "basic"
-front = '''
-`#[tokio::main]`默认创建什么样的runtime？
-'''
-back = '''
-多线程runtime，worker thread数默认等于CPU核心数。
+- thread：CPU-bound
+- async：I/O-bound
 '''
 
 [[cards]]
 id = "0bf3772c-9334-4cec-8fd6-397d2d1c14d3"
 type = "basic"
 front = '''
-在async代码中，如何执行blocking操作而不阻塞其他future？
+在async中，应当如何执行耗时的blocking操作？
 '''
 back = '''
 `tokio::task::spawn_blocking(|| ...)`
-在专门的thread上运行closure，返回可以`.await`的`JoinHandle`。
+在专门的线程池上运行closure，返回可以`.await`的future。
 '''
 
 [[cards]]
